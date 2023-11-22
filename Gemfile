@@ -73,3 +73,6 @@ end
 
 # Add Bootstrap5
 gem 'bootstrap', '~> 5.0.2'
+
+# Use jquery
+gem 'jquery-rails'
