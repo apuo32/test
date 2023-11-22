@@ -1,0 +1,18 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <%= image_tag 'cmn_logo01.svg', size: '150x50' %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="#">新規作成</a>
+        <a class="nav-link" href="#">改善一覧</a>
+        <a class="nav-link" href="#">マイページ</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">ログアウト</a> <!-- user_signed_in?を使用する場合のコメント -->
+      </div>
+    </div>
+  </div>
+</nav>

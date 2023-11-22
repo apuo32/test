@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  department_name: MyString
+  deletion_date: 2023-11-23 08:26:41
+  deletion_flag: false
+
+two:
+  department_name: MyString
+  deletion_date: 2023-11-23 08:26:41
+  deletion_flag: false

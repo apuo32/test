@@ -3,6 +3,8 @@ class Admin::DepartmentsController < ApplicationController
   end
 
   def new
+    # Departmentモデルのインスタンス作成
+    @department = Department.new
   end
 
   def edit

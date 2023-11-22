@@ -1,0 +1,30 @@
+@import "bootstrap";
+/* sidebar */
+
+/* レイアウト */
+.sidebar {
+  position: fixed;            //左端に固定
+  top: 0;                     //左端に固定
+  bottom: 0;                  //左端に固定
+  left: 0;                    //左端に固定
+  padding: 80px 0 0;          //上部に空白
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  z-index: 99;
+}
+
+/* リンクの文字色 */
+.sidebar .nav-link {
+  color: #333;
+}
+
+/* activeリンクの文字色 */
+.sidebar .nav-link.active {
+  color: #0d6efd;
+}
+ 
+// @media (max-width: 767.98px) {
+//   .sidebar {
+//     top: 11.5rem;
+//     padding: 0;
+//   }
+// }
