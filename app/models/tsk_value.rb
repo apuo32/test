@@ -1,0 +1,2 @@
+class TskValue < ApplicationRecord
+end

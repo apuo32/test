@@ -1,0 +1,2 @@
+class EffectAmount < ApplicationRecord
+end

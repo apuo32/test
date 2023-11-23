@@ -1,0 +1,2 @@
+class EvaluatorProgress < ApplicationRecord
+end
