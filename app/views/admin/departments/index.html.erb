@@ -12,60 +12,27 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">社員CD</th>
-                <th scope="col">ユーザー名</th>
-                <th scope="col">所属部署</th>
-                <th scope="col">評価者区分</th>
+                <th scope="col">ID</th>
+                <th scope="col">部署名</th>
+                <th scope="col">作成日時</th>
+                <th scope="col">更新日時</th>
+                <th scope="col">削除フラグ</th>
+                <th scope="col">削除日時</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">111</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">112</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">113</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">114</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">115</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              <tr>
-                <th scope="row">116</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
+              <% @departments.each do |department| %>
+                <tr>
+                  <th scope="row"><%= department.id %></th>
+                  <td><%= department.department_name %></td>
+                  <td><%= department.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= department.updated_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= department.deletion_flag %></td>
+                  <td><%= department.deletion_date ? department.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
+                  <td><%= link_to '編集', edit_admin_department_path(department), class: 'btn btn-sm btn-primary' %></td>
+                  <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
