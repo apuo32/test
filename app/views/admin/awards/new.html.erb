@@ -1,2 +1,23 @@
-<h1>Admin::Awards#new</h1>
-<p>Find me in app/views/admin/awards/new.html.erb</p>
+<!-- sidebar -->
+<%= render 'admin/sidebar' %>
+
+<!-- form -->
+
+<div class="row">
+  <div class="col-md-10 offset-md-2 mb-4">
+    <div class="card">
+      <h5 class="card-header">新規賞区分登録</h5>
+      <div class="card-body">
+        <%= form_with(model: @award, url: {controller: 'admin/awards', action: 'create' }, local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :award_name, "賞名:" %>
+            <%= form.text_field :award_name %>
+
+            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+            <a href="/admin/awards/" class="btn btn-sm btn-danger">戻る</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,26 @@
-<h1>Admin::TskValues#edit</h1>
-<p>Find me in app/views/admin/tsk_values/edit.html.erb</p>
+<!-- sidebar -->
+<%= render 'admin/sidebar' %>
+
+<!-- form -->
+
+<div class="row">
+  <div class="col-md-10 offset-md-2 mb-4">
+    <div class="card">
+      <h5 class="card-header">TSKValue編集</h5>
+      <div class="card-body">
+        <%= form_with(model: @tsk_value, url: {controller: 'admin/tsk_values', action: 'update' }, local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :value_name, "Value名:" %>
+            <%= form.text_field :value_name %>
+
+            <%= form.label :deletion_flag, "削除フラグ:" %>
+            <%= form.check_box :deletion_flag, {}, "true", "false" %>
+
+            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+            <a href="/admin/tsk_values/" class="btn btn-sm btn-danger">戻る</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

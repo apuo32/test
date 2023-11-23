@@ -12,64 +12,28 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">社員CD</th>
-                <th scope="col">ユーザー名</th>
-                <th scope="col">所属部署</th>
-                <th scope="col">評価者区分</th>
+                <th scope="col">期</th>
+                <th scope="col">回</th>
+                <th scope="col">1次提出年月日</th>
+                <th scope="col">2次提出年月日</th>
+                <th scope="col">表彰年月日</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">111</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">112</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">113</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">114</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
-              <tr>
-                <th scope="row">115</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              <tr>
-                <th scope="row">116</th>
-                <td>田中太郎</td>
-                <td>システム部</td>
-                <td>1次評価者</td>
-                <td><a href="#" class="btn btn-sm btn-primary">編集</a></td>
-                <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
-              </tr>
+              <% @calendars.each do |calendar| %>
+                <tr>
+                  <th scope="row"><%= calendar.term %></th>
+                  <td><%= calendar.time %></td>
+                  <td><%= calendar.first_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
+                  <td><%= calendar.second_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
+                  <td><%= calendar.award_date.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to '編集', edit_admin_calendar_path(calendar), class: 'btn btn-sm btn-primary' %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
-          <a href="#" class="btn btn-block btn-light">新規作成</a>
+        <a href="/admin/calendars/new" class="btn btn-block btn-secondary">新規作成</a>
       </div>
     </div>
   </div>

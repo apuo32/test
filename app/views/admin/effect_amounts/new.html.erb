@@ -1,2 +1,29 @@
-<h1>Admin::EffectAmounts#new</h1>
-<p>Find me in app/views/admin/effect_amounts/new.html.erb</p>
+<!-- sidebar -->
+<%= render 'admin/sidebar' %>
+
+<!-- form -->
+
+<div class="row">
+  <div class="col-md-10 offset-md-2 mb-4">
+    <div class="card">
+      <h5 class="card-header">効果金額算出用</h5>
+      <div class="card-body">
+        <%= form_with(model: @effect_amount, url: {controller: 'admin/effect_amounts', action: 'create' }, local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :kaizen_type, "KAIZEN種類:" %>
+            <%= form.text_field :kaizen_type %>
+
+            <%= form.label :unit, "単位:" %>
+            <%= form.text_field :unit %>
+
+            <%= form.label :amount, "金額(円):" %>
+            <%= form.number_field :amount %>
+
+            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+            <a href="/admin/effect_amounts/" class="btn btn-sm btn-danger">戻る</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
