@@ -76,3 +76,6 @@ gem 'bootstrap', '~> 5.0.2'
 
 # Use jquery
 gem 'jquery-rails'
+
+# Add devise
+gem 'devise'
