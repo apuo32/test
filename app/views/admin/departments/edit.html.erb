@@ -13,7 +13,11 @@
             <%= form.label :department_name, "部署名:" %>
             <%= form.text_field :department_name %>
 
-            <%= form.submit "登録", class: "btn btn-primary" %>
+            <%= form.label :deletion_flag, "削除フラグ:" %>
+            <%= form.check_box :deletion_flag, {}, "true", "false" %>
+
+            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+            <a href="/admin/departments/" class="btn btn-sm btn-danger">戻る</a>
           </div>
         <% end %>
       </div>

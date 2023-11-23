@@ -30,13 +30,12 @@
                   <td><%= department.deletion_flag %></td>
                   <td><%= department.deletion_date ? department.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
                   <td><%= link_to '編集', edit_admin_department_path(department), class: 'btn btn-sm btn-primary' %></td>
-                  <td><a href="#" class="btn btn-sm btn-danger">削除</a></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-          <a href="/admin/departments/new" class="btn btn-block btn-light">新規作成</a>
+          <a href="/admin/departments/new" class="btn btn-block btn-secondary">新規作成</a>
       </div>
     </div>
   </div>

@@ -23,6 +23,10 @@ class Admin::DepartmentsController < ApplicationController
   def update
     @department = Department.find(params[:id])
     if @department.update(department_params)
+      # 削除フラグが true に設定されている場合、削除日を更新日時に設定
+      if @department.deletion_flag
+        @department.update(deletion_date: @department.updated_at)
+      end
       redirect_to admin_departments_path
     else
       render :edit
@@ -35,6 +39,6 @@ class Admin::DepartmentsController < ApplicationController
     private
     # Strong Parameters
     def department_params
-      params.require(:department).permit(:department_name)
+      params.require(:department).permit(:department_name, :deletion_flag)
     end
 end
