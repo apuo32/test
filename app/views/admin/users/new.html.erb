@@ -1,2 +1,36 @@
-<h1>Admin::Users#new</h1>
-<p>Find me in app/views/admin/users/new.html.erb</p>
+<!-- sidebar -->
+<%= render 'admin/sidebar' %>
+
+<!-- form -->
+
+<div class="row">
+  <div class="col-md-10 offset-md-2 mb-4">
+    <div class="card">
+      <h5 class="card-header">新規ユーザー登録</h5>
+      <div class="card-body">
+        <%= form_with(model: @user, url: {controller: 'admin/users', action: 'create' }, local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :username, "ユーザー名:" %>
+            <%= form.text_field :username %>
+
+            <%= form.label :employee_code, "社員CD:" %>
+            <%= form.number_field :employee_code %>
+
+            <%= form.label :department_id, "部署名:" %>
+            <%= form.collection_select :department_id, @departments, :id, :department_name, prompt: "選択してください" %>
+
+
+            <%= form.label :unit, "単位:" %>
+            <%= form.text_field :unit %>
+
+            <%= form.label :amount, "金額(円):" %>
+            <%= form.number_field :amount %>
+
+            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+            <a href="/admin/effect_amounts/" class="btn btn-sm btn-danger">戻る</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
