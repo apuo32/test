@@ -20,20 +20,20 @@
               </tr>
             </thead>
             <tbody>
-              <% @calendars.each do |calendar| %>
+              <% @calendars.each do |i| %>
                 <tr>
-                  <th scope="row"><%= calendar.term %></th>
-                  <td><%= calendar.time %></td>
-                  <td><%= calendar.first_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
-                  <td><%= calendar.second_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
-                  <td><%= calendar.award_date.strftime('%Y/%m/%d') %></td>
-                  <td><%= link_to '編集', edit_admin_calendar_path(calendar), class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="row"><%= i.term %></th>
+                  <td><%= i.time %></td>
+                  <td><%= i.first_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.second_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.award_date.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to '編集', "/admin/calendars/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-        <a href="/admin/calendars/new" class="btn btn-block btn-secondary">新規作成</a>
+          <%= link_to '新規作成', "/admin/calendars/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
   </div>

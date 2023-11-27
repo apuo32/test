@@ -21,21 +21,21 @@
               </tr>
             </thead>
             <tbody>
-              <% @awards.each do |award| %>
+              <% @awards.each do |i| %>
                 <tr>
-                  <th scope="row"><%= award.id %></th>
-                  <td><%= award.award_name %></td>
-                  <td><%= award.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= award.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= award.deletion_flag %></td>
-                  <td><%= award.deletion_date ? award.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
-                  <td><%= link_to '編集', edit_admin_award_path(award), class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="row"><%= i.id %></th>
+                  <td><%= i.award_name %></td>
+                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.deletion_flag %></td>
+                  <td><%= i.deletion_date ? i.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
+                  <td><%= link_to '編集', "/admin/awards/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-          <a href="/admin/awards/new" class="btn btn-block btn-secondary">新規作成</a>
+          <%= link_to '新規作成', "/admin/awards/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
   </div>

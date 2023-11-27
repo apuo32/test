@@ -14,11 +14,12 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">ユーザー名</th>
+                <th scope="col">メールアドレス</th>
                 <th scope="col">社員CD</th>
                 <th scope="col">部署名</th>
                 <th scope="col">評価者区分</th>
-                <th scope="col">1次評価者ユーザー名</th>
-                <th scope="col">2次評価者ユーザー名</th>
+                <th scope="col">1次評価者</th>
+                <th scope="col">2次評価者</th>
                 <th scope="col">システム管理者フラグ</th>
                 <th scope="col">作成日時</th>
                 <th scope="col">更新日時</th>
@@ -27,27 +28,28 @@
               </tr>
             </thead>
             <tbody>
-              <% @users.each do |user| %>
+              <% @users.each do |i| %>
                 <tr>
-                  <th scope="row"><%= user.id %></th>
-                  <td><%= user.username %></td>
-                  <td><%= user.employee_code %></td>
-                  <td><%= user.department.department_name %></td>
-                  <td><%= user.evaluator.status %></td>
-                  <td><%= user.first_evaluator_id %></td>
-                  <td><%= user.second_evaluator_id %></td>
-                  <td><%= user.admin_flag %></td>
-                  <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= user.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= user.deletion_flag %></td>
-                  <td><%= user.deletion_date ? user.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
-                  <td><%= link_to '編集', edit_admin_user_path(user), class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="row"><%= i.id %></th>
+                  <td><%= i.username %></td>
+                  <td><%= i.email %></td>
+                  <td><%= i.employee_code %></td>
+                  <td><%= i.department.department_name %></td>
+                  <td><%= i.evaluator.status %></td>
+                  <td><%= i.first_evaluator.username %></td>
+                  <td><%= i.second_evaluator.username %></td>
+                  <td><%= i.admin_flag %></td>
+                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.deletion_flag %></td>
+                  <td><%= i.deletion_date ? i.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
+                  <td><%= link_to '編集', "/admin/users/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-          <a href="/admin/users/new" class="btn btn-block btn-secondary">新規作成</a>
+          <%= link_to '新規作成', "/admin/users/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
   </div>

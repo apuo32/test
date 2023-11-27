@@ -21,21 +21,21 @@
               </tr>
             </thead>
             <tbody>
-              <% @departments.each do |department| %>
+              <% @departments.each do |i| %>
                 <tr>
-                  <th scope="row"><%= department.id %></th>
-                  <td><%= department.department_name %></td>
-                  <td><%= department.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= department.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= department.deletion_flag %></td>
-                  <td><%= department.deletion_date ? department.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
-                  <td><%= link_to '編集', edit_admin_department_path(department), class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="row"><%= i.id %></th> 
+                  <td><%= i.department_name %></td>
+                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.deletion_flag %></td>
+                  <td><%= i.deletion_date ? i.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
+                  <td><%= link_to '編集', "/admin/departments/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-          <a href="/admin/departments/new" class="btn btn-block btn-secondary">新規作成</a>
+          <%= link_to '新規作成', "/admin/departments/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
   </div>

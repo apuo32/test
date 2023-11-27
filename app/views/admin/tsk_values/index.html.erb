@@ -21,21 +21,21 @@
               </tr>
             </thead>
             <tbody>
-              <% @tsk_values.each do |tsk_value| %>
+              <% @tsk_values.each do |i| %>
                 <tr>
-                  <th scope="row"><%= tsk_value.id %></th>
-                  <td><%= tsk_value.value_name %></td>
-                  <td><%= tsk_value.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= tsk_value.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= tsk_value.deletion_flag %></td>
-                  <td><%= tsk_value.deletion_date ? tsk_value.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
-                  <td><%= link_to '編集', edit_admin_tsk_value_path(tsk_value), class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="row"><%= i.id %></th>
+                  <td><%= i.value_name %></td>
+                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.deletion_flag %></td>
+                  <td><%= i.deletion_date ? i.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
+                  <td><%= link_to '編集', "/admin/tsk_values/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-          <a href="/admin/tsk_values/new" class="btn btn-block btn-secondary">新規作成</a>
+          <%= link_to '新規作成', "/admin/tsk_values/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
   </div>

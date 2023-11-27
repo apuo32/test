@@ -1,2 +1,44 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<!-- sidebar -->
+<%= render 'admin/sidebar' %>
+
+<!-- form -->
+
+<div class="row">
+  <div class="col-md-10 offset-md-2 mb-4">
+    <div class="card">
+      <h5 class="card-header">ユーザー編集</h5>
+      <div class="card-body">
+        <%= form_with(model: @user, url: {controller: 'admin/users', action: 'update' }, local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :username, "ユーザー名:" %>
+            <%= form.text_field :username %>
+
+            <%= form.label :employee_code, "社員CD:" %>
+            <%= form.number_field :employee_code %>
+
+            <%= form.label :department_id, "部署名:" %>
+            <%= form.collection_select :department_id, @departments, :id, :department_name, prompt: "選択してください" %>
+
+            <%= form.label :evaluator_id, "評価者区分:" %>
+            <%= form.collection_select :evaluator_id, @evaluators, :id, :status, prompt: "選択してください" %>
+
+            <%= form.label :first_evaluator_id, "1次評価者:" %>
+            <%= form.collection_select :first_evaluator_id, @first_evaluators, :id, :username, prompt: "選択してください" %>
+
+            <%= form.label :second_evaluator_id, "2次評価者:" %>
+            <%= form.collection_select :second_evaluator_id, @second_evaluators, :id, :username, prompt: "選択してください" %>
+
+            <%= form.label :admin_flag, "システム管理者:" %>
+            <%= form.check_box :admin_flag, {}, "true", "false" %>
+
+            <%= form.label :deletion_flag, "削除フラグ:" %>
+            <%= form.check_box :deletion_flag, {}, "true", "false" %>
+
+            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+            <%= link_to '戻る', "/admin/users/", class: 'btn btn-block btn-danger' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

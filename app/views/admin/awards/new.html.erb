@@ -14,7 +14,7 @@
             <%= form.text_field :award_name %>
 
             <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
-            <a href="/admin/awards/" class="btn btn-sm btn-danger">戻る</a>
+            <%= link_to '戻る', "/admin/awards/", class: 'btn btn-block btn-danger' %>
           </div>
         <% end %>
       </div>

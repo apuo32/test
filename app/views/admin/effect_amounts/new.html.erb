@@ -20,7 +20,7 @@
             <%= form.number_field :amount %>
 
             <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
-            <a href="/admin/effect_amounts/" class="btn btn-sm btn-danger">戻る</a>
+            <%= link_to '戻る', "/admin/effect_amounts/", class: 'btn btn-block btn-danger' %>
           </div>
         <% end %>
       </div>

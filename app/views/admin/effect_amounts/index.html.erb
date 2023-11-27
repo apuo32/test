@@ -23,22 +23,22 @@
               </tr>
             </thead>
             <tbody>
-              <% @effect_amounts.each do |effect_amount| %>
+              <% @effect_amounts.each do |i| %>
                 <tr>
-                  <th scope="row"><%= effect_amount.id %></th>
-                  <td><%= effect_amount.kaizen_type %></td>
-                  <td><%= effect_amount.unit %></td>
-                  <td><%= effect_amount.amount %></td>
-                  <td><%= effect_amount.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= effect_amount.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= effect_amount.deletion_flag %></td>
-                  <td><%= link_to '編集', edit_admin_effect_amount_path(effect_amount), class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="row"><%= i.id %></th>
+                  <td><%= i.kaizen_type %></td>
+                  <td><%= i.unit %></td>
+                  <td><%= i.amount %></td>
+                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= i.deletion_flag %></td>
+                  <td><%= link_to '編集', "/admin/effect_amounts/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-        <a href="/admin/effect_amounts/new" class="btn btn-block btn-secondary">新規作成</a>
+          <%= link_to '新規作成', "/admin/effect_amounts/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
   </div>
