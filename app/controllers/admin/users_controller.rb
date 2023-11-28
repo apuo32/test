@@ -42,6 +42,10 @@ class Admin::UsersController < ApplicationController
       end
       redirect_to admin_users_path
     else
+      @departments = Department.all.order(id: "ASC")
+      @evaluators = Evaluator.all.order(id: "ASC")
+      @first_evaluators = User.where(evaluator_id: 1).order(username: :asc)
+      @second_evaluators = User.where(evaluator_id: 2).order(username: :asc)
       render :edit
     end
   end
