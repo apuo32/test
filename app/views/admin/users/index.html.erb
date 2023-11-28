@@ -36,8 +36,8 @@
                   <td><%= i.employee_code %></td>
                   <td><%= i.department.department_name %></td>
                   <td><%= i.evaluator.status %></td>
-                  <td><%= i.first_evaluator.username %></td>
-                  <td><%= i.second_evaluator.username %></td>
+                  <td><%= i.first_evaluator&.username %></td>
+                  <td><%= i.second_evaluator&.username %></td>
                   <td><%= i.admin_flag %></td>
                   <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
                   <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
@@ -52,5 +52,6 @@
           <%= link_to '新規作成', "/admin/users/new", class: 'btn btn-block btn-secondary' %>
       </div>
     </div>
+    <%= paginate @users, theme: 'bootstrap-5' %>
   </div>
 </div>

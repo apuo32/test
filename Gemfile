@@ -79,3 +79,7 @@ gem 'jquery-rails'
 
 # Add devise
 gem 'devise'
+
+# Add Pagination
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'

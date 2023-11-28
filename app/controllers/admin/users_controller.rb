@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.all.order(id: "ASC") # idの昇順で表示
+    @users = User.all.order(id: "ASC").page(params[:page]).per(10) # idの昇順で表示 #ページネーション作成
     @departments = Department.all.order(id: "ASC") # idの昇順で表示
   end
 
