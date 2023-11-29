@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :check_admin # 管理者かどうかチェック # 管理者であればこのコントローラーにアクセス可能
+
   def index
     @users = User.all.order(id: "ASC").page(params[:page]).per(10) # idの昇順で表示 #ページネーション作成
     @departments = Department.all.order(id: "ASC") # idの昇順で表示
@@ -66,5 +68,10 @@ class Admin::UsersController < ApplicationController
                                     :first_evaluator_id,
                                     :second_evaluator_id,
                                     :deletion_flag)
+    end
+
+    # ログイン中のuserのadmin_flagがfalseであればルートパスにリダイレクト
+    def check_admin
+      redirect_to root_path, alert: '管理者権限が必要です' unless current_user.admin_flag?
     end
 end

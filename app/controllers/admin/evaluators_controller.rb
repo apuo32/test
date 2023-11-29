@@ -1,4 +1,6 @@
 class Admin::EvaluatorsController < ApplicationController
+  before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
+
   def index
     @evaluators = Evaluator.all.order(id: "ASC") # idの昇順で表示
   end
@@ -40,5 +42,10 @@ class Admin::EvaluatorsController < ApplicationController
     # Strong Parameters
     def evaluator_params
       params.require(:evaluator).permit(:status, :deletion_flag)
+    end
+
+    # ログイン中のuserのadmin_flagがfalseであればルートパスにリダイレクト
+    def check_admin
+      redirect_to root_path, alert: '管理者権限が必要です' unless current_user.admin_flag?
     end
 end

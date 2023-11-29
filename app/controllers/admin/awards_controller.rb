@@ -1,4 +1,6 @@
 class Admin::AwardsController < ApplicationController
+  before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
+
   def index
     @awards = Award.all.order(id: "ASC") # idの昇順で表示
   end
@@ -40,5 +42,10 @@ class Admin::AwardsController < ApplicationController
     # Strong Parameters
     def award_params
       params.require(:award).permit(:award_name, :deletion_flag)
+    end
+
+    # ログイン中のuserのadmin_flagがfalseであればルートパスにリダイレクト
+    def check_admin
+      redirect_to root_path, alert: '管理者権限が必要です' unless current_user.admin_flag?
     end
 end
