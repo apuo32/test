@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_23_221642) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_29_165015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,35 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_221642) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "kaizen_reports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "subject"
+    t.date "submission_date"
+    t.text "before_text"
+    t.text "after_text"
+    t.string "before_image"
+    t.string "after_image"
+    t.text "effect_comment"
+    t.integer "cost"
+    t.integer "effect_amount"
+    t.bigint "tsk_value_id", null: false
+    t.bigint "evaluator_progress_id", null: false
+    t.string "evaluators_id"
+    t.text "evaluation_comment"
+    t.string "kaizen_member_id"
+    t.bigint "award_id", null: false
+    t.bigint "department_id", null: false
+    t.datetime "deletion_date"
+    t.boolean "deletion_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["award_id"], name: "index_kaizen_reports_on_award_id"
+    t.index ["department_id"], name: "index_kaizen_reports_on_department_id"
+    t.index ["evaluator_progress_id"], name: "index_kaizen_reports_on_evaluator_progress_id"
+    t.index ["tsk_value_id"], name: "index_kaizen_reports_on_tsk_value_id"
+    t.index ["user_id"], name: "index_kaizen_reports_on_user_id"
+  end
+
   create_table "tsk_values", force: :cascade do |t|
     t.string "value_name"
     t.datetime "deletion_date"
@@ -95,6 +124,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_221642) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "kaizen_reports", "awards"
+  add_foreign_key "kaizen_reports", "departments"
+  add_foreign_key "kaizen_reports", "evaluator_progresses"
+  add_foreign_key "kaizen_reports", "tsk_values"
+  add_foreign_key "kaizen_reports", "users"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "evaluators"
 end

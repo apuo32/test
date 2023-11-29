@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  subject: MyString
+  submission_date: 2023-11-30
+  before_text: MyText
+  after_text: MyText
+  before_image: MyString
+  after_image: MyString
+  effect_comment: MyText
+  cost: 1
+  effect_amount: 1
+  tsk_value: one
+  evaluator_progress: one
+  evaluators_id: MyString
+  evaluation_comment: MyText
+  kaizen_member_id: MyString
+  award: one
+  department: one
+
+two:
+  user: two
+  subject: MyString
+  submission_date: 2023-11-30
+  before_text: MyText
+  after_text: MyText
+  before_image: MyString
+  after_image: MyString
+  effect_comment: MyText
+  cost: 1
+  effect_amount: 1
+  tsk_value: two
+  evaluator_progress: two
+  evaluators_id: MyString
+  evaluation_comment: MyText
+  kaizen_member_id: MyString
+  award: two
+  department: two
