@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   namespace :admin do
     resources :departments
     resources :evaluators
@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     resources :calendars
     resources :effect_amounts
   end
-  root "admin/departments#index"
+
+  resources :users
+  root "users#index"
 end
