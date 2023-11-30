@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_29_165015) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_30_135604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_165015) do
     t.boolean "deletion_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "submission_flag", default: false
     t.index ["award_id"], name: "index_kaizen_reports_on_award_id"
     t.index ["department_id"], name: "index_kaizen_reports_on_department_id"
     t.index ["evaluator_progress_id"], name: "index_kaizen_reports_on_evaluator_progress_id"
