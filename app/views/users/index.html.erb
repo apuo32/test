@@ -20,7 +20,7 @@
               <th scope="row"><%= i.id %></th>              
               <td><%= i.submission_date %></td>
               <td><%= i.subject %></td>
-              <td></td>
+              <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
               <td><%= i.evaluator_progress.status %></td>
             </tr>
           <% end %>

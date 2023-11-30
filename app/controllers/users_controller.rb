@@ -20,17 +20,34 @@ class UsersController < ApplicationController
     @kaizen_report.user_id = current_user.id
     @kaizen_report.department_id = current_user.department.id
 
-    if @kaizen_report.save
-      redirect_to users_path
-    else
-      # 後からまとめる
-      @tsk_values = TskValue.all
-      @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
-      @awards = Award.all
-      @evaluator_progresses = EvaluatorProgress.all
-      # 後からまとめる
+    # 保存ボタン(name: "save")を押した場合
+    if params[:save]
+      if @kaizen_report.save
+        redirect_to users_path
+      else
+        # 後からまとめる
+        @tsk_values = TskValue.all
+        @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
+        @awards = Award.all
+        @evaluator_progresses = EvaluatorProgress.all
+        # 後からまとめる
 
-      render :new
+        render :new
+      end
+    # 提出ボタン(name: "submit")を押した場合
+    else
+      if  @kaizen_report.update(submission_flag: true)
+        redirect_to users_path
+      else
+        # 後からまとめる
+        @tsk_values = TskValue.all
+        @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
+        @awards = Award.all
+        @evaluator_progresses = EvaluatorProgress.all
+        # 後からまとめる
+
+        render :new
+      end
     end
   end
 

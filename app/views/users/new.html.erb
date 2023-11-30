@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-5">
   <h5 class="card-header">新規作成</h5>
   <div class="card-body">
     <%= form_with(model: @kaizen_report, url: new_report_path, local: true) do |form| %>
@@ -75,7 +75,9 @@
         </p>
 
         <p>
-          <%= form.submit "提出", class: "btn btn-sm btn-primary" %>
+          <%= form.submit "提出", name: "submit", class: "btn btn-sm btn-primary" %>
+          <%= form.submit "保存", name: "save", class: "btn btn-sm btn-secondary" %>
+          <%= link_to '戻る', "/users", class: 'btn btn-sm btn-danger' %>
         </p>
       </div>
     <% end %>
