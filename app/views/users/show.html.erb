@@ -1,2 +1,84 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="card">
+  <h5 class="card-header">新規作成</h5>
+  <div class="card-body">
+    <%= form_with(model: @kaizen_report, url: new_report_path, local: true) do |form| %>
+      <div class="form-group">
+        <p>社員CD: <%= current_user.employee_code %></p>
+        <p>部署: <%= current_user.department.department_name %></p>
+        <p>氏名: <%= current_user.username %></p>
+
+        <p>
+          <%= form.label :submission_date, "提出日:" %>
+          <%= form.select :submission_date, @evaluation_dates, prompt: "選択してください" %>
+        </p>
+      
+        <p>
+          <%= form.label :subject, "件名:" %>
+          <%= form.text_field :subject %>
+        </p>
+
+        <p>
+          <%= form.label :before_image, "改善前の画像:" %>
+          <%= form.file_field :before_image %>
+        </p>
+
+        <p>
+          <%= form.label :before_text, "改善前のテキスト:" %>
+          <%= form.text_area :before_text %>
+        </p>
+
+        <p>
+          <%= form.label :after_image, "改善後の画像:" %>
+          <%= form.file_field :after_image %>
+        </p>
+
+        <p>
+          <%= form.label :after_text, "改善後のテキスト:" %>
+          <%= form.text_area :after_text %>
+        </p>
+
+        <p>
+          <%= form.label :effect_comment, "効果コメント:" %>
+          <%= form.text_area :effect_comment %>
+        </p>
+
+        <p>
+          <%= form.label :cost, "費用:" %>
+          <%= form.number_field :cost, step: "any", class: "form-control" %>
+          <span>円</span>
+        </p>
+
+        <p>
+          <%= form.label :effect_amount, "効果金額:" %>
+          <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
+          <span>円</span>
+        </p>
+
+        <p>
+          <%= form.label :tsk_value_id, "TSKバリュー:" %>
+          <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, prompt: "選択してください" %>
+        </p>
+
+        <p>
+          <%= form.label :kaizen_member_id, "メンバーID:" %>
+          <%= form.text_field :kaizen_member_id, id: "kaizen_member_id" %>
+        </p>
+
+        <p>
+          <%= form.label :evaluator_progress_id, "評価進捗区分:" %>
+          <%= form.collection_select :evaluator_progress_id, @evaluator_progresses, :id, :status, { selected: 1, prompt: "選択してください" } %>
+        </p>
+
+        <p>
+          <%= form.label :award_id, "賞区分:" %>
+          <%= form.collection_select :award_id, @awards, :id, :award_name, { selected: 4, prompt: "選択してください" } %>
+        </p>
+
+
+        <p>
+          <%= form.submit "提出", class: "btn btn-sm btn-primary" %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

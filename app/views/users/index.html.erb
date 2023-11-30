@@ -1,6 +1,6 @@
 <h2><%= current_user.username %></h2>
 
-<div class="card">
+<div class="card mb-5">
   <h5 class="card-header">改善報告一覧</h5>
   <div class="card-body">
     <div class="table-responsive">
@@ -8,8 +8,8 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">件名</th>
             <th scope="col">提出日</th>
+            <th scope="col">件名</th>
             <th scope="col">提出状況</th>
             <th scope="col">評価進捗</th>
           </tr>
@@ -17,9 +17,9 @@
         <tbody>
           <% @kaizen_reports.each do |i| %>
             <tr>
-              <th scope="row"><%= i.id %></th>
-              <td><%= i.subject %></td>
+              <th scope="row"><%= i.id %></th>              
               <td><%= i.submission_date %></td>
+              <td><%= i.subject %></td>
               <td></td>
               <td><%= i.evaluator_progress.status %></td>
             </tr>
@@ -30,3 +30,36 @@
   </div>
 </div>
 <%= paginate @kaizen_reports, theme: 'bootstrap-5' %>
+
+<!-- KAIZENカレンダー:パーシャルに変更予定 -->
+
+<div class="card mb-5">
+  <h5 class="card-header">KAIZENカレンダー</h5>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">期</th>
+            <th scope="col">回</th>
+            <th scope="col">1次評価者提出</th>
+            <th scope="col">2次評価者提出</th>
+            <th scope="col">表彰</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @calendars.each do |i| %>
+            <tr>
+              <th scope="row"><%= i.term %></th>
+              <th scope="row"><%= i.time %></th>              
+              <td><%= i.first_evaluation_submission_date.strftime("%-m月%-d日") %></td>
+              <td><%= i.second_evaluation_submission_date.strftime("%-m月%-d日") %></td>
+              <td><%= i.award_date.strftime("%-m月%-d日") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= paginate @calendars, theme: 'bootstrap-5' %>

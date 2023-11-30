@@ -3,9 +3,9 @@
   <div class="card-body">
     <%= form_with(model: @kaizen_report, url: new_report_path, local: true) do |form| %>
       <div class="form-group">
-        <p>社員CD: <%= @current_user.employee_code %></p>
-        <p>部署: <%= @current_user.department.department_name %></p>
-        <p>氏名: <%= @current_user.username %></p>
+        <p>社員CD: <%= current_user.employee_code %></p>
+        <p>部署: <%= current_user.department.department_name %></p>
+        <p>氏名: <%= current_user.username %></p>
 
         <p>
           <%= form.label :submission_date, "提出日:" %>
@@ -65,13 +65,13 @@
         </p>
 
         <p>
-          <%= form.label :evaluator_progress_id, "評価進捗区分:" %>
-          <%= form.collection_select :evaluator_progress_id, @evaluator_progresses, :id, :status, prompt: "選択してください" %>
+          <!-- 評価進捗区分：初期値に"未評価"を設定 -->
+          <%= form.hidden_field :evaluator_progress_id, value: 1 %>
         </p>
 
         <p>
-        <%= form.label :award_id, "賞区分:" %>
-        <%= form.collection_select :award_id, @awards, :id, :award_name, prompt: "選択してください" %>
+          <!-- 賞区分：初期値に"賞無し"を設定 -->
+          <%= form.hidden_field :award_id, value: 4 %>
         </p>
 
         <p>

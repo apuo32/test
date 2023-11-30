@@ -1,29 +1,35 @@
 class UsersController < ApplicationController
   def index
     @kaizen_reports = KaizenReport.where(user_id: current_user.id).page(params[:page]).per(10)
+    @calendars = Calendar.all.page(params[:page]).per(10)
   end
 
   def new
     @kaizen_report = KaizenReport.new # KaizenReportモデルのインスタンス作成
-    @current_user = current_user
+    
+    # 後からまとめる
     @tsk_values = TskValue.all
     @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
     @awards = Award.all
     @evaluator_progresses = EvaluatorProgress.all
+    # 後からまとめる
   end
 
   def create
     @kaizen_report = KaizenReport.new(kaizen_report_params)
     @kaizen_report.user_id = current_user.id
     @kaizen_report.department_id = current_user.department.id
+
     if @kaizen_report.save
       redirect_to users_path
     else
-      @current_user = current_user
+      # 後からまとめる
       @tsk_values = TskValue.all
       @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
       @awards = Award.all
       @evaluator_progresses = EvaluatorProgress.all
+      # 後からまとめる
+
       render :new
     end
   end
