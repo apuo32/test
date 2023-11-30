@@ -10,35 +10,55 @@
       <div class="card-body">
         <%= form_with(model: @user, url: {controller: 'admin/users', action: 'create' }, local: true) do |form| %>
           <div class="form-group">
-            <%= form.label :username, "ユーザー名:" %>
-            <%= form.text_field :username %>
-
-            <%= form.label :email, "メールアドレス:" %>
-            <%= form.text_field :email %>
-
-            <%= form.label :password, "パスワード:" %>
-            <%= form.text_field :password %>
-
-            <%= form.label :employee_code, "社員CD:" %>
-            <%= form.number_field :employee_code %>
-
-            <%= form.label :department_id, "部署名:" %>
-            <%= form.collection_select :department_id, @departments, :id, :department_name, prompt: "選択してください" %>
-
-            <%= form.label :evaluator_id, "評価者区分:" %>
-            <%= form.collection_select :evaluator_id, @evaluators, :id, :status, prompt: "選択してください" %>
-
-            <%= form.label :first_evaluator_id, "1次評価者:" %>
-            <%= form.collection_select :first_evaluator_id, @first_evaluators, :id, :username, prompt: "選択してください" %>
-
-            <%= form.label :second_evaluator_id, "2次評価者:" %>
-            <%= form.collection_select :second_evaluator_id, @second_evaluators, :id, :username, prompt: "選択してください" %>
-
-            <%= form.label :admin_flag, "システム管理者:" %>
-            <%= form.check_box :admin_flag, {}, "true", "false" %>
-
-            <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
-            <%= link_to '戻る', "/admin/users/", class: 'btn btn-block btn-danger' %>
+            <p>
+              <%= form.label :username, "ユーザー名:" %>
+              <%= form.text_field :username %>
+            </p>
+        
+            <p>
+              <%= form.label :email, "メールアドレス:" %>
+              <%= form.text_field :email %>
+            </p>
+        
+            <p>
+              <%= form.label :password, "パスワード:" %>
+              <%= form.text_field :password %>
+            </p>
+        
+            <p>
+              <%= form.label :employee_code, "社員CD:" %>
+              <%= form.number_field :employee_code %>
+            </p>
+        
+            <p>
+              <%= form.label :department_id, "部署名:" %>
+              <%= form.collection_select :department_id, @departments, :id, :department_name, prompt: "選択してください" %>
+            </p>
+        
+            <p>
+              <%= form.label :evaluator_id, "評価者区分:" %>
+              <%= form.collection_select :evaluator_id, @evaluators, :id, :status, prompt: "選択してください" %>
+            </p>
+        
+            <p>
+              <%= form.label :first_evaluator_id, "1次評価者:" %>
+              <%= form.collection_select :first_evaluator_id, @first_evaluators, :id, :username, prompt: "選択してください" %>
+            </p>
+        
+            <p>
+              <%= form.label :second_evaluator_id, "2次評価者:" %>
+              <%= form.collection_select :second_evaluator_id, @second_evaluators, :id, :username, prompt: "選択してください" %>
+            </p>
+        
+            <p>
+              <%= form.label :admin_flag, "システム管理者:" %>
+              <%= form.check_box :admin_flag, {}, "true", "false" %>
+            </p>
+        
+            <p>
+              <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
+              <%= link_to '戻る', "/admin/users/", class: 'btn btn-block btn-danger' %>
+            </p>
           </div>
         <% end %>
       </div>
