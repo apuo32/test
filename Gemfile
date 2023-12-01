@@ -83,3 +83,6 @@ gem 'devise'
 # Add Pagination
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+
+# Add ransack
+gem 'ransack'
