@@ -1,38 +1,68 @@
 <h2><%= current_user.username %></h2>
 
-<div class="card mb-5">
-  <h5 class="card-header">改善報告一覧</h5>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">提出日</th>
-            <th scope="col">件名</th>
-            <th scope="col">提出状況</th>
-            <th scope="col">評価進捗</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @kaizen_reports.each do |i| %>
+<!-- 検索フォーム -->
+<%= turbo_frame_tag 'search' do %>
+  <div class="mb-3">
+    <%= search_form_for @kaizen_reports_search, url: users_path, remote: true, data: { turbo_frame: 'results' } do |f| %>
+      <div class="row">
+        <div class="col">
+          <%= f.label :subject_cont, "件名で検索:" %>
+          <%= f.search_field :subject_cont, oninput: "requestSubmit()", class: 'form-control' %>
+        </div>
+        <div class="col">
+          <%= f.label :submission_date_gteq, "提出日（から）:" %>
+          <%= f.date_field :submission_date_gteq, class: 'form-control' %>
+        </div>
+        <div class="col">
+          <%= f.label :submission_date_lteq, "提出日（まで）:" %>
+          <%= f.date_field :submission_date_lteq, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="mt-3">
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<!-- 改善一覧テーブル(検索結果) -->
+<%= turbo_frame_tag 'results' do %>
+  <div class="card mb-5">
+    <h5 class="card-header">改善報告一覧</h5>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
             <tr>
-              <th scope="row"><%= i.id %></th>              
-              <td><%= i.submission_date %></td>
-              <td><%= i.subject %></td>
-              <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
-              <td><%= i.evaluator_progress.status %></td>
+              <th scope="col">ID</th>
+              <th scope="col">提出日</th>
+              <th scope="col">件名</th>
+              <th scope="col">提出状況</th>
+              <th scope="col">評価進捗</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @kaizen_reports_result.each do |i| %>
+              <tr>
+                <th scope="row"><%= i.id %></th>              
+                <td><%= i.submission_date %></td>
+                <td><%= i.subject %></td>
+                <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
+                <td><%= i.evaluator_progress.status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <!-- ページネーション:改善一覧テーブル -->
+      <%= paginate @kaizen_reports_result, theme: 'bootstrap-5' %>
     </div>
   </div>
-</div>
-<%= paginate @kaizen_reports, theme: 'bootstrap-5' %>
+<% end %>
 
 <!-- KAIZENカレンダー:パーシャルに変更予定 -->
-
 <div class="card mb-5">
   <h5 class="card-header">KAIZENカレンダー</h5>
   <div class="card-body">
@@ -62,4 +92,5 @@
     </div>
   </div>
 </div>
+<!-- ページネーション:KAIZENカレンダー -->
 <%= paginate @calendars, theme: 'bootstrap-5' %>

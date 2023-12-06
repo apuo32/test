@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
   def index
-    @kaizen_reports = KaizenReport.where(user_id: current_user.id).page(params[:page]).per(10)
+    # params[:q]に検索条件を入れて、その条件を満たすログイン中のユーザーのkaizen_reportsテーブルの全データをkaizen_reports_searchに入れる
+    @kaizen_reports_search = KaizenReport.where(user_id: current_user.id).ransack(params[:q])
+
+    # ransackのresultメソッドで@kaizen_reports_search内のデータをviewに表示できる形に変更
+    @kaizen_reports_result = @kaizen_reports_search.result.page(params[:page]).per(10)
+
     @calendars = Calendar.all.page(params[:page]).per(10)
   end
 
   def new
     @kaizen_report = KaizenReport.new # KaizenReportモデルのインスタンス作成
+    @users = User.all
     
     # 後からまとめる
     @tsk_values = TskValue.all
