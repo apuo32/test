@@ -28,7 +28,7 @@ document.addEventListener("turbo:load", function() {
     newField.innerHTML = `
       <label for="kaizen_member_username">KAIZENメンバー:</label>
       <input type="text" class="kaizen_member_username" autocomplete="on" list="users">
-      <input type="hidden" class="kaizen_member_id">
+      <input type="text" class="kaizen_member_id">
     `;
 
     newFieldPlaces.insertAdjacentElement('afterend', newField);

@@ -10,8 +10,8 @@
       <div class="navbar-nav">
           <a class="nav-link" href="#">改善一覧</a>
         <% if user_signed_in? %>
-          <%= link_to "新規作成", "/users/new", class: 'nav-link' %>
-          <%= link_to "マイページ", "/users", class: 'nav-link' %>
+          <%= link_to "新規作成", "/kaizen_reports/new", class: 'nav-link' %>
+          <%= link_to "マイページ", user_path(current_user), class: 'nav-link' %>
           <%= link_to "ログアウト", "/users/sign_out", data: { turbo_method: :delete }, class: 'nav-link' %>
         <% end %>
       </div>

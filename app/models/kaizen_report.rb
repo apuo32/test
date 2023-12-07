@@ -1,4 +1,7 @@
 class KaizenReport < ApplicationRecord
+  has_many_attached :before_images
+  has_many_attached :after_images
+
   belongs_to :user
   belongs_to :tsk_value
   belongs_to :evaluator_progress
