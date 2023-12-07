@@ -86,3 +86,5 @@ gem 'bootstrap5-kaminari-views'
 
 # Add ransack
 gem 'ransack'
+
+gem "aws-sdk-s3"
