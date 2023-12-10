@@ -49,14 +49,7 @@
                 <td><%= i.subject %></td>
                 <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
                 <td><%= i.evaluator_progress.status %></td>
-                <% unless i.submission_flag %>
-                  <td><%= link_to '編集', edit_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
-                  <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
-                  <td><%= link_to '削除', user_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
-                <% else %>
-                  <td></td>
-                  <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
-                  <td></td>
+                <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
                 <% end %>
               </tr>
             <% end %>

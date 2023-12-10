@@ -12,6 +12,9 @@
           <%= link_to "改善報告一覧", "/users/", class: 'nav-link' %>
           <%= link_to "新規作成", "/kaizen_reports/new", class: 'nav-link' %>
           <%= link_to "マイページ", user_path(current_user), class: 'nav-link' %>
+          <% if current_user.admin_flag %>
+            <%= link_to "管理画面", "/admin/users", class: 'nav-link' %>
+          <% end %>
           <%= link_to "ログアウト", "/users/sign_out", data: { turbo_method: :delete }, class: 'nav-link' %>
         <% end %>
       </div>

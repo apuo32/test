@@ -20,16 +20,18 @@
           <%= form.select :submission_date, @evaluation_dates, prompt: "選択してください" %>
         </p>
       
+        <!-- もっと長く -->
         <p>
           <%= form.label :subject, "件名:" %>
           <%= form.text_field :subject %>
         </p>
 
         <p>
-          <%= form.label :before_images, "改善前の画像:" %>
+          <%= form.label :before_images, "改善前の画像:" %> <!-- クリップボードでコピペできるように -->
           <%= form.file_field :before_images, multiple: true %>
         </p>
 
+        <!-- 文字数制限 -->
         <p>
           <%= form.label :before_text, "改善前のテキスト:" %>
           <%= form.text_area :before_text %>
@@ -44,7 +46,7 @@
         <% end %>
 
         <p>
-          <%= form.label :after_images, "改善後の画像:" %>
+          <%= form.label :after_images, "改善後の画像:" %> <!-- クリップボードでコピペできるように(優先度低め) -->
           <%= form.file_field :after_images, multiple: true %>
         </p>
 
@@ -65,7 +67,7 @@
         </p>
 
         <p>
-          <%= form.label :effect_amount, "効果金額:" %>
+          <%= form.label :effect_amount, "効果金額:" %> <!-- 単位を選んで式が自動で出る。島田さんの年間高価金額を参考に -->
           <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
           <span>円</span>
         </p>
@@ -75,6 +77,7 @@
           <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, prompt: "選択してください" %>
         </p>
 
+        <!-- 自分のIDも入れる -->
         <p class="member-form-container">
           <%= form.label :kaizen_member_username, "KAIZENメンバー:" %>
 
@@ -107,6 +110,7 @@
         </p>
 
         <p>
+        <!-- 確認を挟む -->
           <%= form.submit "提出", name: "submit", class: "btn btn-sm btn-primary" %>
           <%= form.submit "保存", name: "save", class: "btn btn-sm btn-secondary" %>
           <%= link_to '戻る', root_path, class: 'btn btn-sm btn-danger' %>

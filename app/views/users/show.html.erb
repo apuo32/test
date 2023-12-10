@@ -52,7 +52,7 @@
                 <% unless i.submission_flag %>
                   <td><%= link_to '編集', edit_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
                   <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
-                  <td><%= link_to '削除', user_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
+                  <td><%= link_to '削除', kaizen_report_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
                 <% else %>
                   <td></td>
                   <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
@@ -72,6 +72,8 @@
 <% end %>
 
 <!-- KAIZENカレンダー:パーシャルに変更予定 -->
+
+<!-- 回数順でソートする -->
 <div class="card mb-5">
   <h5 class="card-header">KAIZENカレンダー</h5>
   <div class="card-body">

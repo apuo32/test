@@ -110,6 +110,12 @@ class KaizenReportsController < ApplicationController
     end
   end
 
+  def destroy
+    @kaizen_report = KaizenReport.find(params[:id])
+    @kaizen_report.destroy
+    redirect_to user_path(current_user), notice: '改善報告を削除しました'
+  end
+
   def show
     @kaizen_report = KaizenReport.find(params[:id])
     @users = User.all

@@ -40,12 +40,12 @@
               <%= form.collection_select :evaluator_id, @evaluators, :id, :status, prompt: "選択してください" %>
             </p>
         
-            <p>
+            <p> <!-- どちらも入れれるようにする -->
               <%= form.label :first_evaluator_id, "1次評価者:" %>
               <%= form.collection_select :first_evaluator_id, @first_evaluators, :id, :username, prompt: "選択してください" %>
             </p>
         
-            <p>
+            <p> <!-- どちらも入れれるようにする -->
               <%= form.label :second_evaluator_id, "2次評価者:" %>
               <%= form.collection_select :second_evaluator_id, @second_evaluators, :id, :username, prompt: "選択してください" %>
             </p>
