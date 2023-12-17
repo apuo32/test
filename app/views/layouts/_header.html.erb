@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if user_signed_in? %>
-          <%= link_to "改善報告一覧", "/users/", class: 'nav-link' %>
+          <%= link_to "改善報告一覧", "/users/index", class: 'nav-link' %>
           <%= link_to "新規作成", "/kaizen_reports/new", class: 'nav-link' %>
           <%= link_to "マイページ", user_path(current_user), class: 'nav-link' %>
           <% if current_user.admin_flag %>
