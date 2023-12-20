@@ -14,7 +14,8 @@ class Admin::DepartmentsController < ApplicationController
     if @department.save
       redirect_to admin_departments_path
     else
-      render :new
+      @errors = @department.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,8 @@ class Admin::DepartmentsController < ApplicationController
       end
       redirect_to admin_departments_path
     else
-      render :edit
+      @errors = @department.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

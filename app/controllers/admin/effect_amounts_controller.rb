@@ -14,7 +14,8 @@ class Admin::EffectAmountsController < ApplicationController
     if @effect_amount.save
       redirect_to admin_effect_amounts_path
     else
-      render :new
+      @errors = @effect_amount.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +28,8 @@ class Admin::EffectAmountsController < ApplicationController
     if @effect_amount.update(effect_amount_params)
       redirect_to admin_effect_amounts_path
     else
-      render :edit
+      @errors = @effect_amount.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

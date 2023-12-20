@@ -14,7 +14,8 @@ class Admin::EvaluatorsController < ApplicationController
     if @evaluator.save
       redirect_to admin_evaluators_path
     else
-      render :new
+      @errors = @evaluator.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,8 @@ class Admin::EvaluatorsController < ApplicationController
       end
       redirect_to admin_evaluators_path
     else
-      render :edit
+      @errors = @evaluator.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

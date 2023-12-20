@@ -1,0 +1,91 @@
+<div class="card mb-5">
+  <h5 class="card-header">新規作成</h5>
+  <div class="card-body">
+    <%= form_with(model: @kaizen_report, url: {controller: 'submitted_kaizen_reports', action: 'update' }, local: true) do |form| %>
+      <div class="form-group">
+        <p>社員CD: <%= @kaizen_report.user.employee_code %></p>
+
+        <p>部署: <%= @kaizen_report.user.department.department_name %></p>
+
+        <p>氏名: <%= @kaizen_report.user.username %></p>
+
+        <p>提出日: <%= @kaizen_report.submission_date %></p>
+
+        <p>件名: <%= @kaizen_report.subject %></p>
+
+        <p>改善前の画像: 
+          <% if @kaizen_report.before_images.attached? %>
+            <div class="image-preview">
+              <% @kaizen_report.before_images.each do |image| %>
+                <%= image_tag image %>
+              <% end %>
+            </div>
+          <% end %>
+        </p>
+
+        <p>改善前のテキスト: <%= @kaizen_report.before_text %></p>
+
+        <p>改善前の画像: 
+          <% if @kaizen_report.after_images.attached? %>
+            <div class="image-preview">
+              <% @kaizen_report.after_images.each do |image| %>
+                <%= image_tag image %>
+              <% end %>
+            </div>
+          <% end %>
+        </p>
+
+        <p>改善後のテキスト: <%= @kaizen_report.after_text %></p>
+
+        <p>効果コメント: <%= @kaizen_report.effect_comment %></p>
+
+        <p>費用: <%= @kaizen_report.cost %></p>
+
+        <p>効果金額: <%= @kaizen_report.effect_amount %></p>
+
+        <p>TSKバリュー: <%= @kaizen_report.tsk_value.value_name %></p>
+
+        <p>KAIZENメンバー: 
+          <% member_ids = @kaizen_report.kaizen_member_id.split(',') %>
+          <% member_usernames = User.where(id: member_ids).pluck(:username) %>
+          <%= member_usernames.join(', ') %>
+        </p>
+
+        <p>
+          <%= form.label :evaluator_progress_id, "評価進捗:" %>
+          <% if @kaizen_report.evaluator_progress_id == 1 %>
+            <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: 2), :id, :status, include_blank: false %>
+          <% elsif @kaizen_report.evaluator_progress_id == 2 %>
+            <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: 3), :id, :status, include_blank: false %>
+          <% else %>
+            <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: 4), :id, :status, include_blank: false %>
+          <% end %>
+        </p>
+
+        <% if current_user.evaluator_id == 3 %>
+          <p>
+            <%= form.label :award_id, "賞:" %>
+            <%= form.collection_select :award_id, @awards.where(id: [1, 2, 3]), :id, :award_name, prompt: "選択してください" %>
+          </p>
+        <% else %>
+          <p>
+            <%= form.label :award_id, "賞:" %>
+            <%= form.collection_select :award_id, @awards.where(id: [1, 4]), :id, :award_name, prompt: "選択してください" %>
+          </p>
+        <% end %>
+
+
+        <p>
+          <%= form.label :evaluation_comment, "評価コメント:" %>
+          <%= form.text_area :evaluation_comment %>
+        </p>
+
+        <p>
+        <!-- 確認を挟む -->
+          <%= form.submit "提出", class: "btn btn-sm btn-primary" %>
+          <%= link_to '戻る', evaluator_path(current_user.id), class: 'btn btn-sm btn-danger' %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

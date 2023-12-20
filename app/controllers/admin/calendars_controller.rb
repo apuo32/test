@@ -2,7 +2,7 @@ class Admin::CalendarsController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
 
   def index
-    @calendars = Calendar.all.order(id: "ASC") # idの昇順で表示
+    @calendars = Calendar.all.order(time: "ASC") # time(回)の昇順で表示
   end
 
   def new
@@ -14,7 +14,8 @@ class Admin::CalendarsController < ApplicationController
     if @calendar.save
       redirect_to admin_calendars_path
     else
-      render :new
+      @errors = @calendar.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +28,8 @@ class Admin::CalendarsController < ApplicationController
     if @calendar.update(calendar_params)
       redirect_to admin_calendars_path
     else
-      render :edit
+      @errors = @calendar.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -1,4 +1,4 @@
-<h2><%= current_user.username %></h2>
+<h2>マイページ：<%= current_user.username %></h2>
 
 <!-- 検索フォーム -->
 <%= turbo_frame_tag 'search' do %>
@@ -52,7 +52,9 @@
                 <% unless i.submission_flag %>
                   <td><%= link_to '編集', edit_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
                   <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
-                  <td><%= link_to '削除', kaizen_report_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
+                  <% unless i.evaluator_progress_id == 5 %>
+                    <td><%= link_to '削除', kaizen_report_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
+                  <% end %>
                 <% else %>
                   <td></td>
                   <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>

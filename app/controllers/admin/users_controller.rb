@@ -23,7 +23,9 @@ class Admin::UsersController < ApplicationController
       @evaluators = Evaluator.all.order(id: "ASC")
       @first_evaluators = User.where(evaluator_id: 1).order(username: :asc)
       @second_evaluators = User.where(evaluator_id: 2).order(username: :asc)
-      render :new
+
+      @errors = @user.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -48,7 +50,9 @@ class Admin::UsersController < ApplicationController
       @evaluators = Evaluator.all.order(id: "ASC")
       @first_evaluators = User.where(evaluator_id: 1).order(username: :asc)
       @second_evaluators = User.where(evaluator_id: 2).order(username: :asc)
-      render :edit
+
+      @errors = @user.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

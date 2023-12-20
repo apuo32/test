@@ -28,7 +28,7 @@ document.addEventListener("turbo:load", function() {
     newField.innerHTML = `
       <label for="kaizen_member_username">KAIZENメンバー:</label>
       <input type="text" class="kaizen_member_username" autocomplete="on" list="users">
-      <input type="text" class="kaizen_member_id">
+      <input type="hidden" class="kaizen_member_id">
     `;
 
     newFieldPlaces.insertAdjacentElement('afterend', newField);
@@ -46,10 +46,16 @@ document.addEventListener("turbo:load", function() {
   $('form').on('submit', function(e) {
     var allIds = $('.kaizen_member_id').map(function() {
       return $(this).val();
-    }).get().join(',');
+    }).get();
+
+    // 現在のユーザーのIDを追加
+    allIds.push(currentUserId);
+
+    // カンマ区切りで統合
+    var combinedIds = allIds.join(',');
 
     // 結合した値を既存の隠しフィールドに設定
-    $('.combined_kaizen_member_ids').val(allIds);
+    $('.combined_kaizen_member_ids').val(combinedIds);
   });
   
 });

@@ -1,14 +1,15 @@
-<% if @errors.present? %>
-  <div class="alert alert-danger">
-    <% @errors.each do |error| %>
-      <p><%= error %></p>
-    <% end %>
-  </div>
-<% end %>
-
 <div class="card mb-5">
   <h5 class="card-header">新規作成</h5>
   <div class="card-body">
+
+    <% if @errors.present? %>
+      <div class="alert alert-danger">
+        <% @errors.each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= form_with(model: @kaizen_report, local: true) do |form| %>
       <div class="form-group">
         <p>社員CD: <%= current_user.employee_code %></p>
@@ -17,9 +18,9 @@
 
         <p>
           <%= form.label :submission_date, "提出日:" %>
-          <%= form.select :submission_date, @evaluation_dates, prompt: "選択してください" %>
+          <%= form.select :submission_date, @evaluation_dates, { prompt: "選択してください" }, { disabled: @kaizen_report.evaluator_progress_id == 5 } %>
         </p>
-      
+
         <p>
           <%= form.label :subject, "件名:" %>
           <%= form.text_field :subject %>
@@ -67,8 +68,18 @@
           <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, prompt: "選択してください" %>
         </p>
 
+        <p>現在のKAIZENメンバー: 
+          <% member_ids = @kaizen_report.kaizen_member_id.split(',') %>
+          <% member_usernames = User.where(id: member_ids).pluck(:username) %>
+          <%= member_usernames.join(', ') %>
+        </p>
+
         <p class="member-form-container">
-          <%= form.label :kaizen_member_username, "KAIZENメンバー:" %>
+          <script>
+            var currentUserId = <%= current_user.id %>;
+          </script>
+          
+          <%= form.label :kaizen_member_username, "編集後のKAIZENメンバー:" %>
 
           <!-- このフォームの入力値はsubmitしないのでname属性はnil -->
           <%= text_field_tag :kaizen_member_username, nil, autocomplete: "on", list: "users", class: "kaizen_member_username", name: nil %>
@@ -85,12 +96,14 @@
 
         <p>
           <!-- 上記のclass名kaizen_member_idのフォームの入力値をなどをカンマ区切りで統合し、このフォームの値に設定 -->
-          <%= form.text_field :kaizen_member_id, class: "combined_kaizen_member_ids" %>
+          <%= form.hidden_field :kaizen_member_id, class: "combined_kaizen_member_ids" %>
         </p>
 
         <p>
           <!-- 評価進捗区分：初期値に"未評価"を設定 -->
-          <%= form.hidden_field :evaluator_progress_id, value: 1 %>
+          <% if @kaizen_report.evaluator_progress_id == 1 %>
+            <%= form.hidden_field :evaluator_progress_id, value: 1 %>
+          <% end %>
         </p>
 
         <p>
@@ -99,9 +112,9 @@
         </p>
 
         <p>
-          <%= form.submit "提出", name: "submit", class: "btn btn-sm btn-primary" %>
+          <%= form.submit "提出", name: "submit", class: "btn btn-sm btn-primary", data: { turbo_method: :post, turbo_confirm: "本当に提出しますか?" } %>
           <%= form.submit "保存", name: "save", class: "btn btn-sm btn-secondary" %>
-          <%= link_to '戻る', root_path, class: 'btn btn-sm btn-danger' %>
+          <%= link_to '戻る', user_path(current_user), class: 'btn btn-sm btn-danger', data: { turbo_method: :get, turbo_confirm: '保存されていませんがよろしいですか？' } %>
         </p>
       </div>
     <% end %>

@@ -3,11 +3,15 @@
 <!-- 検索フォーム -->
 <%= turbo_frame_tag 'search' do %>
   <div class="mb-3">
-    <%= search_form_for @kaizen_reports_search, url: user_path(current_user), remote: true, data: { turbo_frame: 'results' } do |f| %>
+    <%= search_form_for @kaizen_reports_search, url: list_kaizen_reports_path, remote: true, data: { turbo_frame: 'results' } do |f| %>
       <div class="row">
         <div class="col">
-          <%= f.label :subject_cont, "件名で検索:" %>
-          <%= f.search_field :subject_cont, oninput: "requestSubmit()", class: 'form-control' %>
+          <%= f.label :user_username_cont, "氏名で検索:" %>
+          <%= f.search_field :user_username_cont, oninput: "requestSubmit()", class: 'form-control' %>
+        </div>
+        <div class="col">
+          <%= f.label :award_id_eq, "賞で検索:" %>
+          <%= f.collection_select :award_id_eq, Award.all, :id, :award_name, include_blank: "選択してください", class: 'form-control' %>
         </div>
         <div class="col">
           <%= f.label :submission_date_gteq, "提出日（から）:" %>
@@ -49,8 +53,7 @@
                 <td><%= i.subject %></td>
                 <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
                 <td><%= i.evaluator_progress.status %></td>
-                <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
-                <% end %>
+                <td><%= link_to '詳細', list_kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
               </tr>
             <% end %>
           </tbody>

@@ -8,6 +8,7 @@
     <div class="card">
       <h5 class="card-header">ユーザー登録</h5>
       <div class="card-body">
+        <%= link_to '新規作成', "/admin/users/new", class: 'btn btn-block btn-secondary' %>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -24,7 +25,6 @@
                 <th scope="col">作成日時</th>
                 <th scope="col">更新日時</th>
                 <th scope="col">削除フラグ</th>
-                <th scope="col">削除日時</th>
               </tr>
             </thead>
             <tbody>
@@ -42,14 +42,12 @@
                   <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
                   <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
                   <td><%= i.deletion_flag %></td>
-                  <td><%= i.deletion_date ? i.deletion_date.strftime('%Y/%m/%d') : '-' %></td>
                   <td><%= link_to '編集', "/admin/users/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-          <%= link_to '新規作成', "/admin/users/new", class: 'btn btn-block btn-secondary' %> <!-- 上に表示する -->
       </div>
     </div>
     <%= paginate @users, theme: 'bootstrap-5' %>

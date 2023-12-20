@@ -14,7 +14,8 @@ class Admin::TskValuesController < ApplicationController
     if @tsk_value.save
       redirect_to admin_tsk_values_path
     else
-      render :new
+      @errors = @tsk_value.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,8 @@ class Admin::TskValuesController < ApplicationController
       end
       redirect_to admin_tsk_values_path
     else
-      render :edit
+      @errors = @tsk_value.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

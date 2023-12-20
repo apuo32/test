@@ -12,4 +12,18 @@ class KaizenReport < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["subject", "submission_date"]
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    # ['user', 'award'] はKaizenReportがUserモデル、Awardモデルと関連している
+    ['user', 'award']
+  end
+
+  validates :submission_date,
+            :subject,
+            :before_text,
+            :after_text,
+            :effect_comment,
+            :tsk_value_id, 
+            presence: true, 
+            if: :submission_flag?
 end

@@ -14,7 +14,8 @@ class Admin::AwardsController < ApplicationController
     if @award.save
       redirect_to admin_awards_path
     else
-      render :new
+      @errors = @award.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,8 @@ class Admin::AwardsController < ApplicationController
       end
       redirect_to admin_awards_path
     else
-      render :edit
+      @errors = @award.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

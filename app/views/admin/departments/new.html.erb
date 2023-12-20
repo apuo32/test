@@ -8,6 +8,16 @@
     <div class="card">
       <h5 class="card-header">新規部署登録</h5>
       <div class="card-body">
+
+        <!-- エラーメッセージ -->
+        <% if @errors.present? %>
+          <div class="alert alert-danger">
+            <% @errors.each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+          </div>
+        <% end %>
+
         <%= form_with(model: @department, url: {controller: 'admin/departments', action: 'create' }, local: true) do |form| %>
           <div class="form-group">
             <%= form.label :department_name, "部署名:" %>
