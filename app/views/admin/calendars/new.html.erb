@@ -27,13 +27,13 @@
             <%= form.number_field :time %>
 
             <%= form.label :first_evaluation_submission_date, "1次提出年月日:" %>
-            <%= form.date_select :first_evaluation_submission_date %>
+            <%= form.date_field :first_evaluation_submission_date %>
 
             <%= form.label :second_evaluation_submission_date, "2次提出年月日:" %>
-            <%= form.date_select :second_evaluation_submission_date %>
+            <%= form.date_field :second_evaluation_submission_date %>
 
             <%= form.label :award_date, "表彰年月日:" %>
-            <%= form.date_select :award_date %>
+            <%= form.date_field :award_date %>
 
             <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
             <%= link_to '戻る', "/admin/calendars/", class: 'btn btn-block btn-danger' %>
