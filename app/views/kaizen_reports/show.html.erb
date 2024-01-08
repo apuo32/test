@@ -43,10 +43,14 @@
 
     <p>TSKバリュー: <%= @kaizen_report.tsk_value.value_name %></p>
 
-    <p>KAIZENメンバー: 
-      <% member_ids = @kaizen_report.kaizen_member_id.split(',') %>
-      <% member_usernames = User.where(id: member_ids).pluck(:username) %>
-      <%= member_usernames.join(', ') %>
+    <p>
+      KAIZENメンバー:
+      <select name="kaizen_report[kaizen_member_id][]" id="select-kaizen-member" multiple="multiple" autocomplete="off" disabled>
+        <% @users.each do |user| %>
+          <% selected = @kaizen_report.kaizen_member_id.include?(user.id.to_s) ? 'selected' : nil %>
+          <option value="<%= user.id %>" <%= selected %>><%= user.username %></option>
+        <% end %>
+      </select>
     </p>
 
     <p>評価状況: <%= @kaizen_report.evaluator_progress.status %></p>

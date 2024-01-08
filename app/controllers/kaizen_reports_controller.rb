@@ -143,13 +143,14 @@ class KaizenReportsController < ApplicationController
         :cost,
         :effect_amount,
         :tsk_value_id,        
-        :kaizen_member_id, 
         :evaluator_progress_id,
         :department_id,
         :award_id,
         :evaluator_id,
         :submission_flag,
         before_images: [],
-        after_images: [])
+        after_images: [],
+        kaizen_member_id: []
+        )
     end
 end
