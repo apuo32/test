@@ -28,9 +28,11 @@
         </p>
 
         <p>
-          <%= form.label :before_images, "改善前の画像:" %> <!-- クリップボードでコピペできるように -->
-          <%= form.file_field :before_images, multiple: true %>
+          <%= form.label :before_images, "改善前の画像:" %>
+          <%= form.file_field :before_images, multiple: true, id: "before-images-upload" %>
         </p>
+
+        <div id="images-preview"></div>
 
         <!-- 文字数制限 -->
         <p>
@@ -47,9 +49,11 @@
         <% end %>
 
         <p>
-          <%= form.label :after_images, "改善後の画像:" %> <!-- クリップボードでコピペできるように(優先度低め) -->
-          <%= form.file_field :after_images, multiple: true %>
+          <%= form.label :after_images, "改善後の画像:" %>
+          <%= form.file_field :after_images, multiple: true, id: "after-images-upload" %>
         </p>
+
+        <div id="after-images-preview"></div>
 
         <p>
           <%= form.label :after_text, "改善後のテキスト:" %>
@@ -74,6 +78,29 @@
           <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
           <span>円</span>
         </p>
+
+        <!-- モーダル本体 -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">効果金額算出フォーマット</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+              </div>
+              <div class="modal-body">
+                ここに効果金額算出フォーマットの内容を記載します。
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- モーダルを開くためのボタン -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+          効果金額算出フォーマットを表示
+        </button>
 
         <p>
           <%= form.label :tsk_value_id, "TSKバリュー:" %>
