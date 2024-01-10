@@ -21,7 +21,7 @@
                 <th scope="col">表彰年月日</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody><!-- 各カレンダーの項目の削除ボタンと一括で登録できるようにする -->
               <% @calendars.each do |i| %>
                 <tr>
                   <th scope="row"><%= i.term %></th>

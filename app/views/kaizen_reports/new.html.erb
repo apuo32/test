@@ -16,7 +16,7 @@
         <p>部署: <%= current_user.department.department_name %></p>
         <p>氏名: <%= current_user.username %></p>
 
-        <p>
+        <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
           <%= form.label :submission_date, "提出日:" %>
           <%= form.select :submission_date, @evaluation_dates, prompt: "選択してください" %>
         </p>
@@ -48,7 +48,7 @@
           </div>
         <% end %>
 
-        <p>
+        <p><!-- Ctrl + Vで画像を貼れるようにする -->
           <%= form.label :after_images, "改善後の画像:" %>
           <%= form.file_field :after_images, multiple: true, id: "after-images-upload" %>
         </p>
@@ -102,12 +102,12 @@
           効果金額算出フォーマットを表示
         </button>
 
-        <p>
+        <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
           <%= form.label :tsk_value_id, "TSKバリュー:" %>
           <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, prompt: "選択してください" %>
         </p>
 
-        <p>
+        <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
           <%= form.label :kaizen_member_id, "KAIZENメンバー:" %>
           <select name="kaizen_report[kaizen_member_id][]" id="select-kaizen-member" multiple="multiple" autocomplete="off">
             <% @users.each do |user| %>

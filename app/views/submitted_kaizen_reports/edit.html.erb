@@ -51,7 +51,7 @@
           <%= member_usernames.join(', ') %>
         </p>
 
-        <p>
+        <p><!-- 1次評価者,2次評価者も選択可能にして、ソートで選択しやすい方を決める -->
           <%= form.label :evaluator_progress_id, "評価進捗:" %>
           <% if @kaizen_report.evaluator_progress_id == 1 %>
             <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: 2), :id, :status, include_blank: false %>

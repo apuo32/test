@@ -28,8 +28,10 @@
 
         <p>
           <%= form.label :before_images, "改善前の画像:" %>
-          <%= form.file_field :before_images, multiple: true %>
+          <%= form.file_field :before_images, multiple: true, id: "before-images-upload" %>
         </p>
+
+        <div id="images-preview"></div>
 
         <p>
           <%= form.label :before_text, "改善前のテキスト:" %>
@@ -38,8 +40,10 @@
 
         <p>
           <%= form.label :after_images, "改善後の画像:" %>
-          <%= form.file_field :after_images, multiple: true %>
+          <%= form.file_field :after_images, multiple: true, id: "after-images-upload" %>
         </p>
+
+        <div id="after-images-preview"></div>
 
         <p>
           <%= form.label :after_text, "改善後のテキスト:" %>

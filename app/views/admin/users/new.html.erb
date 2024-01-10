@@ -55,7 +55,7 @@
               <%= form.collection_select :first_evaluator_id, @first_evaluators, :id, :username, prompt: "選択してください" %>
             </p>
         
-            <p>
+            <p><!-- 1時評価者も選択可能にする -->
               <%= form.label :second_evaluator_id, "2次評価者:" %>
               <%= form.collection_select :second_evaluator_id, @second_evaluators, :id, :username, prompt: "選択してください" %>
             </p>
