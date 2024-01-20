@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_07_112055) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_20_182201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_112055) do
   create_table "effect_amounts", force: :cascade do |t|
     t.string "kaizen_type"
     t.string "unit"
-    t.integer "amount"
+    t.float "amount"
     t.boolean "deletion_flag", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,8 +101,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_112055) do
     t.string "before_image"
     t.string "after_image"
     t.text "effect_comment"
-    t.integer "cost"
-    t.integer "effect_amount"
+    t.float "cost"
+    t.float "effect_amount"
     t.bigint "tsk_value_id", null: false
     t.bigint "evaluator_progress_id", null: false
     t.string "evaluators_id"
