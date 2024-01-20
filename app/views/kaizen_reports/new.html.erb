@@ -107,7 +107,7 @@
           <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, prompt: "選択してください" %>
         </p>
 
-        <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
+        <p>
           <%= form.label :kaizen_member_id, "KAIZENメンバー:" %>
           <select name="kaizen_report[kaizen_member_id][]" id="select-kaizen-member" multiple="multiple" autocomplete="off">
             <% @users.each do |user| %>

@@ -1,7 +1,7 @@
 class KaizenReportsController < ApplicationController
   def new
     @kaizen_report = KaizenReport.new # KaizenReportモデルのインスタンス作成
-    @users = User.all
+    @users = User.where(deletion_flag: false).order(id: "ASC")
     
     
     # 後からまとめる
@@ -23,7 +23,7 @@ class KaizenReportsController < ApplicationController
         redirect_to root_path 
       else
         # 後からまとめる
-        @users = User.all
+        @users = User.where(deletion_flag: false).order(id: "ASC")
         @tsk_values = TskValue.all
         @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
         @awards = Award.all
@@ -40,7 +40,7 @@ class KaizenReportsController < ApplicationController
         redirect_to root_path
       else
         # 後からまとめる
-        @users = User.all
+        @users = User.where(deletion_flag: false).order(id: "ASC")
         @tsk_values = TskValue.all
         @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
         @awards = Award.all
@@ -56,7 +56,7 @@ class KaizenReportsController < ApplicationController
 
   def edit
     @kaizen_report = KaizenReport.find(params[:id])
-    @users = User.all
+    @users = User.where(deletion_flag: false).order(id: "ASC")
 
     # 後からまとめる
     @tsk_values = TskValue.all
@@ -76,7 +76,7 @@ class KaizenReportsController < ApplicationController
         redirect_to root_path, notice: '改善報告が更新されました。'
       else
         # 後からまとめる
-        @users = User.all
+        @users = User.where(deletion_flag: false).order(id: "ASC")
         @tsk_values = TskValue.all
         @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
         @awards = Award.all
@@ -98,7 +98,7 @@ class KaizenReportsController < ApplicationController
         redirect_to root_path, notice: '改善報告が提出されました。'
       else
         # 後からまとめる
-        @users = User.all
+        @users = User.where(deletion_flag: false).order(id: "ASC")
         @tsk_values = TskValue.all
         @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
         @awards = Award.all
@@ -121,7 +121,7 @@ class KaizenReportsController < ApplicationController
 
   def show
     @kaizen_report = KaizenReport.find(params[:id])
-    @users = User.all
+    @users = User.where(deletion_flag: false).order(id: "ASC")
 
     # 後からまとめる
     @tsk_values = TskValue.all

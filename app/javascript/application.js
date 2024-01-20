@@ -8,7 +8,13 @@ import jquery from "jquery"
 window.$ = jquery
 
 document.addEventListener("turbo:load", function() {
+  
   new TomSelect("#select-kaizen-member", {
+  });
+  
+  document.addEventListener("turbo:render", function() {
+    new TomSelect("#select-kaizen-member", {
+    });
   });
 
   const input = document.getElementById('before-images-upload');
@@ -48,6 +54,46 @@ document.addEventListener("turbo:load", function() {
         afterPreviewContainer.appendChild(img);
       };
       reader.readAsDataURL(file);
+    });
+  });
+});
+
+document.addEventListener("turbo:load", function() {
+  new TomSelect("#select-first-evaluator",{
+    create: true,
+    sortField: {
+      field: "text",
+      direction: "asc"
+    }
+  });
+
+  document.addEventListener("turbo:render", function() {
+    new TomSelect("#select-first-evaluator",{
+      create: true,
+      sortField: {
+        field: "text",
+        direction: "asc"
+      }
+    });
+  });
+});
+
+document.addEventListener("turbo:load", function() {
+  new TomSelect("#select-second-evaluator",{
+    create: true,
+    sortField: {
+      field: "text",
+      direction: "asc"
+    }
+  });
+
+  document.addEventListener("turbo:render", function() {
+    new TomSelect("#select-second-evaluator",{
+      create: true,
+      sortField: {
+        field: "text",
+        direction: "asc"
+      }
     });
   });
 });

@@ -49,15 +49,27 @@
               <%= form.label :evaluator_id, "評価者区分:" %>
               <%= form.collection_select :evaluator_id, @evaluators, :id, :status, prompt: "選択してください" %>
             </p>
+
+            <p>※ 1次評価者かつ2次評価者の場合、2次評価者を選択してください</p>
         
             <p>
               <%= form.label :first_evaluator_id, "1次評価者:" %>
-              <%= form.collection_select :first_evaluator_id, @first_evaluators, :id, :username, prompt: "選択してください" %>
+              <select name="user[first_evaluator_id]" id="select-first-evaluator" placeholder="1次評価者を選択してください" autocomplete="off">
+                <option value="" disabled selected></option>
+                <% @first_and_second_evaluators.each do |evaluator| %>
+                  <option value="<%= evaluator.id %>"><%= evaluator.username %></option>
+                <% end %>
+              </select>
             </p>
-        
-            <p><!-- 1時評価者も選択可能にする -->
+
+            <p>
               <%= form.label :second_evaluator_id, "2次評価者:" %>
-              <%= form.collection_select :second_evaluator_id, @second_evaluators, :id, :username, prompt: "選択してください" %>
+              <select name="user[second_evaluator_id]" id="select-second-evaluator" placeholder="2次評価者を選択してください" autocomplete="off">
+                <option value="" disabled selected></option>
+                <% @second_evaluators.each do |evaluator| %>
+                  <option value="<%= evaluator.id %>"><%= evaluator.username %></option>
+                <% end %>
+              </select>
             </p>
 
             <p>※ 1次評価者と2次評価者が同じの場合、同じ人を選択してください</p>

@@ -10,45 +10,62 @@
       <h5 class="card-header">ユーザー登録</h5>
       <div class="card-body">
         <%= link_to '新規作成', "/admin/users/new", class: 'btn btn-block btn-secondary' %>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">ユーザー名</th>
-                <th scope="col">メールアドレス</th>
-                <th scope="col">社員CD</th>
-                <th scope="col">部署名</th>
-                <th scope="col">評価者区分</th>
-                <th scope="col">1次評価者</th>
-                <th scope="col">2次評価者</th>
-                <th scope="col">システム管理者フラグ</th>
-                <th scope="col">作成日時</th>
-                <th scope="col">更新日時</th>
-                <th scope="col">削除フラグ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each do |i| %>
+
+        <!-- 削除フラグ検索チェックボックス -->
+        <%= turbo_frame_tag 'search' do %>
+          <div class="mb-3">
+            <%= search_form_for @users_search, url: admin_users_path, remote: true, data: { turbo_frame: 'results' } do |f| %>
+              <div class="row">
+                <div class="col">
+                  <%= f.label :deletion_flag_eq, "削除フラグ:" %>
+                  <%= f.check_box :deletion_flag_eq, {class: 'form-check-input', onchange: "requestSubmit()"}, 'true', 'false' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <%= turbo_frame_tag 'results' do %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <th scope="row"><%= i.id %></th>
-                  <td><%= i.username %></td>
-                  <td><%= i.email %></td>
-                  <td><%= i.employee_code %></td>
-                  <td><%= i.department.department_name %></td>
-                  <td><%= i.evaluator.status %></td>
-                  <td><%= i.first_evaluator&.username %></td>
-                  <td><%= i.second_evaluator&.username %></td>
-                  <td><%= i.admin_flag %></td>
-                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= i.deletion_flag %></td>
-                  <td><%= link_to '編集', "/admin/users/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="col">ID</th>
+                  <th scope="col">ユーザー名</th>
+                  <th scope="col">メールアドレス</th>
+                  <th scope="col">社員CD</th>
+                  <th scope="col">部署名</th>
+                  <th scope="col">評価者区分</th>
+                  <th scope="col">1次評価者</th>
+                  <th scope="col">2次評価者</th>
+                  <th scope="col">システム管理者フラグ</th>
+                  <th scope="col">作成日時</th>
+                  <th scope="col">更新日時</th>
+                  <th scope="col">削除フラグ</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                <% @users_search_result.each do |i| %>
+                  <tr>
+                    <th scope="row"><%= i.id %></th>
+                    <td><%= i.username %></td>
+                    <td><%= i.email %></td>
+                    <td><%= i.employee_code %></td>
+                    <td><%= i.department.department_name %></td>
+                    <td><%= i.evaluator.status %></td>
+                    <td><%= i.first_evaluator&.username %></td>
+                    <td><%= i.second_evaluator&.username %></td>
+                    <td><%= i.admin_flag %></td>
+                    <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= i.deletion_flag %></td>
+                    <td><%= link_to '編集', "/admin/users/#{i.id}/edit", class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
       </div>
     </div>
     <%= paginate @users, theme: 'bootstrap-5' %>

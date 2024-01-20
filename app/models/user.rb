@@ -6,7 +6,12 @@ class User < ApplicationRecord
 
   # ホワイトリスト形式でransackで検索できる属性を指定
   def self.ransackable_attributes(auth_object = nil)
-    ["username"]
+    ["username", "deletion_flag"]
+  end
+
+  # ユーザーがログイン可能かを判定するメソッド
+  def active_for_authentication?
+    super && !deletion_flag
   end
 
   # Include default devise modules. Others available are:
