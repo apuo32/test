@@ -88,3 +88,6 @@ gem 'bootstrap5-kaminari-views'
 gem 'ransack'
 
 gem "aws-sdk-s3"
+
+gem 'prawn'
+gem 'prawn-table'
