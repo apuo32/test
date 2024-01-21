@@ -68,10 +68,19 @@ class KaizenReportsController < ApplicationController
 
   def update
     @kaizen_report = KaizenReport.find(params[:id])
+
+    # フォームから送信された画像データを取得し、空の文字列を除外する
+    before_images_data = params[:kaizen_report][:before_images].reject(&:blank?)
+    after_images_data = params[:kaizen_report][:after_images].reject(&:blank?)
+
+    # 画像パラメータを条件に応じて更新用パラメータに含めるか決定
+    update_params = kaizen_report_params.dup # ストロングパラメータのコピーを作成
+    update_params = update_params.except(:before_images) if before_images_data.empty?
+    update_params = update_params.except(:after_images) if after_images_data.empty?
   
     # 保存ボタン(name: "save")を押した場合
     if params[:save]
-      if @kaizen_report.update(kaizen_report_params)
+      if @kaizen_report.update(update_params)
         # 更新に成功した場合、マイページにリダイレクト
         redirect_to root_path, notice: '改善報告が更新されました。'
       else
@@ -91,7 +100,7 @@ class KaizenReportsController < ApplicationController
     # 提出ボタン(name: "submit")を押した場合
     else
       # 提出ボタンが押された場合、submission_flagをtrueに設定
-      update_params = kaizen_report_params.merge(submission_flag: true, evaluator_progress_id: 1)
+      update_params = update_params.merge(submission_flag: true, evaluator_progress_id: 1)
 
       if @kaizen_report.update(update_params)
         # 更新に成功した場合、マイページにリダイレクト

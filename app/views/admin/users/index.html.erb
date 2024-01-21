@@ -16,8 +16,8 @@
           <div class="mb-3">
             <%= search_form_for @users_search, url: admin_users_path, remote: true, data: { turbo_frame: 'results' } do |f| %>
               <div class="row">
-                <div class="col">
-                  <%= f.label :deletion_flag_eq, "削除フラグ:" %>
+                <div class="col form-check form-switch">
+                  <%= f.label :deletion_flag_eq, "削除フラグ" %>
                   <%= f.check_box :deletion_flag_eq, {class: 'form-check-input', onchange: "requestSubmit()"}, 'true', 'false' %>
                 </div>
               </div>

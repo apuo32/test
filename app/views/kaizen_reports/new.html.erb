@@ -12,71 +12,71 @@
 
     <%= form_with(model: @kaizen_report, url: kaizen_reports_path, local: true) do |form| %>
       <div class="form-group">
-        <p>社員CD: <%= current_user.employee_code %></p>
-        <p>部署: <%= current_user.department.department_name %></p>
-        <p>氏名: <%= current_user.username %></p>
+
+        <p>
+          <%= form.label :employee_code, "社員CD" %>
+          <%= form.text_field :employee_code, value: current_user.employee_code, class: 'form-control', disabled: true %>
+        </p>
+
+        <p>
+          <%= form.label :department_name, "部署" %>
+          <%= form.text_field :department_name, value: current_user.department.department_name, class: 'form-control', disabled: true %>
+        </p>
+
+        <p>
+          <%= form.label :username, "氏名" %>
+          <%= form.text_field :username, value: current_user.username, class: 'form-control', disabled: true %>
+        </p>
 
         <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
-          <%= form.label :submission_date, "提出日:" %>
-          <%= form.select :submission_date, @evaluation_dates, prompt: "選択してください" %>
+          <%= form.label :submission_date, "提出日" %>
+          <%= form.select :submission_date, @evaluation_dates, {}, { class: 'form-select' } %>
         </p>
       
-        <!-- もっと長く -->
         <p>
-          <%= form.label :subject, "件名:" %>
-          <%= form.text_field :subject %>
+          <%= form.label :subject, "件名" %>
+          <%= form.text_field :subject, { class: 'form-control' } %>
         </p>
 
         <p>
-          <%= form.label :before_images, "改善前の画像:" %>
-          <%= form.file_field :before_images, multiple: true, id: "before-images-upload" %>
+          <%= form.label :before_images, "改善前の画像" %>
+          <%= form.file_field :before_images, multiple: true, id: "before-images-upload", class: 'form-control' %>
         </p>
 
         <div id="images-preview"></div>
 
-        <!-- 文字数制限 -->
         <p>
-          <%= form.label :before_text, "改善前のテキスト:" %>
-          <%= form.text_area :before_text %>
-        </p> 
-
-        <% if form.object.before_images.attached? %>
-          <div class="image-preview">
-            <% form.object.before_images.each do |image| %>
-              <%= image_tag image %>
-            <% end %>
-          </div>
-        <% end %>
+          <%= form.label :before_text, "改善前のテキスト" %>
+          <%= form.text_area :before_text, class: "form-control" %>
+        </p>
 
         <p><!-- Ctrl + Vで画像を貼れるようにする -->
-          <%= form.label :after_images, "改善後の画像:" %>
-          <%= form.file_field :after_images, multiple: true, id: "after-images-upload" %>
+          <%= form.label :after_images, "改善後の画像" %>
+          <%= form.file_field :after_images, multiple: true, id: "after-images-upload", class: 'form-control' %>
         </p>
 
         <div id="after-images-preview"></div>
 
         <p>
-          <%= form.label :after_text, "改善後のテキスト:" %>
-          <%= form.text_area :after_text %>
+          <%= form.label :after_text, "改善後のテキスト" %>
+          <%= form.text_area :after_text, class: "form-control" %>
         </p>
 
         <p>
-          <%= form.label :effect_comment, "効果コメント:" %>
-          <%= form.text_area :effect_comment %>
+          <%= form.label :effect_comment, "効果コメント" %>
+          <%= form.text_area :effect_comment, class: "form-control" %>
         </p>
 
         <p>
-          <%= form.label :cost, "費用:" %>
+          <%= form.label :cost, "費用(円)" %>
           <%= form.number_field :cost, step: "any", class: "form-control" %>
-          <span>円</span>
         </p>
 
 
         <!-- 島田さんが作ってくれた「効果金額算出フォーマット」をモーダルで確認できるようにする -->
         <p>
-          <%= form.label :effect_amount, "効果金額:" %> <!-- 単位を選んで式が自動で出る。島田さんの年間高価金額を参考に -->
+          <%= form.label :effect_amount, "効果金額(円)" %> <!-- 単位を選んで式が自動で出る。島田さんの年間高価金額を参考に -->
           <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
-          <span>円</span>
         </p>
 
         <!-- モーダル本体 -->
@@ -98,20 +98,20 @@
         </div>
 
         <!-- モーダルを開くためのボタン -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+        <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
           効果金額算出フォーマットを表示
         </button>
 
         <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
-          <%= form.label :tsk_value_id, "TSKバリュー:" %>
-          <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, prompt: "選択してください" %>
+          <%= form.label :tsk_value_id, "TSKバリュー" %>
+          <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, { prompt: "選択してください" }, { class: 'form-select' } %>
         </p>
 
         <p>
-          <%= form.label :kaizen_member_id, "KAIZENメンバー:" %>
+          <%= form.label :kaizen_member_id, "KAIZENメンバー" %>
           <select name="kaizen_report[kaizen_member_id][]" id="select-kaizen-member" multiple="multiple" autocomplete="off">
+            <option value="<%= current_user.id %>" selected><%= current_user.username %></option>
             <% @users.each do |user| %>
-              <option value="<%= current_user.id %>" selected><%= current_user.username %></option>
               <option value="<%= user.id %>"><%= user.username %></option>
             <% end %>
           </select>

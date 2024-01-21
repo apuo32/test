@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new # Userモデルのインスタンス作成
     @departments = Department.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
     @evaluators = Evaluator.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
-    @first_and_second_evaluators = User.where(evaluator_id: [1, 2], deletion_flag: false).order(username: :asc) # evaluator_idが1か2で削除フラグがfalseのユーザーのみ取得(1,2次評価者のみ取得)
+    @first_evaluators = User.where(evaluator_id: 1, deletion_flag: false).order(username: :asc) # evaluator_idが1で削除フラグがfalseのユーザーのみ取得(1次評価者のみ取得)
     @second_evaluators = User.where(evaluator_id: 2, deletion_flag: false).order(username: :asc) # evaluator_idが2で削除フラグがfalseのユーザーのみ取得(2次評価者のみ取得)
   end
 
@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
     else
       @departments = Department.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
       @evaluators = Evaluator.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
-      @first_and_second_evaluators = User.where(evaluator_id: [1, 2], deletion_flag: false).order(username: :asc) # evaluator_idが1か2で削除フラグがfalseのユーザーのみ取得(1,2次評価者のみ取得)
+      @first_evaluators = User.where(evaluator_id: 1, deletion_flag: false).order(username: :asc) # evaluator_idが1で削除フラグがfalseのユーザーのみ取得(1次評価者のみ取得)
       @second_evaluators = User.where(evaluator_id: 2, deletion_flag: false).order(username: :asc) # evaluator_idが2で削除フラグがfalseのユーザーのみ取得(2次評価者のみ取得)
 
       @errors = @user.errors.full_messages
@@ -43,7 +43,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @departments = Department.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
     @evaluators = Evaluator.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
-    @first_and_second_evaluators = User.where(evaluator_id: [1, 2], deletion_flag: false).order(username: :asc) # evaluator_idが1か2で削除フラグがfalseのユーザーのみ取得(1,2次評価者のみ取得)
+    @first_evaluators = User.where(evaluator_id: 1, deletion_flag: false).order(username: :asc) # evaluator_idが1で削除フラグがfalseのユーザーのみ取得(1次評価者のみ取得)
     @second_evaluators = User.where(evaluator_id: 2, deletion_flag: false).order(username: :asc) # evaluator_idが2で削除フラグがfalseのユーザーのみ取得(2次評価者のみ取得)
   end
 
@@ -58,7 +58,7 @@ class Admin::UsersController < ApplicationController
     else
       @departments = Department.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
       @evaluators = Evaluator.where(deletion_flag: false).order(id: "ASC") # idの昇順で取得
-      @first_and_second_evaluators = User.where(evaluator_id: [1, 2], deletion_flag: false).order(username: :asc) # evaluator_idが1か2で削除フラグがfalseのユーザーのみ取得(1,2次評価者のみ取得)
+      @first_evaluators = User.where(evaluator_id: 1, deletion_flag: false).order(username: :asc) # evaluator_idが1で削除フラグがfalseのユーザーのみ取得(1次評価者のみ取得)
       @second_evaluators = User.where(evaluator_id: 2, deletion_flag: false).order(username: :asc) # evaluator_idが2で削除フラグがfalseのユーザーのみ取得(2次評価者のみ取得)
 
       @errors = @user.errors.full_messages

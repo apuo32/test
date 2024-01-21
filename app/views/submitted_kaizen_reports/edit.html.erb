@@ -17,7 +17,7 @@
           <% if @kaizen_report.before_images.attached? %>
             <div class="image-preview">
               <% @kaizen_report.before_images.each do |image| %>
-                <%= image_tag image %>
+                <%= image_tag image, class: "img-thumbnail img-fluid", width: 300 %>
               <% end %>
             </div>
           <% end %>
@@ -25,11 +25,11 @@
 
         <p>改善前のテキスト: <%= @kaizen_report.before_text %></p>
 
-        <p>改善前の画像: 
+        <p>改善後の画像: 
           <% if @kaizen_report.after_images.attached? %>
             <div class="image-preview">
               <% @kaizen_report.after_images.each do |image| %>
-                <%= image_tag image %>
+                <%= image_tag image, class: "img-thumbnail img-fluid", width: 300 %>
               <% end %>
             </div>
           <% end %>

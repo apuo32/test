@@ -36,7 +36,7 @@ class EvaluatorsController < ApplicationController
     # ransackのresultメソッドで@kaizen_reports_search内のデータをviewに表示できる形に変更
     @second_evaluation_kaizen_reports_result = @second_evaluation_kaizen_reports_search.result.page(params[:page]).per(10)
 
-    @calendars = Calendar.all.page(params[:page]).per(10)
+    @calendars = Calendar.all.order(time: "ASC").page(params[:page]).per(10)
   end
 
   # ログイン中のuserのevaluators_idが4であればルートパスにリダイレクト
