@@ -51,7 +51,7 @@
           <%= member_usernames.join(', ') %>
         </p>
 
-        <p>
+        <p>デフォルトで2次評価済み
           <%= form.label :evaluator_progress_id, "評価進捗:" %>
           <% if current_user.evaluator_id == 1 %>
             <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: [2, 3]), :id, :status, include_blank: false %>
@@ -81,7 +81,7 @@
         </p>
 
         <p>
-        <!-- 確認を挟む -->
+        <!-- 確認を挟む & CSV吐き出し(提出日で絞り込み) -->
           <%= form.submit "提出", class: "btn btn-sm btn-primary" %>
           <%= link_to '戻る', evaluator_path(current_user.id), class: 'btn btn-sm btn-danger' %>
         </p>

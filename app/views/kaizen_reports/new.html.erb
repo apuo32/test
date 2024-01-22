@@ -50,7 +50,7 @@
           <%= form.text_area :before_text, class: "form-control" %>
         </p>
 
-        <p><!-- Ctrl + Vで画像を貼れるようにする -->
+        <p><!-- Ctrl + Vで画像を貼れるようにする & カメラ -->
           <%= form.label :after_images, "改善後の画像" %>
           <%= form.file_field :after_images, multiple: true, id: "after-images-upload", class: 'form-control' %>
         </p>
@@ -79,7 +79,7 @@
           <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
         </p>
 
-        <!-- モーダル本体 -->
+        <!-- モーダル本体(順番:KAIZEN種類 > 単位 > 金額) -->
         <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
