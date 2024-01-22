@@ -46,7 +46,7 @@
         <p>TSKバリュー: <%= @kaizen_report.tsk_value.value_name %></p>
 
         <p>KAIZENメンバー: 
-          <% member_ids = @kaizen_report.kaizen_member_id.split(',') %>
+          <% member_ids = JSON.parse(@kaizen_report.kaizen_member_id).map(&:to_i) %>
           <% member_usernames = User.where(id: member_ids).pluck(:username) %>
           <%= member_usernames.join(', ') %>
         </p>

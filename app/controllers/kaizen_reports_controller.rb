@@ -17,6 +17,11 @@ class KaizenReportsController < ApplicationController
     @kaizen_report.user_id = current_user.id
     @kaizen_report.department_id = current_user.department.id
 
+    # KAIZENメンバーに current_user.id が含まれていない場合は追加
+    unless @kaizen_report.kaizen_member_id.include?(current_user.id.to_s)
+      @kaizen_report.kaizen_member_id << current_user.id.to_s
+    end
+
     # 保存ボタン(name: "save")を押した場合
     if params[:save]
       if @kaizen_report.save
@@ -69,12 +74,19 @@ class KaizenReportsController < ApplicationController
   def update
     @kaizen_report = KaizenReport.find(params[:id])
 
+    # ストロングパラメータでKAIZENメンバーIDの配列を取得し、current_user.idを追加
+    kaizen_member_ids = params[:kaizen_report][:kaizen_member_id] || []
+    unless kaizen_member_ids.include?(current_user.id.to_s)
+      kaizen_member_ids << current_user.id.to_s
+    end
+
     # フォームから送信された画像データを取得し、空の文字列を除外する
     before_images_data = params[:kaizen_report][:before_images].reject(&:blank?)
     after_images_data = params[:kaizen_report][:after_images].reject(&:blank?)
 
     # 画像パラメータを条件に応じて更新用パラメータに含めるか決定
     update_params = kaizen_report_params.dup # ストロングパラメータのコピーを作成
+    update_params[:kaizen_member_id] = kaizen_member_ids # 更新されたKAIZENメンバーIDをセット
     update_params = update_params.except(:before_images) if before_images_data.empty?
     update_params = update_params.except(:after_images) if after_images_data.empty?
   

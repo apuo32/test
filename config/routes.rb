@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :show_pdf, only: :index
+
   # deviseのRegistrationsController#createへのパスがusers_pathでusers#createと競合するので、パスを変更
   # post 'new_report', to: 'users#create'
 

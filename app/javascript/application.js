@@ -145,3 +145,22 @@ document.addEventListener("turbo:load", function() {
     });
   });
 });
+
+document.addEventListener("turbo:load", function() {
+  const selectAllButton = document.getElementById('select-all');
+  const deselectAllButton = document.getElementById('deselect-all');
+
+  selectAllButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.checked = true;
+    });
+  });
+
+  deselectAllButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.checked = false;
+    });
+  });
+});
