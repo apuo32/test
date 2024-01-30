@@ -69,8 +69,11 @@ class ShowPdf < Prawn::Document
   end
 
   def download_image(image)
-    image_blob = image.blob
-    uri = image_blob.service_url(expires_in: 1.minute, disposition: 'inline') # 有効期限付きのURLを生成
+    uri = Rails.application.routes.url_helpers.rails_representation_url(
+      image, 
+      only_path: true, 
+      disposition: 'attachment'
+    )
     download = open(uri) # 画像をダウンロード
     IO.copy_stream(download, "#{Rails.root}/tmp/#{image.filename}") # 一時ファイルに保存
     "#{Rails.root}/tmp/#{image.filename}" # 一時ファイルのパスを返す
