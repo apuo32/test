@@ -69,15 +69,12 @@ class ShowPdf < Prawn::Document
   end
 
   def download_image(image)
-    uri = Rails.application.routes.url_helpers.rails_representation_url(
-      image, 
-      only_path: true, 
-      disposition: 'attachment'
-    )
-    file = URI.open(uri) # 画像をダウンロード
-    temp_file_path = "#{Rails.root}/tmp/#{image.filename}" # 一時ファイルパス
-    IO.copy_stream(file, temp_file_path) # 一時ファイルに保存
-    temp_file_path # 一時ファイルのパスを返す
+    image_blob = image.blob
+    uri = image_blob.url(expires_in: 1.minute, disposition: 'inline')
+    file = URI.open(uri)
+    temp_file_path = "#{Rails.root}/tmp/#{image.filename}"
+    IO.copy_stream(file, temp_file_path)
+    temp_file_path
   rescue => e
     Rails.logger.error "Failed to download image: #{e.message}"
     nil
