@@ -51,12 +51,12 @@
           <%= member_usernames.join(', ') %>
         </p>
 
-        <p>デフォルトで2次評価済み
+        <p>
           <%= form.label :evaluator_progress_id, "評価進捗:" %>
           <% if current_user.evaluator_id == 1 %>
             <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: [2, 3]), :id, :status, include_blank: false %>
           <% elsif current_user.evaluator_id == 2 %>
-            <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: [2, 3]).order(id: :desc), :id, :status, include_blank: false %>
+            <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: [2, 3]).order(id: :desc), :id, :status, include_blank: false, selected: 3 %>
           <% else %>
             <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: 4), :id, :status, include_blank: false %>
           <% end %>

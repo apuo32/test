@@ -3,6 +3,6 @@ class Award < ApplicationRecord
 
   # ホワイトリスト形式でransackで検索できる属性を指定
   def self.ransackable_attributes(auth_object = nil)
-    ["id", "award_name"]
+    ["id", "award_name", "deletion_flag"]
   end
 end

@@ -30,7 +30,6 @@ class EvaluatorsController < ApplicationController
     @second_evaluation_kaizen_reports_search = KaizenReport.joins(:user)
                                          .where(submission_flag: true)
                                          .where(evaluator_progress_id: 3)
-                                         .where("users.first_evaluator_id = ? OR users.second_evaluator_id = ?", current_user.id, current_user.id)
                                          .ransack(params[:q])
 
     # ransackのresultメソッドで@kaizen_reports_search内のデータをviewに表示できる形に変更

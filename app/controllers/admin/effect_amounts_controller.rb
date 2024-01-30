@@ -2,7 +2,12 @@ class Admin::EffectAmountsController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
 
   def index
-    @effect_amounts = EffectAmount.all.order(id: "ASC") # idの昇順で表示
+    if params[:q].blank?
+      params[:q] = { deletion_flag_eq: 'false' }
+    end
+
+    @effect_amounts_search = EffectAmount.all.order(id: "ASC").ransack(params[:q]) # idの昇順で表示
+    @effect_amounts_search_result = @effect_amounts_search.result
   end
 
   def new

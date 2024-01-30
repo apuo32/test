@@ -85,10 +85,26 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">効果金額算出フォーマット</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
               </div>
               <div class="modal-body">
-                ここに効果金額算出フォーマットの内容を記載します。
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">KAIZEN種類</th>
+                      <th scope="col">単位</th>
+                      <th scope="col">金額(円)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @effect_amounts.each do |i| %>
+                      <tr>
+                        <td><%= i.kaizen_type %></td>
+                        <td><%= i.unit %></td>
+                        <td><%= i.amount %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>

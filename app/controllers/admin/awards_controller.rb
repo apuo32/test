@@ -2,7 +2,12 @@ class Admin::AwardsController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
 
   def index
-    @awards = Award.all.order(id: "ASC") # idの昇順で表示
+    if params[:q].blank?
+      params[:q] = { deletion_flag_eq: 'false' }
+    end
+
+    @awards_search = Award.all.order(id: "ASC").ransack(params[:q]) # idの昇順で表示
+    @awards_search_result = @awards_search.result
   end
 
   def new

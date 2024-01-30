@@ -2,7 +2,12 @@ class Admin::DepartmentsController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック # 管理者であればこのコントローラーにアクセス可能
 
   def index
-    @departments = Department.all.order(id: "ASC") # idの昇順で表示
+    if params[:q].blank?
+      params[:q] = { deletion_flag_eq: 'false' }
+    end
+    
+    @departments_search = Department.all.order(id: "ASC").ransack(params[:q]) # idの昇順で表示
+    @departments_search_result = @departments_search.result
   end
 
   def new

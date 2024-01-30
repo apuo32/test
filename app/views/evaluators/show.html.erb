@@ -108,42 +108,54 @@
   <% end %>
 
   <!-- 1次評価済み改善一覧テーブル(検索結果) -->
-  <%= turbo_frame_tag 'first_evaluation_results' do %>
-    <div class="card mb-5">
-      <h5 class="card-header"> １次評価済み改善報告一覧</h5>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">氏名</th>
-                <th scope="col">提出日</th>
-                <th scope="col">件名</th>
-                <th scope="col">提出状況</th>
-                <th scope="col">評価進捗</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @first_evaluation_kaizen_reports_result.each do |i| %>
+  <%= form_with url: show_pdf_index_path(format: "pdf"), method: :get do %>
+    <%= turbo_frame_tag 'first_evaluation_results' do %>
+      <div class="card mb-5">
+        <h5 class="card-header"> １次評価済み改善報告一覧</h5>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <th scope="row"><%= i.user.username %></th>    
-                  <td><%= i.submission_date %></td>
-                  <td><%= i.subject %></td>
-                  <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
-                  <td><%= i.evaluator_progress.status %></td>
-                  <td><%= link_to '評価', edit_submitted_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
-                  <td><%= link_to '詳細', submitted_kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
+                  <th scope="col"></th> <!-- チェックボックスのヘッダー -->
+                  <th scope="col">氏名</th>
+                  <th scope="col">提出日</th>
+                  <th scope="col">件名</th>
+                  <th scope="col">提出状況</th>
+                  <th scope="col">評価進捗</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @first_evaluation_kaizen_reports_result.each do |i| %>
+                  <tr>
+                    <td>
+                      <%= check_box_tag "selected_kaizen_reports[]", i.id %>
+                    </td>
+                    <th scope="row"><%= i.user.username %></th>    
+                    <td><%= i.submission_date %></td>
+                    <td><%= i.subject %></td>
+                    <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
+                    <td><%= i.evaluator_progress.status %></td>
+                    <td><%= link_to '評価', edit_submitted_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
+                    <td><%= link_to '詳細', submitted_kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="mb-3">
+              <button id="select-all" class="btn btn-secondary btn-sm">全て選択</button>
+              <button id="deselect-all" class="btn btn-secondary btn-sm">選択解除</button>
+              <%= hidden_field_tag "selected_kaizen_reports[]", nil %>
+              <%= submit_tag "印刷", class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- ページネーション:改善一覧テーブル -->
+          <%= paginate @first_evaluation_kaizen_reports_result, theme: 'bootstrap-5' %>
         </div>
       </div>
-      <div>
-        <!-- ページネーション:改善一覧テーブル -->
-        <%= paginate @first_evaluation_kaizen_reports_result, theme: 'bootstrap-5' %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -177,42 +189,54 @@
   <% end %>
 
   <!-- 2次評価済み改善一覧テーブル(検索結果) -->
-  <%= turbo_frame_tag 'second_evaluation_results' do %>
-    <div class="card mb-5">
-      <h5 class="card-header"> 2次評価済み改善報告一覧</h5>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">氏名</th>
-                <th scope="col">提出日</th>
-                <th scope="col">件名</th>
-                <th scope="col">提出状況</th>
-                <th scope="col">評価進捗</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @second_evaluation_kaizen_reports_result.each do |i| %>
+  <%= form_with url: show_pdf_index_path(format: "pdf"), method: :get do %>
+    <%= turbo_frame_tag 'second_evaluation_results' do %>
+      <div class="card mb-5">
+        <h5 class="card-header"> 2次評価済み改善報告一覧</h5>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <th scope="row"><%= i.user.username %></th>    
-                  <td><%= i.submission_date %></td>
-                  <td><%= i.subject %></td>
-                  <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
-                  <td><%= i.evaluator_progress.status %></td>
-                  <td><%= link_to '評価', edit_submitted_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
-                  <td><%= link_to '詳細', submitted_kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
+                  <th scope="col"></th> <!-- チェックボックスのヘッダー -->
+                  <th scope="col">氏名</th>
+                  <th scope="col">提出日</th>
+                  <th scope="col">件名</th>
+                  <th scope="col">提出状況</th>
+                  <th scope="col">評価進捗</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @second_evaluation_kaizen_reports_result.each do |i| %>
+                  <tr>
+                    <td>
+                      <%= check_box_tag "selected_kaizen_reports[]", i.id %>
+                    </td>
+                    <th scope="row"><%= i.user.username %></th>    
+                    <td><%= i.submission_date %></td>
+                    <td><%= i.subject %></td>
+                    <td><%= i.submission_flag ? '提出済み' : '未提出' %></td>
+                    <td><%= i.evaluator_progress.status %></td>
+                    <td><%= link_to '評価', edit_submitted_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
+                    <td><%= link_to '詳細', submitted_kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="mb-3">
+              <button id="select-all" class="btn btn-secondary btn-sm">全て選択</button>
+              <button id="deselect-all" class="btn btn-secondary btn-sm">選択解除</button>
+              <%= hidden_field_tag "selected_kaizen_reports[]", nil %>
+              <%= submit_tag "印刷", class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- ページネーション:改善一覧テーブル -->
+          <%= paginate @second_evaluation_kaizen_reports_result, theme: 'bootstrap-5' %>
         </div>
       </div>
-      <div>
-        <!-- ページネーション:改善一覧テーブル -->
-        <%= paginate @second_evaluation_kaizen_reports_result, theme: 'bootstrap-5' %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
 

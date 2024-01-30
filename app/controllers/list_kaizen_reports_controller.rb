@@ -9,13 +9,11 @@ class ListKaizenReportsController < ApplicationController
 
   def show
     @kaizen_report = KaizenReport.find(params[:id])
-    @users = User.all
 
-    # 後からまとめる
-    @tsk_values = TskValue.all
+    @users = User.where(deletion_flag: false).order(id: "ASC")
+    @tsk_values = TskValue.where(deletion_flag: false)
     @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
-    @awards = Award.all
-    @evaluator_progresses = EvaluatorProgress.all
-    # 後からまとめる
+    @awards = Award.where(deletion_flag: false)
+    @evaluator_progresses = EvaluatorProgress.where(deletion_flag: false)
   end
 end

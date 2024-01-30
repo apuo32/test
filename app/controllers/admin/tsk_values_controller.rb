@@ -2,7 +2,12 @@ class Admin::TskValuesController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
 
   def index
-    @tsk_values = TskValue.all.order(id: "ASC") # idの昇順で表示
+    if params[:q].blank?
+      params[:q] = { deletion_flag_eq: 'false' }
+    end
+
+    @tsk_values_search = TskValue.all.order(id: "ASC").ransack(params[:q]) # idの昇順で表示
+    @tsk_values_search_result = @tsk_values_search.result
   end
 
   def new

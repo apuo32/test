@@ -30,8 +30,8 @@ class ShowPdf < Prawn::Document
     # 改善前の画像を表示
     if report.before_images.attached?
       report.before_images.each do |image|
-        image_path = ActiveStorage::Blob.service.path_for(image.key)
-        image(image_path, width: 300, height: 200)
+        image_url = Rails.application.routes.url_helpers.url_for(image)
+        image(image_url, width: 300, height: 200)
         move_down 10
       end
     end
@@ -41,8 +41,8 @@ class ShowPdf < Prawn::Document
     # 改善後の画像を表示
     if report.after_images.attached?
       report.after_images.each do |image|
-        image_path = ActiveStorage::Blob.service.path_for(image.key)
-        image(image_path, width: 300, height: 200)
+        image_url = Rails.application.routes.url_helpers.url_for(image)
+        image(image_url, width: 300, height: 200)
         move_down 10
       end
     end

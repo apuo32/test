@@ -75,8 +75,15 @@
         
             <p>
               <div class="form-check">
-                <%= form.check_box :admin_flag, { class: 'form-check-input' }, "true", "false" %>
                 <%= form.label :admin_flag, "システム管理者", class: 'form-check-label' %>
+                <%= form.check_box :admin_flag, { class: 'form-check-input' }, "true", "false" %>
+              </div>
+            </p>
+
+            <p>
+              <div class="form-check">
+                <%= form.label :deletion_flag, "削除フラグ", class: 'form-check-label' %>
+                <%= form.check_box :deletion_flag, { class: 'form-check-input' }, "true", "false" %>
               </div>
             </p>
         
