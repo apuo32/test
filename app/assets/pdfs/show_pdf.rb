@@ -35,6 +35,7 @@ class ShowPdf < Prawn::Document
       report.before_images.each do |image|
         image_path = download_image(image)
         image(image_path, width: 300, height: 200) if image_path
+        File.delete(image_path) if File.exist?(image_path)
         move_down 10
       end
     end
@@ -46,6 +47,7 @@ class ShowPdf < Prawn::Document
       report.after_images.each do |image|
         image_path = download_image(image)
         image(image_path, width: 300, height: 200) if image_path
+        File.delete(image_path) if File.exist?(image_path)
         move_down 10
       end
     end
