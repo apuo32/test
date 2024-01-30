@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ShowPdf < Prawn::Document
   def initialize(kaizen_reports)
     super(page_size: 'A4') #A4サイズのPDFを新規作成
@@ -20,6 +22,7 @@ class ShowPdf < Prawn::Document
 
   private
 
+  require 'open-uri'
   def create_report_page(report)
     text "社員CD: #{report.user.employee_code}", size: 12
     text "部署: #{report.user.department.department_name}", size: 12
@@ -30,8 +33,8 @@ class ShowPdf < Prawn::Document
     # 改善前の画像を表示
     if report.before_images.attached?
       report.before_images.each do |image|
-        image_url = Rails.application.routes.url_helpers.url_for(image)
-        image(image_url, width: 300, height: 200)
+        image_path = download_image(image)
+        image(image_path, width: 300, height: 200) if image_path
         move_down 10
       end
     end
@@ -41,8 +44,8 @@ class ShowPdf < Prawn::Document
     # 改善後の画像を表示
     if report.after_images.attached?
       report.after_images.each do |image|
-        image_url = Rails.application.routes.url_helpers.url_for(image)
-        image(image_url, width: 300, height: 200)
+        image_path = download_image(image)
+        image(image_path, width: 300, height: 200) if image_path
         move_down 10
       end
     end
@@ -63,5 +66,16 @@ class ShowPdf < Prawn::Document
 
     text "評価状況: #{report.evaluator_progress.status}", size: 12
     text "賞: #{report.award.award_name}", size: 12
+  end
+
+  def download_image(image)
+    image_blob = image.blob
+    uri = image_blob.service_url(expires_in: 1.minute, disposition: 'inline') # 有効期限付きのURLを生成
+    download = open(uri) # 画像をダウンロード
+    IO.copy_stream(download, "#{Rails.root}/tmp/#{image.filename}") # 一時ファイルに保存
+    "#{Rails.root}/tmp/#{image.filename}" # 一時ファイルのパスを返す
+  rescue => e
+    Rails.logger.error "Failed to download image: #{e.message}"
+    nil
   end
 end
