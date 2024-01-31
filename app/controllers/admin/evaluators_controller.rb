@@ -2,7 +2,12 @@ class Admin::EvaluatorsController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
 
   def index
-    @evaluators = Evaluator.all.order(id: "ASC") # idの昇順で表示
+    if params[:q].blank?
+      params[:q] = { deletion_flag_eq: 'false' }
+    end
+
+    @evaluators_search = Evaluator.all.order(id: "ASC").ransack(params[:q]) # idの昇順で表示
+    @evaluators_search_result = @evaluators_search.result
   end
 
   def new

@@ -8,32 +8,49 @@
     <div class="card">
       <h5 class="card-header">評価進捗区分登録</h5>
       <div class="card-body">
-      <%= link_to '新規作成', "/admin/evaluator_progresses/new", class: 'btn btn-block btn-secondary' %>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">ステータス</th>
-                <th scope="col">作成日時</th>
-                <th scope="col">更新日時</th>
-                <th scope="col">削除フラグ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @evaluator_progresses.each do |i| %>
+        <%= link_to '新規作成', "/admin/evaluator_progresses/new", class: 'btn btn-block btn-secondary' %>
+
+        <!-- 削除フラグ検索チェックボックス -->
+        <%= turbo_frame_tag 'search' do %>
+          <div class="mb-3">
+            <%= search_form_for @evaluator_progresses_search, url: admin_evaluator_progresses_path, remote: true, data: { turbo_frame: 'results' } do |f| %>
+              <div class="row">
+                <div class="col form-check form-switch">
+                  <%= f.label :deletion_flag_eq, "削除フラグ" %>
+                  <%= f.check_box :deletion_flag_eq, {class: 'form-check-input', onchange: "requestSubmit()"}, 'true', 'false' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= turbo_frame_tag 'results' do %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <th scope="row"><%= i.id %></th>
-                  <td><%= i.status %></td>
-                  <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= i.deletion_flag %></td>
-                  <td><%= link_to '編集', "/admin/evaluator_progresses/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
+                  <th scope="col">ID</th>
+                  <th scope="col">ステータス</th>
+                  <th scope="col">作成日時</th>
+                  <th scope="col">更新日時</th>
+                  <th scope="col">削除フラグ</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                <% @evaluator_progresses_search_result.each do |i| %>
+                  <tr>
+                    <th scope="row"><%= i.id %></th>
+                    <td><%= i.status %></td>
+                    <td><%= i.created_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= i.updated_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= i.deletion_flag %></td>
+                    <td><%= link_to '編集', "/admin/evaluator_progresses/#{i.id}/edit", class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
