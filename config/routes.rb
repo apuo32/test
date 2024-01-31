@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   resources :users
   resources :evaluators
   resources :kaizen_reports
-  resources :list_kaizen_reports
+  
+  resources :list_kaizen_reports do
+    collection do
+      get :export_csv
+    end
+  end
 
   resources :submitted_kaizen_reports do
     member do

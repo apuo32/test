@@ -11,7 +11,7 @@
         </div>
         <div class="col">
           <%= f.label :award_id_eq, "賞で検索:" %>
-          <%= f.collection_select :award_id_eq, Award.all, :id, :award_name, include_blank: "選択してください", class: 'form-control' %>
+          <%= f.collection_select :award_id_eq, Award.all, :id, :award_name, { prompt: "選択してください" }, { class: 'form-select' } %>
         </div>
         <div class="col">
           <%= f.label :submission_date_gteq, "提出日（から）:" %>
@@ -34,6 +34,7 @@
   <div class="card mb-5">
     <h5 class="card-header">改善報告一覧</h5>
     <div class="card-body">
+      <%= link_to 'CSVを出力', export_csv_list_kaizen_reports_path(format: :csv, q: @search_params), class: 'btn btn-sm btn-danger' %>
       <div class="table-responsive">
         <table class="table">
           <thead>
