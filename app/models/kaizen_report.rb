@@ -23,7 +23,6 @@ class KaizenReport < ApplicationRecord
             :before_text,
             :after_text,
             :effect_comment,
-            :tsk_value_id, 
             presence: true, 
             if: :submission_flag?
 end

@@ -35,7 +35,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col"></th> <!-- チェックボックスのヘッダー -->
                 <th scope="col">氏名</th>
                 <th scope="col">提出日</th>
                 <th scope="col">件名</th>
@@ -46,9 +45,6 @@
             <tbody>
               <% @non_evaluation_kaizen_reports_result.each do |i| %>
                 <tr>
-                  <td>
-                    <%= check_box_tag "selected_kaizen_reports[]", i.id %>
-                  </td>
                   <th scope="row"><%= i.user.username %></th>    
                   <td><%= i.submission_date %></td>
                   <td><%= i.subject %></td>
@@ -61,11 +57,6 @@
               <% end %>
             </tbody>
           </table>
-          <div class="mb-3">
-            <button id="select-all" class="btn btn-secondary btn-sm">全て選択</button>
-            <button id="deselect-all" class="btn btn-secondary btn-sm">選択解除</button>
-            <%= hidden_field_tag "selected_kaizen_reports[]", nil %>
-          </div>
         </div>
       </div>
       <div>
@@ -114,7 +105,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col"></th> <!-- チェックボックスのヘッダー -->
                 <th scope="col">氏名</th>
                 <th scope="col">提出日</th>
                 <th scope="col">件名</th>
@@ -125,9 +115,6 @@
             <tbody>
               <% @first_evaluation_kaizen_reports_result.each do |i| %>
                 <tr>
-                  <td>
-                    <%= check_box_tag "selected_kaizen_reports[]", i.id %>
-                  </td>
                   <th scope="row"><%= i.user.username %></th>    
                   <td><%= i.submission_date %></td>
                   <td><%= i.subject %></td>
@@ -139,11 +126,6 @@
               <% end %>
             </tbody>
           </table>
-          <div class="mb-3">
-            <button id="select-all" class="btn btn-secondary btn-sm">全て選択</button>
-            <button id="deselect-all" class="btn btn-secondary btn-sm">選択解除</button>
-            <%= hidden_field_tag "selected_kaizen_reports[]", nil %>
-          </div>
         </div>
       </div>
       <div>

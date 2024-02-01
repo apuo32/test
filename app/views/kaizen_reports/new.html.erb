@@ -87,24 +87,27 @@
                 <h5 class="modal-title" id="exampleModalLabel">効果金額算出フォーマット</h5>
               </div>
               <div class="modal-body">
-                <table>
-                  <thead>
-                    <tr>
-                      <th scope="col">KAIZEN種類</th>
-                      <th scope="col">単位</th>
-                      <th scope="col">金額(円)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @effect_amounts.each do |i| %>
-                      <tr>
-                        <td><%= i.kaizen_type %></td>
-                        <td><%= i.unit %></td>
-                        <td><%= i.amount %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                <% @effect_amounts.each do |kaizen_type, effects| %>
+                  <h5><%= kaizen_type %></h5>
+                  <div class="card mb-5">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th scope="col">単位</th>
+                          <th scope="col">金額(円)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% effects.each do |effect| %>
+                          <tr>
+                            <td><%= effect.unit %></td>
+                            <td><%= effect.amount %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>

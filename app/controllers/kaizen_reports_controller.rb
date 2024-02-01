@@ -3,7 +3,6 @@ class KaizenReportsController < ApplicationController
 
   def new
     @kaizen_report = KaizenReport.new # KaizenReportモデルのインスタンス作成
-    @effect_amounts = EffectAmount.all
   end
 
   def create
@@ -101,6 +100,7 @@ class KaizenReportsController < ApplicationController
       @evaluation_dates = Calendar.pluck(:first_evaluation_submission_date).select { |date| Date.today <= date }.uniq
       @awards = Award.where(deletion_flag: false)
       @evaluator_progresses = EvaluatorProgress.where(deletion_flag: false)
+      @effect_amounts = EffectAmount.where(deletion_flag: false).to_a.group_by(&:kaizen_type)
     end
 
     # Strong Parameters

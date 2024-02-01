@@ -93,3 +93,8 @@ gem 'prawn'
 gem 'prawn-table'
 
 gem 'matrix'
+
+gem 'rails-i18n'
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'

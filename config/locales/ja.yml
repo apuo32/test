@@ -1,0 +1,100 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      kaizen_report: 改善報告
+      tsk_value: TSKバリュー
+      award: 賞
+      department: 部署
+      effect_amount: 効果金額
+      evaluator_progress: 評価進捗
+      evaluator: 評価者
+      calendar: カレンダー
+    attributes:
+      user:
+        username: ユーザー名
+        email: メールアドレス
+        encrypted_password: 暗号化パスワード
+        reset_password_token: パスワードリセットトークン
+        reset_password_sent_at: パスワードリセット送信日時
+        remember_created_at: 記憶作成日時
+        employee_code: 社員コード
+        department_id: 部署ID
+        department: 部署
+        evaluator_id: 評価者ID
+        evaluator: 評価者
+        first_evaluator_id: 1次評価者ID
+        second_evaluator_id: 2次評価者ID
+        admin_flag: 管理者フラグ
+        deletion_date: 削除日
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      kaizen_report:
+        user_id: ユーザーID
+        subject: 件名
+        submission_date: 提出日
+        before_text: 改善前テキスト
+        after_text: 改善後テキスト
+        before_image: 改善前画像
+        after_image: 改善後画像
+        effect_comment: 効果コメント
+        cost: 費用
+        effect_amount: 効果金額
+        tsk_value_id: TSKバリューID
+        tsk_value: TSKバリュー
+        evaluator_progress_id: 評価進捗ID
+        evaluators_id: 評価者ID
+        evaluation_comment: 評価コメント
+        kaizen_member_id: 改善メンバーID
+        award_id: 賞ID
+        department_id: 部署ID
+        deletion_date: 削除日
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+        submission_flag: 提出フラグ
+      tsk_value:
+        value_name: バリュー名
+        deletion_date: 削除日
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      award:
+        award_name: 賞名
+        deletion_date: 削除日
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      department:
+        department_name: 部署名
+        deletion_date: 削除日
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      effect_amount:
+        kaizen_type: KAIZEN種類
+        unit: 単位
+        amount: 金額
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      evaluator_progress:
+        status: ステータス
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      evaluator:
+        status: ステータス
+        deletion_date: 削除日
+        deletion_flag: 削除フラグ
+        created_at: 作成日時
+        updated_at: 更新日時
+      calendar:
+        term: 期間
+        time: 時間
+        first_evaluation_submission_date: 1次評価提出日
+        second_evaluation_submission_date: 2次評価提出日
+        award_date: 表彰日時
+        created_at: 作成日時
+        updated_at: 更新日時
