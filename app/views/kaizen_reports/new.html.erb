@@ -40,7 +40,7 @@
 
         <p>
           <%= form.label :before_images, "改善前の画像" %>
-          <%= form.file_field :before_images, multiple: true, id: "before-images-upload", class: 'form-control', accept: "image/*", capture: "environment" %>
+          <%= form.file_field :before_images, multiple: true, id: "before-images-upload", class: 'form-control' %>
         </p>
 
         <div id="images-preview"></div>
@@ -50,9 +50,9 @@
           <%= form.text_area :before_text, class: "form-control" %>
         </p>
 
-        <p><!-- Ctrl + Vで画像を貼れるようにする & カメラ -->
+        <p>
           <%= form.label :after_images, "改善後の画像" %>
-          <%= form.file_field :after_images, multiple: true, id: "after-images-upload", class: 'form-control', accept: "image/*", capture: "environment" %>
+          <%= form.file_field :after_images, multiple: true, id: "after-images-upload", class: 'form-control' %>
         </p>
 
         <div id="after-images-preview"></div>
