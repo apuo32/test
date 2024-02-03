@@ -9,7 +9,13 @@
     <div class="card">
       <h5 class="card-header">カレンダー作成</h5>
       <div class="card-body">
-      <%= link_to '新規作成', "/admin/calendars/new", class: 'btn btn-block btn-secondary' %>
+        <%= link_to '新規作成', "/admin/calendars/new", class: 'btn btn-sm btn-secondary' %>
+
+        <%= form_with(model: @calendar, url: {controller: 'admin/calendars', action: 'import' }, local: true) do |form| %>
+          <%= form.file_field :file, { class: 'form-control' } %>
+          <%= form.submit "一括登録", class: "btn btn-sm btn-primary" %>
+        <% end %>
+
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -30,6 +36,7 @@
                   <td><%= i.second_evaluation_submission_date.strftime('%Y/%m/%d') %></td>
                   <td><%= i.award_date.strftime('%Y/%m/%d') %></td>
                   <td><%= link_to '編集', "/admin/calendars/#{i.id}/edit", class: 'btn btn-sm btn-primary' %></td>
+                  <td><%= link_to '削除', admin_calendar_path(i), data: {turbo_method: :delete, turbo_confirm: 'このカレンダーを削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
                 </tr>
               <% end %>
             </tbody>

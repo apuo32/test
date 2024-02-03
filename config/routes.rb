@@ -8,8 +8,12 @@ Rails.application.routes.draw do
     resources :tsk_values
     resources :evaluator_progresses
     resources :awards
-    resources :calendars
     resources :effect_amounts
+    resources :calendars do
+      collection do
+        post :import
+      end
+    end
   end
 
   resources :users

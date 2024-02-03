@@ -1,3 +1,5 @@
+require 'roo'
+
 class Admin::CalendarsController < ApplicationController
   before_action :check_admin # 管理者かどうかチェック  # 管理者であればこのコントローラーにアクセス可能
 
@@ -34,6 +36,37 @@ class Admin::CalendarsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @calendar = Calendar.find(params[:id])
+    if @calendar.destroy
+      redirect_to admin_calendars_path, notice: "カレンダーを削除しました。"
+    else
+      redirect_to admin_calendars_path, alert: "カレンダーの削除に失敗しました。"
+    end
+  end
+  
+
+  def import
+    if params[:file].present?
+      file = params[:file]
+      spreadsheet = Roo::Spreadsheet.open(file.path)
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        calendar = Calendar.new
+        calendar.term = row["term"]
+        calendar.time = row["time"]
+        calendar.first_evaluation_submission_date = row["first_evaluation_submission_date"]
+        calendar.second_evaluation_submission_date = row["second_evaluation_submission_date"]
+        calendar.award_date = row["award_date"]
+        calendar.save
+      end
+      redirect_to admin_calendars_path, notice: "Calendars imported."
+    else
+      redirect_to new_admin_calendar_path, alert: "Please upload a file."
+    end
   end
 
     private
