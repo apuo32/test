@@ -27,7 +27,7 @@
             <%= form.text_field :unit %>
 
             <%= form.label :amount, "金額(円):" %>
-            <%= form.number_field :amount %>
+            <%= form.number_field :amount, step: 'any' %>
 
             <%= form.label :deletion_flag, "削除フラグ:" %>
             <%= form.check_box :deletion_flag, {}, "true", "false" %>
