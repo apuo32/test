@@ -28,7 +28,7 @@
 
             <!-- 小数点が弾かれてしまうので、小数点も -->
             <%= form.label :amount, "金額(円):" %>
-            <%= form.number_field :amount %>
+            <%= form.number_field :amount, step: 'any' %>
 
             <%= form.submit "登録", class: "btn btn-sm btn-primary" %>
             <%= link_to '戻る', "/admin/effect_amounts/", class: 'btn btn-block btn-danger' %>
