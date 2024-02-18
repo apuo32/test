@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
   </head>
 
-  <body style="padding-top:100px">
+  <body style="padding-top: 20px; padding-bottom: 100px; background-color: #f2f1ef;">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <header>
       <%= render 'layouts/header' %>
     </header>
-    <div class="container">
+    <div class="container-fluid px-3">
       <%= yield %>
     </div>
   </body>

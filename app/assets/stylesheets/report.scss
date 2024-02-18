@@ -1,0 +1,29 @@
+// reports.scss
+$primary: #004A98;
+$info: #A3C4ED;
+$danger: #EA5B3C;
+$warning: #F8BDB0;
+
+@import "bootstrap";
+
+.square {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #D6D1CA;
+}
+
+.custom-shadow {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 影のオフセット、ぼかしの範囲、色と不透明度を調整 */
+}
+
+.bg-light-green {
+  background: #74BC1E;
+}
+
+.bg-off-white {
+  background: #D6D1CA;
+}
