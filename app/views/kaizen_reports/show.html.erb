@@ -48,7 +48,7 @@
           <small class="text-black-50">提出日</small>
         </div>
         <div class="col-4 p-0 d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.submission_date %>
+          <%= @kaizen_report.submission_date.strftime('%Y/%-m/%-d') %>
         </div>
       </div>
     </div>
