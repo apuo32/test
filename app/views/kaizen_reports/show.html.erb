@@ -1,23 +1,197 @@
 <!-- 1 -->
 
-<div class="container-fluid mb-4">
-  <div class="row align-items-center mx-0">
-    <div class="col-4 p-0">
-      <%= image_tag 'cmn_logo01.svg', class: "img-fluid" %>
+<div class="container-fluid mb-4 mb-lg-2">
+
+  <!-- lgサイズ以上での特定のレイアウト -->
+
+  <div class="d-none d-lg-block">
+    <div class="row mx-0 align-items-stretch">
+      <div class="col-7 p-0">
+        <div class="row align-items-center mx-0 mb-lg-2">
+          <div class="col-5 p-0">
+            <div class="row align-items-center mx-0">
+              <div class="col p-0">
+                <%= image_tag 'cmn_logo01.svg', class: "img-vw" %>
+              </div>
+              <div class="col p-1 d-flex align-items-center justify-content-start">
+                <strong class="responsive-text">報告書</strong>
+              </div>
+            </div>
+          </div>
+          <div class="col-7 p-0">
+            <div class="row d-lg-none">
+              <div class="col-auto">
+                <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+              </div>
+              <div class="col px-0 pb-2">
+                <strong>提出情報</strong>
+              </div>
+            </div>
+            <div class="card custom-shadow">
+              <div class="card-header bg-white">
+                <div class="row m-2 m-lg-0">
+                  <div class="col-2 p-0 d-flex align-items-center">
+                    <small class="text-black-50">提出回</small>
+                  </div>
+                  <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                    提出回
+                  </div>
+                  <div class="col-2 p-0 d-flex align-items-center">
+                    <small class="text-black-50">提出日</small>
+                  </div>
+                  <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                    <%= @kaizen_report.submission_date.strftime('%Y/%-m/%-d') %>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-white">
+                <div class="row m-2 m-lg-0">
+                  <div class="col-2 p-0 d-flex align-items-center">
+                    <small class="text-black-50">部署</small>
+                  </div>
+                  <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                    <%= @kaizen_report.department.department_name %>
+                  </div>
+                  <div class="col-2 p-0 d-flex align-items-center">
+                    <small class="text-black-50">氏名</small>
+                  </div>
+                  <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                    <%= @kaizen_report.user.username %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center mx-0">
+          <div class="row d-lg-none">
+            <div class="col-auto">
+              <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+            </div>
+            <div class="col px-0 pb-2">
+              <strong>KAIZEN内容</strong>
+            </div>
+          </div>
+          <div class="card custom-shadow">
+            <div class="card-body">
+              <div class="row m-2 m-lg-0">
+                <div class="col-auto p-0 d-flex justify-content-center align-items-center">
+                  <small class="text-black-50">タイトル</small>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                  <%= @kaizen_report.subject %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 p-0">
+        <div class="row mx-0 h-100">
+          <div class="col rounded-3 bg-light-grey text-light mx-3 d-flex justify-content-center align-items-center">
+            <small>優良賞</small>
+          </div>
+          <div class="col rounded-3 bg-light-grey text-light me-3 d-flex justify-content-center align-items-center">
+            <small>社長賞</small>
+          </div>
+          <div class="col rounded-3 bg-light-grey text-light d-flex justify-content-center align-items-center">
+            <small>No.1</small>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-2 p-0 d-flex align-items-center justify-content-center">
-      <strong class="responsive-text">報告書</strong>
-    </div>
-    <div class="col-6 p-0">
+  </div>
+
+  <!-- lgサイズ以下でのコンテンツの配置 -->
+  <div class="d-lg-none">
+    <div class="container-fluid mb-4">
       <div class="row align-items-center mx-0">
-        <div class="col rounded-3 square text-light me-1 d-flex justify-content-center align-items-center">
-          <small class="small-text">優良賞</small>
+        <div class="col-3 p-0">
+          <%= image_tag 'cmn_logo01.svg', class: "img-vw" %>
         </div>
-        <div class="col rounded-3 square text-light me-1 d-flex justify-content-center align-items-center">
-          <small class="small-text">社長賞</small>
+        <div class="col-3 p-2 d-flex align-items-center justify-content-start">
+          <strong class="responsive-text">報告書</strong>
         </div>
-        <div class="col rounded-3 square text-light d-flex justify-content-center align-items-center">
-          <small class="small-text">No.1</small>
+        <div class="col-6 p-0">
+          <div class="row align-items-center mx-0">
+            <div class="col square rounded-3 bg-light-grey text-light me-1 d-flex justify-content-center align-items-center">
+              <small class="small-text">優良賞</small>
+            </div>
+            <div class="col square rounded-3 bg-light-grey text-light me-1 d-flex justify-content-center align-items-center">
+              <small class="small-text">社長賞</small>
+            </div>
+            <div class="col square rounded-3 bg-light-grey text-light d-flex justify-content-center align-items-center">
+              <small class="small-text">No.1</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mb-4">
+      <div class="row d-lg-none">
+        <div class="col-auto">
+          <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+        </div>
+        <div class="col px-0 pb-2">
+          <strong>提出情報</strong>
+        </div>
+      </div>
+      <div class="card custom-shadow">
+        <div class="card-header bg-white">
+          <div class="row m-2">
+            <div class="col-2 p-0 d-flex align-items-center">
+              <small class="text-black-50">提出回</small>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+              提出回
+            </div>
+            <div class="col-2 p-0 d-flex align-items-center">
+              <small class="text-black-50">提出日</small>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.submission_date.strftime('%Y/%-m/%-d') %>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-white">
+          <div class="row m-2">
+            <div class="col-2 p-0 d-flex align-items-center">
+              <small class="text-black-50">部署</small>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.department.department_name %>
+            </div>
+            <div class="col-2 p-0 d-flex align-items-center">
+              <small class="text-black-50">氏名</small>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.user.username %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mb-3 mb-lg-2">
+      <div class="row d-lg-none">
+        <div class="col-auto">
+          <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+        </div>
+        <div class="col px-0 pb-2">
+          <strong>KAIZEN内容</strong>
+        </div>
+      </div>
+      <div class="card custom-shadow">
+        <div class="card-body">
+          <div class="row m-2">
+            <div class="col-auto p-0 d-flex justify-content-center align-items-center">
+              <small class="text-black-50">タイトル</small>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.subject %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -26,45 +200,72 @@
 
 <!-- 2 -->
 
-<div class="container-fluid mb-4">
-  <div class="row">
-    <div class="col-auto">
-      <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
-    </div>
-    <div class="col px-0 pb-2">
-      <strong>提出情報</strong>
-    </div>
-  </div>
-  <div class="card custom-shadow">
-    <div class="card-header bg-white">
-      <div class="row m-2">
-        <div class="col-2 p-0 d-flex align-items-center">
-          <small class="text-black-50">提出回</small>
+<div class="container-fluid mb-3 mb-lg-2">
+  <div class="row gx-2 d-flex flex-wrap">
+    <div class="col-lg-6 mb-3 mb-lg-0 d-flex">
+      <div class="card border-info border-5 custom-shadow flex-fill">
+        <div class="card-header bg-white">
+          <div class="col-3 rounded-pill bg-primary text-light d-flex justify-content-center align-items-center p-1">
+            <small>KAIZEN前</small>
+          </div>
         </div>
-        <div class="col-4 p-0 d-flex justify-content-center align-items-center">
-          提出回
-        </div>
-        <div class="col-2 p-0 d-flex align-items-center">
-          <small class="text-black-50">提出日</small>
-        </div>
-        <div class="col-4 p-0 d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.submission_date.strftime('%Y/%-m/%-d') %>
+        <% if @kaizen_report.before_images.attached? %>
+          <div id="kaizenBeforeImagesCarousel" class="carousel slide carousel-dark">
+            <div class="carousel-inner">
+              <% @kaizen_report.before_images.each_with_index do |image, index| %>
+                <div class="carousel-item <%= 'active' if index.zero? %>">
+                  <%= image_tag image, class: "d-block carousel-img" %>
+                </div>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#kaizenBeforeImagesCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#kaizenBeforeImagesCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
+        <div class="card-footer bg-white">
+          <div class="col m-2">
+            <%= @kaizen_report.before_text %>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card-footer bg-white">
-      <div class="row m-2">
-        <div class="col-2 p-0 d-flex align-items-center">
-          <small class="text-black-50">部署</small>
+
+    <div class="col-lg-6 mb-lg-0 d-flex">
+      <div class="card border-warning border-5 custom-shadow flex-fill">
+        <div class="card-header bg-white">
+          <div class="col-3 rounded-pill bg-danger text-light d-flex justify-content-center align-items-center p-1">
+            <small>KAIZEN後</small>
+          </div>
         </div>
-        <div class="col-4 p-0 d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.department.department_name %>
-        </div>
-        <div class="col-2 p-0 d-flex align-items-center">
-          <small class="text-black-50">氏名</small>
-        </div>
-        <div class="col-4 p-0 d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.user.username %>
+        <% if @kaizen_report.after_images.attached? %>
+          <div id="kaizenAfterImagesCarousel" class="carousel slide carousel-dark">
+            <div class="carousel-inner">
+              <% @kaizen_report.after_images.each_with_index do |image, index| %>
+                <div class="carousel-item <%= 'active' if index.zero? %>">
+                  <%= image_tag image, class: "d-block carousel-img" %>
+                </div>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#kaizenAfterImagesCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#kaizenAfterImagesCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
+        <div class="card-footer bg-white">
+          <div class="col m-2">
+            <%= @kaizen_report.after_text %>
+          </div>
         </div>
       </div>
     </div>
@@ -73,149 +274,57 @@
 
 <!-- 3 -->
 
-<div class="container-fluid mb-3">
-  <div class="row">
-    <div class="col-auto">
-      <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
-    </div>
-    <div class="col px-0 pb-2">
-      <strong>KAIZEN内容</strong>
-    </div>
-  </div>
-  <div class="card custom-shadow">
-    <div class="card-body">
-      <div class="row m-2">
-        <div class="col-auto p-0 d-flex justify-content-center align-items-center">
-          <small class="text-black-50">タイトル</small>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.subject %>
+<div class="container-fluid mb-3 mb-lg-1">
+  <div class="row gx-1 align-items-stretch">
+
+    <!-- 効果カード -->
+    <div class="col-lg-8 mb-3 mb-lg-0">
+      <div class="card custom-shadow h-100">
+        <div class="card-body">
+          <div class="row m-0">
+            <div class="col-2 text-light d-flex align-items-center p-0">
+              <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.effect_comment %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- 費用カード -->
+    <div class="col-lg-4 mb-lg-0">
+      <div class="card custom-shadow h-100">
+        <div class="card-body">
+          <div class="row m-2">
+            <div class="col-3 p-0 d-flex align-items-center">
+              <small class="text-black-50">費用</small>
+            </div>
+            <div class="col-3 p-0 d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.cost %>円
+            </div>
+            <div class="col-3 p-0 d-flex align-items-center">
+              <small class="text-black-50">効果金額</small>
+            </div>
+            <div class="col-3 p-0 d-flex justify-content-center align-items-center">
+              <%= @kaizen_report.effect_amount %>円
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
+
 
 <!-- 4 -->
 
-<div class="container-fluid mb-3">
-  <div class="card border-info border-5 custom-shadow">
-    <div class="card-header bg-white">
-      <div class="col-3 rounded-pill bg-primary text-light d-flex justify-content-center align-items-center p-1">
-        <small>KAIZEN前</small>
-      </div>
-    </div>
-    <% if @kaizen_report.before_images.attached? %>
-      <div id="kaizenBeforeImagesCarousel" class="carousel slide carousel-dark">
-        <div class="carousel-inner">
-          <% @kaizen_report.before_images.each_with_index do |image, index| %>
-            <div class="carousel-item <%= 'active' if index.zero? %>">
-              <%= image_tag image, class: "d-block w-100" %>
-            </div>
-          <% end %>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#kaizenBeforeImagesCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#kaizenBeforeImagesCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    <% end %>
-    <div class="card-footer bg-white">
-      <div class="col m-2">
-        <%= @kaizen_report.before_text %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- 5 -->
-
-<div class="container-fluid mb-3">
-  <div class="card border-warning border-5 custom-shadow">
-    <div class="card-header bg-white">
-      <div class="col-3 rounded-pill bg-danger text-light d-flex justify-content-center align-items-center p-1">
-        <small>KAIZEN後</small>
-      </div>
-    </div>
-    <% if @kaizen_report.after_images.attached? %>
-      <div id="kaizenAfterImagesCarousel" class="carousel slide carousel-dark">
-        <div class="carousel-inner">
-          <% @kaizen_report.after_images.each_with_index do |image, index| %>
-            <div class="carousel-item <%= 'active' if index.zero? %>">
-              <%= image_tag image, class: "d-block w-100" %>
-            </div>
-          <% end %>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#kaizenAfterImagesCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#kaizenAfterImagesCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    <% end %>
-    <div class="card-footer bg-white">
-      <div class="col m-2">
-        <%= @kaizen_report.after_text %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- 6 -->
-
-<div class="container-fluid mb-3">
+<div class="container-fluid mb-3 mb-lg-1">
   <div class="card custom-shadow">
     <div class="card-body">
-      <div class="row m-0">
-        <div class="col-2 text-light d-flex align-items-center p-0">
-          <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.effect_comment %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 7 -->
-
-<div class="container-fluid mb-3">
-  <div class="card custom-shadow">
-    <div class="card-body">
-      <div class="row m-2">
-        <div class="col-3 p-0 d-flex align-items-center">
-          <small class="text-black-50">費用</small>
-        </div>
-        <div class="col-3 p-0 d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.cost %>円
-        </div>
-        <div class="col-3 p-0 d-flex align-items-center">
-          <small class="text-black-50">効果金額</small>
-        </div>
-        <div class="col-3 p-0 d-flex justify-content-center align-items-center">
-          <%= @kaizen_report.effect_amount %>円
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 8 -->
-
-<div class="container-fluid mb-3">
-  <div class="card custom-shadow">
-    <div class="card-body">
-      <div class="row m-2">
+      <div class="row m-2 m-lg-0">
         <div class="col-3 p-0 d-flex align-items-center">
           <small class="text-black-50">メンバー</small>
         </div>
@@ -235,12 +344,12 @@
   </div>
 </div>
 
-<!-- 9 -->
+<!-- 5 -->
 
 <div class="container-fluid mb-5">
   <div class="card custom-shadow">
     <div class="card-body">
-      <div class="row m-2">
+      <div class="row m-2 m-lg-0">
         <div class="col-3 p-0 d-flex align-items-center">
           <small class="text-black-50">タグ</small>
         </div>

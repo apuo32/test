@@ -6,13 +6,12 @@ $warning: #F8BDB0;
 
 @import "bootstrap";
 
-.square {
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.bg-light-grey {
   background: #D6D1CA;
+}
+
+.square {
+  aspect-ratio: 1/1;
 }
 
 .custom-shadow {
@@ -28,10 +27,38 @@ $warning: #F8BDB0;
 }
 
 .small-text {
-  font-size: 2.5vw;
+  font-size: 2.0vw;
 }
 
 .responsive-text {
-  font-size: 4.5vw; /* ビューポートの幅の1.5%として文字サイズを設定 */
+  font-size: 4.5vw;
 }
+
+/* lgサイズ以上でテキストサイズを小さくする */
+@media (min-width: 992px) { /* Bootstrapのlgサイズのブレークポイント */
+  .responsive-text {
+    font-size: 2vw; /* または具体的なpx単位でサイズを指定 */
+  }
+}
+
+
+.img-vw {
+  width: 23vw;
+  height: auto; /* 画像のアスペクト比を維持する */
+}
+
+/* lgサイズ以上で画像サイズを小さくする */
+@media (min-width: 992px) { /* Bootstrapのlgサイズのブレークポイント */
+  .img-vw {
+    width: 15vw; /* lgサイズ以上での画像の幅を小さく設定 */
+    height: auto; /* アスペクト比を維持 */
+  }
+}
+
+.carousel-img {
+  height: 300px; /* または任意の高さ */
+  object-fit: contain;
+  width: 100%;
+}
+
 
