@@ -65,7 +65,7 @@
         <% if current_user.evaluator_id == 3 %>
           <p>
             <%= form.label :award_id, "賞:" %>
-            <%= form.collection_select :award_id, @awards.where(id: [1, 2, 3]), :id, :award_name, prompt: "選択してください" %>
+            <%= form.collection_select :award_id, @awards, :id, :award_name, prompt: "選択してください" %>
           </p>
         <% else %>
           <p>

@@ -51,13 +51,13 @@
                 <td><%= i.evaluator_progress.status %></td>
                 <% unless i.submission_flag %>
                   <td><%= link_to '編集', edit_kaizen_report_path(i), class: 'btn btn-sm btn-primary', data: { turbo: false } %></td>
-                  <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
+                  <td><%= link_to 'プレビュー', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
                   <% unless i.evaluator_progress_id == 5 %>
                     <td><%= link_to '削除', kaizen_report_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-danger' %></td>
                   <% end %>
                 <% else %>
                   <td></td>
-                  <td><%= link_to '詳細', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
+                  <td><%= link_to 'プレビュー', kaizen_report_path(i), class: 'btn btn-sm btn-secondary', data: { turbo: false } %></td>
                   <td></td>
                 <% end %>
               </tr>
@@ -75,35 +75,20 @@
 
 <!-- KAIZENカレンダー:パーシャルに変更予定 -->
 
-<!-- 回数順でソートする -->
-<div class="card mb-5">
-  <h5 class="card-header">KAIZENカレンダー</h5>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">期</th>
-            <th scope="col">回</th>
-            <th scope="col">1次評価者提出</th>
-            <th scope="col">2次評価者提出</th>
-            <th scope="col">表彰</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @calendars.each do |i| %>
-            <tr>
-              <th scope="row"><%= i.term %></th>
-              <th scope="row"><%= i.time %></th>              
-              <td><%= i.first_evaluation_submission_date.strftime("%-m月%-d日") %></td>
-              <td><%= i.second_evaluation_submission_date.strftime("%-m月%-d日") %></td>
-              <td><%= i.award_date.strftime("%-m月%-d日") %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+<%= month_calendar do |date| %>
+  <div class="<%= 'today' if date == Date.today %>">
+    <%= date.day %>
+    <% @calendars.each do |calendar| %>
+      <% if date == calendar.first_evaluation_submission_date %>
+        <p>1次評価者提出日</p>
+      <% end %>
+      <% if date == calendar.second_evaluation_submission_date %>
+        <p>2次評価者提出日</p>
+      <% end %>
+      <% if date == calendar.award_date %>
+        <p>表彰日</p>
+      <% end %>
+    <% end %>
   </div>
-</div>
-<!-- ページネーション:KAIZENカレンダー -->
-<%= paginate @calendars, theme: 'bootstrap-5' %>
+<% end %>
+
