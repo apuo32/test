@@ -30,9 +30,10 @@ Rails.application.routes.draw do
     member do
       patch :return, to: 'submitted_kaizen_reports#return'
     end
+    collection do
+      post :selected_pdf
+    end
   end
-
-  resources :show_pdf, only: :index
 
   # deviseのRegistrationsController#createへのパスがusers_pathでusers#createと競合するので、パスを変更
   # post 'new_report', to: 'users#create'

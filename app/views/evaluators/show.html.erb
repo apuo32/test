@@ -166,7 +166,7 @@
   <% end %>
 
   <!-- 2次評価済み改善一覧テーブル(検索結果) -->
-  <%= form_with url: show_pdf_index_path(format: "pdf"), method: :get do %>
+  <%= form_with url: selected_pdf_submitted_kaizen_reports_path, method: :post, local: true, data: { turbo: false }, format: :pdf do %>
     <%= turbo_frame_tag 'second_evaluation_results' do %>
       <div class="card mb-5">
         <h5 class="card-header"> 2次評価済み改善報告一覧</h5>

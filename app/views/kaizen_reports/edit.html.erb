@@ -1,7 +1,8 @@
-<div class="card mb-5">
-  <h5 class="card-header">新規作成</h5>
-  <div class="card-body">
 
+<!-- 1 -->
+<%= form_with(model: @kaizen_report, local: true) do |form| %>
+  <div class="container-fluid">
+  
     <% if @errors.present? %>
       <div class="alert alert-danger">
         <% @errors.each do |error| %>
@@ -10,108 +11,371 @@
       </div>
     <% end %>
 
-    <%= form_with(model: @kaizen_report, local: true) do |form| %>
-      <div class="form-group">
-        <p>
-          <%= form.label :employee_code, "社員CD" %>
-          <%= form.text_field :employee_code, value: current_user.employee_code, class: 'form-control', disabled: true %>
-        </p>
+    <!-- lgサイズ以上での特定のレイアウト -->
+    <div class="d-none d-lg-block mb-2">
+      <div class="row mx-0 align-items-stretch">
+        <div class="col-7 p-0">
+          <div class="row align-items-center mx-0 mb-lg-2">
+            <div class="col-5 p-0">
+              <div class="row align-items-center mx-0">
+                <div class="col p-0">
+                  <%= image_tag 'cmn_logo01.svg', class: "img-vw" %>
+                </div>
+                <div class="col p-1 d-flex align-items-center justify-content-start">
+                  <strong class="responsive-text">報告書</strong>
+                </div>
+              </div>
+            </div>
+            <div class="col-7 p-0">
+              <div class="row d-lg-none">
+                <div class="col-auto">
+                  <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+                </div>
+                <div class="col px-0 pb-2">
+                  <strong>提出情報</strong>
+                </div>
+              </div>
+              <div class="card custom-shadow">
+                <div class="card-header bg-white">
+                  <div class="row m-2 m-lg-0">
+                    <div class="col-2 p-0 d-flex align-items-center">
+                      <small class="text-black-50">提出回</small>
+                    </div>
+                    <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                      提出回
+                    </div>
+                    <div class="col-2 p-0 d-flex align-items-center">
+                      <small class="text-black-50">提出日</small>
+                    </div>
+                    <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                      <%= form.select :submission_date, @evaluation_dates, {}, { class: 'form-select', id: 'submission_date_lg' } %>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer bg-white">
+                  <div class="row m-2 m-lg-0">
+                    <div class="col-2 p-0 d-flex align-items-center">
+                      <small class="text-black-50">部署</small>
+                    </div>
+                    <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                      <%= current_user.department.department_name %>
+                    </div>
+                    <div class="col-2 p-0 d-flex align-items-center">
+                      <small class="text-black-50">氏名</small>
+                    </div>
+                    <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                      <%= current_user.username %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center mx-0">
+            <div class="row d-lg-none">
+              <div class="col-auto">
+                <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+              </div>
+              <div class="col px-0 pb-2">
+                <strong>KAIZEN内容</strong>
+              </div>
+            </div>
+            <div class="card custom-shadow">
+              <div class="card-body">
+                <div class="row m-2 m-lg-0">
+                  <div class="col-auto p-0 d-flex justify-content-center align-items-center">
+                    <small class="text-black-50">タイトル</small>
+                  </div>
+                  <div class="col d-flex justify-content-center align-items-center">
+                    <%= form.text_field :subject, { class: 'form-control', id: 'subject_lg' } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5 p-0">
+          <div class="row mx-0 h-100">
+            <div class="col rounded-3 bg-light-grey text-light mx-3 d-flex justify-content-center align-items-center">
+              <small>優良賞</small>
+            </div>
+            <div class="col rounded-3 bg-light-grey text-light me-3 d-flex justify-content-center align-items-center">
+              <small>社長賞</small>
+            </div>
+            <div class="col rounded-3 bg-light-grey text-light d-flex justify-content-center align-items-center">
+              <small>No.1</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
-        <p>
-          <%= form.label :department_name, "部署" %>
-          <%= form.text_field :department_name, value: current_user.department.department_name, class: 'form-control', disabled: true %>
-        </p>
+    <!-- lgサイズ以下でのコンテンツの配置 -->
+    <div class="d-lg-none gx-0">
+      <div class="container-fluid mb-4">
+        <div class="row align-items-center mx-0">
+          <div class="col-3 p-0">
+            <%= image_tag 'cmn_logo01.svg', class: "img-vw" %>
+          </div>
+          <div class="col-3 p-2 d-flex align-items-center justify-content-start">
+            <strong class="responsive-text">報告書</strong>
+          </div>
+          <div class="col-6 p-0">
+            <div class="row align-items-center mx-0">
+              <div class="col square rounded-3 bg-light-grey text-light me-1 d-flex justify-content-center align-items-center">
+                <small class="small-text">優良賞</small>
+              </div>
+              <div class="col square rounded-3 bg-light-grey text-light me-1 d-flex justify-content-center align-items-center">
+                <small class="small-text">社長賞</small>
+              </div>
+              <div class="col square rounded-3 bg-light-grey text-light d-flex justify-content-center align-items-center">
+                <small class="small-text">No.1</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <p>
-          <%= form.label :username, "氏名" %>
-          <%= form.text_field :username, value: current_user.username, class: 'form-control', disabled: true %>
-        </p>
+      <div class="container-fluid mb-4">
+        <div class="row">
+          <div class="col-auto">
+            <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+          </div>
+          <div class="col px-0 pb-2">
+            <strong>提出情報</strong>
+          </div>
+        </div>
+        <div class="card custom-shadow">
+          <div class="card-header bg-white">
+            <div class="row m-2">
+              <div class="col-2 p-0 d-flex align-items-center">
+                <small class="text-black-50">提出回</small>
+              </div>
+              <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                提出回
+              </div>
+              <div class="col-2 p-0 d-flex align-items-center">
+                <small class="text-black-50">提出日</small>
+              </div>
+              <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                <%= form.select :submission_date, @evaluation_dates, {}, { class: 'form-select', id: 'submission_date_sm' } %>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer bg-white">
+            <div class="row m-2">
+              <div class="col-2 p-0 d-flex align-items-center">
+                <small class="text-black-50">部署</small>
+              </div>
+              <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                <%= current_user.department.department_name %>
+              </div>
+              <div class="col-2 p-0 d-flex align-items-center">
+                <small class="text-black-50">氏名</small>
+              </div>
+              <div class="col-4 p-0 d-flex justify-content-center align-items-center">
+                <%= current_user.username %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
-          <%= form.label :submission_date, "提出日" %>
-          <%= form.select :submission_date, @evaluation_dates, {}, { class: 'form-select' } %>
-        </p>
+      <div class="container-fluid mb-3">
+        <div class="row">
+          <div class="col-auto">
+            <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+          </div>
+          <div class="col px-0 pb-2">
+            <strong>KAIZEN内容</strong>
+          </div>
+        </div>
+        <div class="card custom-shadow">
+          <div class="card-body">
+            <div class="row m-2">
+              <div class="col-auto p-0 d-flex justify-content-center align-items-center">
+                <small class="text-black-50">タイトル</small>
+              </div>
+              <div class="col d-flex justify-content-center align-items-center">
+                <%= form.text_field :subject, { class: 'form-control', id: 'subject_sm' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <p>
-          <%= form.label :subject, "件名" %>
-          <%= form.text_field :subject, { class: 'form-control' } %>
-        </p>
+  <!-- 2 -->
 
-        <p>
-          <p>改善前の画像</p>
-          <% if @kaizen_report.before_images.attached? %>
-            <% @kaizen_report.before_images.each do |image| %>
-              <%= image_tag url_for(image), width: 300, class: "img-thumbnail img-fluid" %>
-            <% end %>
-          <% end %>
-        </p>
+  <div class="container-fluid mb-3 mb-lg-2">
+    <div class="row gx-2 d-flex flex-wrap">
+      <div class="col-lg-6 mb-3 mb-lg-0 d-flex">
+        <div class="card border-info border-5 custom-shadow flex-fill">
+          <div class="card-header bg-white">
+            <div class="col-3 rounded-pill bg-primary text-light d-flex justify-content-center align-items-center p-1">
+              <small>KAIZEN前</small>
+            </div>
+          </div>
+            <div id="kaizenBeforeImagesCarousel" class="carousel slide carousel-dark">
+              <div class="carousel-inner">
+                <% @kaizen_report.before_images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= 'active' if index.zero? %>">
+                    <%= image_tag image, class: "d-block carousel-img" %>
+                  </div>
+                <% end %>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target='#kaizenBeforeImagesCarousel' data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target='#kaizenBeforeImagesCarousel' data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-7 m-4">
+                <%= form.file_field :before_images, multiple: true, accept: "image/*", id: "before-images-upload", class: 'form-control' %>
+              </div>
+              <div class="col-3 my-4">
+                <button type="button" class="btn btn-secondary" id="before-images-clear">
+                画像を削除
+                </button>
+              </div>
+            </div>
+          <div class="card-footer bg-white">
+            <div class="col m-2">
+              <%= form.text_area :before_text, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <p>
-          <%= form.label :before_images, "改善前の画像(変更後)" %>
-          <%= form.file_field :before_images, multiple: true, id: "before-images-upload", class: 'form-control' %>
-        </p>
+      <div class="col-lg-6 mb-lg-0 d-flex">
+        <div class="card border-warning border-5 custom-shadow flex-fill">
+          <div class="card-header bg-white">
+            <div class="col-3 rounded-pill bg-danger text-light d-flex justify-content-center align-items-center p-1">
+              <small>KAIZEN後</small>
+            </div>
+          </div>
+            <div id="kaizenAfterImagesCarousel" class="carousel slide carousel-dark">
+              <div class="carousel-inner">
+                <% @kaizen_report.after_images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= 'active' if index.zero? %>">
+                    <%= image_tag image, class: "d-block carousel-img" %>
+                  </div>
+                <% end %>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target='#kaizenAfterImagesCarousel' data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target='#kaizenAfterImagesCarousel' data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-7 m-4">
+                <%= form.file_field :after_images, multiple: true, accept: "image/*", id: "after-images-upload", class: 'form-control' %>
+              </div>
+              <div class="col-3 my-4">
+                <button type="button" class="btn btn-secondary" id="after-images-clear">
+                画像を削除
+                </button>
+              </div>
+            </div>
+          <div class="card-footer bg-white">
+            <div class="col m-2">
+              <%= form.text_area :after_text, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <div id="images-preview"></div>
+  <!-- 3 -->
 
-        <p>
-          <%= form.label :before_text, "改善前のテキスト" %>
-          <%= form.text_area :before_text, class: "form-control" %>
-        </p>
+  <div class="container-fluid mb-3 mb-lg-1">
+    <div class="row gx-1 align-items-stretch">
 
-        <p>
-          <p>改善後の画像</p>
-          <% if @kaizen_report.after_images.attached? %>
-            <% @kaizen_report.after_images.each do |image| %>
-              <%= image_tag url_for(image), width: 300, class: "img-thumbnail img-fluid" %>
-            <% end %>
-          <% end %>
-        </p>
+      <!-- 効果カード -->
+      <div class="col-lg-8 mb-3 mb-lg-0">
+        <div class="card custom-shadow h-100">
+          <div class="card-body">
+            <div class="row m-0">
+              <div class="col-2 text-light d-flex align-items-center p-0">
+                <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
+              </div>
+              <div class="col d-flex justify-content-center align-items-center">
+                <%= form.text_area :effect_comment, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <p><!-- Ctrl + Vで画像を貼れるようにする -->
-          <%= form.label :after_images, "改善後の画像(変更後)" %>
-          <%= form.file_field :after_images, multiple: true, id: "after-images-upload", class: 'form-control' %>
-        </p>
+      <!-- 費用カード -->
+      <div class="col-lg-4 mb-lg-0">
+        <div class="card custom-shadow h-100">
+          <div class="card-body">
+            <div class="row m-2">
+              <div class="col-2 p-0 d-flex align-items-center">
+                <small class="text-black-50">費用</small>
+              </div>
+              <div class="col-3 p-0 d-flex justify-content-center align-items-center mx-2">
+                <%= form.number_field :cost, step: "any", class: "form-control" %>
+              </div>
+              <div class="col-3 p-0 d-flex align-items-center">
+                <small class="text-black-50">効果金額</small>
+              </div>
+              <div class="col-3 p-0 d-flex justify-content-center align-items-center">
+                <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer bg-white">
+            <div class="col d-flex justify-content-center align-items-center">
+              <!-- モーダルを開くためのボタン -->
+              <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                効果金額算出フォーマットを表示
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <div id="after-images-preview"></div>
 
-        <p>
-          <%= form.label :after_text, "改善後のテキスト" %>
-          <%= form.text_area :after_text, class: "form-control" %>
-        </p>
-
-        <p>
-          <%= form.label :effect_comment, "効果コメント" %>
-          <%= form.text_area :effect_comment, class: "form-control" %>
-        </p>
-
-        <p>
-          <%= form.label :cost, "費用(円)" %>
-          <%= form.number_field :cost, step: "any", class: "form-control" %>
-        </p>
-
-        <!-- 島田さんが作ってくれた「効果金額算出フォーマット」をモーダルで確認できるようにする -->
-        <p>
-          <%= form.label :effect_amount, "効果金額(円)" %> <!-- 単位を選んで式が自動で出る。島田さんの年間高価金額を参考に -->
-          <%= form.number_field :effect_amount, step: "any", class: "form-control" %>
-
-          <p>
-            <!-- モーダルを開くためのボタン -->
-            <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-              効果金額算出フォーマットを表示
-            </button>
-          </p>
-        </p>
-
-        <!-- モーダル本体 -->
         <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">効果金額算出フォーマット</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
               </div>
               <div class="modal-body">
-                ここに効果金額算出フォーマットの内容を記載します。
+                <% @effect_amounts.each do |kaizen_type, effects| %>
+                  <h5><%= kaizen_type %></h5>
+                  <div class="card mb-5">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th scope="col">単位</th>
+                          <th scope="col">金額(円)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% effects.each do |effect| %>
+                          <tr>
+                            <td><%= effect.unit %></td>
+                            <td><%= effect.amount %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
@@ -120,39 +384,71 @@
           </div>
         </div>
 
-        <p><!-- 削除済みのものはすべてのドロップボックスに出さない -->
-          <%= form.label :tsk_value_id, "TSKバリュー" %>
-          <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, { prompt: "選択してください" }, { class: 'form-select' } %>
-        </p>
-
-        <p>
-          <%= form.label :kaizen_member_id, "KAIZENメンバー" %>
-          <select name="kaizen_report[kaizen_member_id][]" id="select-kaizen-member" multiple="multiple" autocomplete="off">
-            <% @users.each do |user| %>
-              <% selected = @kaizen_report.kaizen_member_id.include?(user.id.to_s) ? 'selected' : nil %>
-              <option value="<%= user.id %>" <%= selected %>><%= user.username %></option>
-            <% end %>
-          </select>
-        </p>
-
-        <p>
-          <!-- 評価進捗区分：初期値に"未評価"を設定 -->
-          <% if @kaizen_report.evaluator_progress_id == 1 %>
-            <%= form.hidden_field :evaluator_progress_id, value: 1 %>
-          <% end %>
-        </p>
-
-        <p>
-          <!-- 賞区分：初期値に"賞無し"を設定 -->
-          <%= form.hidden_field :award_id, value: 4 %>
-        </p>
-
-        <p>
-          <%= form.submit "提出", name: "submit", class: "btn btn-sm btn-primary", data: { turbo_method: :post, turbo_confirm: "本当に提出しますか?" } %>
-          <%= form.submit "保存", name: "save", class: "btn btn-sm btn-secondary" %>
-          <%= link_to '戻る', user_path(current_user), class: 'btn btn-sm btn-danger', data: { turbo_method: :get, turbo_confirm: '保存されていませんがよろしいですか？' } %>
-        </p>
       </div>
-    <% end %>
+
+    </div>
   </div>
-</div>
+
+
+  <!-- 4 -->
+
+  <div class="container-fluid mb-3 mb-lg-1">
+    <div class="card custom-shadow">
+      <div class="card-body">
+        <div class="row m-2 m-lg-0">
+          <div class="col-3 p-0 d-flex align-items-center">
+            <small class="text-black-50">メンバー</small>
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <select name="kaizen_report[kaizen_member_id][]" id="select-kaizen-member" multiple="multiple" autocomplete="off">
+                <% @users.each do |user| %>
+                  <% selected = @kaizen_report.kaizen_member_id.include?(user.id.to_s) ? 'selected' : nil %>
+                  <option value="<%= user.id %>" <%= selected %>><%= user.username %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+
+  <div class="container-fluid mb-5">
+    <div class="card custom-shadow">
+      <div class="card-body">
+        <div class="row m-2 m-lg-0">
+          <div class="col-3 p-0 d-flex align-items-center">
+            <small class="text-black-50">タグ</small>
+          </div>
+          <div class="col-auto d-flex justify-content-center align-items-center py-1 px-2 m-1">
+            <small>
+              <%= form.collection_select :tsk_value_id, @tsk_values, :id, :value_name, { prompt: "選択してください" }, { class: 'form-select' } %>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 評価進捗区分：初期値に"未評価"を設定 -->
+  <% if @kaizen_report.evaluator_progress_id == 1 %>
+    <%= form.hidden_field :evaluator_progress_id, value: 1 %>
+  <% end %>
+
+  <!-- 賞区分：初期値に"賞無し"を設定 -->
+  <%= form.hidden_field :award_id, value: 4 %>
+
+  <!-- 確認を挟む -->
+  <div class="d-grid col-6 mx-auto custom-shadow my-4">
+    <%= form.submit "提出", name: "submit", class: "submit-form btn btn-primary text-light", data: { turbo_method: :post, turbo_confirm: "本当に提出しますか?" } %>
+  </div>
+  <div class="d-grid col-6 mx-auto custom-shadow my-4">
+    <%= form.submit "保存", name: "save", class: "submit-form btn btn-secondary text-light" %>
+  </div>
+  <div class="d-grid col-6 mx-auto custom-shadow">
+    <%= link_to '戻る', user_path(current_user), class: 'btn btn-danger text-light', data: { turbo_method: :get, turbo_confirm: '保存されていませんがよろしいですか？' } %>
+  </div>
+<% end %>

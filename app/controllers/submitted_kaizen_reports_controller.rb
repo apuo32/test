@@ -31,6 +31,22 @@ class SubmittedKaizenReportsController < ApplicationController
     @kaizen_report = KaizenReport.find(params[:id])
   end
 
+  def selected_pdf
+    selected_report_ids = params[:selected_kaizen_reports].reject(&:blank?)
+    @kaizen_reports = KaizenReport.find(selected_report_ids)
+    
+    render pdf: "selected_kaizen_reports",
+           layout: 'pdf',
+           template: "submitted_kaizen_reports/selected_pdf",
+           encoding: 'UTF-8',
+           orientation: 'Landscape',
+           page_size: 'A4',
+           zoom: 0.95,
+           formats: [:html],
+           margin: { top: 0, bottom: 0, left: 0, right: 0 },
+           disposition: 'attachment'
+  end
+
   private
     def set_resources
       @users = User.where(deletion_flag: false).order(id: "ASC")

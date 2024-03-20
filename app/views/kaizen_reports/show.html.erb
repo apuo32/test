@@ -230,7 +230,7 @@
         <% end %>
         <div class="card-footer bg-white">
           <div class="col m-2">
-            <%= @kaizen_report.before_text %>
+            <%= simple_format(@kaizen_report.before_text) %>
           </div>
         </div>
       </div>
@@ -264,7 +264,7 @@
         <% end %>
         <div class="card-footer bg-white">
           <div class="col m-2">
-            <%= @kaizen_report.after_text %>
+            <%= simple_format(@kaizen_report.after_text) %>
           </div>
         </div>
       </div>
@@ -286,7 +286,7 @@
               <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
             </div>
             <div class="col d-flex justify-content-center align-items-center">
-              <%= @kaizen_report.effect_comment %>
+              <%= simple_format(@kaizen_report.effect_comment) %>
             </div>
           </div>
         </div>

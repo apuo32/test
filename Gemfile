@@ -89,9 +89,6 @@ gem 'ransack'
 
 gem "aws-sdk-s3"
 
-gem 'prawn'
-gem 'prawn-table'
-
 gem 'matrix'
 
 gem 'rails-i18n'
@@ -102,3 +99,6 @@ gem 'devise-i18n-views'
 gem "roo"
 
 gem 'simple_calendar'
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
