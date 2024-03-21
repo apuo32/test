@@ -8,6 +8,34 @@ import jquery from "jquery"
 window.$ = jquery
 
 document.addEventListener("turbo:load", function() {
+  const textareas = document.querySelectorAll(".limited-three-lines");
+  textareas.forEach((textarea) => {
+    textarea.addEventListener("input", function() {
+      const MAX_CHARS_PER_LINE = 30;
+      const lines = textarea.value.split("\n");
+      let adjustedLines = [];
+
+      lines.forEach((line) => {
+        while (line.length > MAX_CHARS_PER_LINE) {
+          adjustedLines.push(line.substring(0, MAX_CHARS_PER_LINE));
+          line = line.substring(MAX_CHARS_PER_LINE);
+        }
+        adjustedLines.push(line);
+      });
+
+      // 超えた行を削除し、最大行数に合わせる
+      if (adjustedLines.length > 3) {
+        adjustedLines = adjustedLines.slice(0, 3);
+      }
+
+      textarea.value = adjustedLines.join("\n");
+    });
+  });
+});
+
+
+
+document.addEventListener("turbo:load", function() {
   const beforeInput = document.getElementById('before-images-upload');
   const beforeCarouselInner = document.querySelector('#kaizenBeforeImagesCarousel .carousel-inner');
 
@@ -245,3 +273,31 @@ document.getElementById("after-images-clear").addEventListener("click", function
 //       // 必要に応じて処理
 //   }).catch(error => console.error('Error:', error));
 // });
+
+// // 入力できる行数の最大値
+// let MAX_LINE_NUM = 5;
+ 
+// // テキストエリアの取得
+// let textarea = document.getElementById("limited-three-lines");
+
+// // 入力ごとに呼び出されるイベントを設定
+// textarea.addEventListener("input", function() {
+
+//   // 各行を配列の要素に分ける
+//   let lines = textarea.value.split("\n");
+
+//   // 入力行数が制限を超えた場合
+//   if (lines.length > MAX_LINE_NUM) {
+
+//     var result = "";
+
+//     for (var i = 0; i < MAX_LINE_NUM; i++) {
+//       result += lines[i] + "\n";
+//     }
+
+//     textarea.value = result;
+//   }
+// }, false);
+
+// テキストエリアの取得
+

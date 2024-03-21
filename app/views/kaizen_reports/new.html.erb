@@ -245,7 +245,7 @@
             </div>
           <div class="card-footer bg-white">
             <div class="col m-2">
-              <%= form.text_area :before_text, class: "form-control" %>
+              <%= form.text_area :before_text, class: "form-control limited-three-lines", rows: 3 %>
             </div>
           </div>
         </div>
@@ -285,7 +285,7 @@
             </div>
           <div class="card-footer bg-white">
             <div class="col m-2">
-              <%= form.text_area :after_text, class: "form-control" %>
+              <%= form.text_area :after_text, class: "form-control limited-three-lines", rows: 3 %>
             </div>
           </div>
         </div>
@@ -307,7 +307,7 @@
                 <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
               </div>
               <div class="col d-flex justify-content-center align-items-center">
-                <%= form.text_area :effect_comment, class: "form-control" %>
+                <%= form.text_area :effect_comment, class: "form-control limited-three-lines", rows: 3 %>
               </div>
             </div>
           </div>
