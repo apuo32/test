@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_20_182201) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_21_043158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -106,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_182201) do
     t.bigint "tsk_value_id", null: false
     t.bigint "evaluator_progress_id", null: false
     t.string "evaluators_id"
-    t.text "evaluation_comment"
+    t.text "first_evaluator_comment"
     t.string "kaizen_member_id"
     t.bigint "award_id", null: false
     t.bigint "department_id", null: false
@@ -115,6 +115,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_182201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "submission_flag", default: false
+    t.text "second_evaluator_comment"
+    t.text "final_evaluator_comment"
     t.index ["award_id"], name: "index_kaizen_reports_on_award_id"
     t.index ["department_id"], name: "index_kaizen_reports_on_department_id"
     t.index ["evaluator_progress_id"], name: "index_kaizen_reports_on_evaluator_progress_id"

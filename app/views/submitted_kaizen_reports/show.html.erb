@@ -384,20 +384,33 @@
           <small class="text-black-50">1次評価者コメント</small>
         </div>
         <div class="col p-0 d-flex align-items-center">
-          <%= simple_format(@kaizen_report.evaluation_comment) %>
+          <%= simple_format(@kaizen_report.first_evaluator_comment) %>
         </div>
         <div class="col-auto rounded-pill bg-off-white d-flex justify-content-center align-items-center py-1 px-2 m-1">
           <small>中村拓海</small>
         </div>
       </div>
     </div>
-    <div class="card-footer bg-white">
+    <div class="card-header bg-white">
       <div class="row m-2">
         <div class="col-3 p-0 d-flex align-items-center">
           <small class="text-black-50">2次評価者コメント</small>
         </div>
         <div class="col p-0 d-flex align-items-center">
-          <%= simple_format(@kaizen_report.evaluation_comment) %>
+          <%= simple_format(@kaizen_report.second_evaluator_comment) %>
+        </div>
+        <div class="col-auto rounded-pill bg-off-white d-flex justify-content-center align-items-center py-1 px-2 m-1">
+          <small>中村拓海</small>
+        </div>
+      </div>
+    </div>
+    <div class="card-header bg-white">
+      <div class="row m-2">
+        <div class="col-3 p-0 d-flex align-items-center">
+          <small class="text-black-50">最終評価者コメント</small>
+        </div>
+        <div class="col p-0 d-flex align-items-center">
+          <%= simple_format(@kaizen_report.final_evaluator_comment) %>
         </div>
         <div class="col-auto rounded-pill bg-off-white d-flex justify-content-center align-items-center py-1 px-2 m-1">
           <small>中村拓海</small>

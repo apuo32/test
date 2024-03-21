@@ -223,7 +223,7 @@
               <small class="text-black-50">1次評価者コメント</small>
             </div>
             <div class="table-cell col-7 ev-three-lines-text">
-              <%= simple_format(report.evaluation_comment) %>
+              <%= simple_format(report.first_evaluator_comment) %>
             </div>
             <div class="table-cell col-1 align-middle">
               <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
@@ -233,14 +233,14 @@
           </div>
         </div>
       </div>
-      <div class="card-footer bg-white">
+      <div class="card-header bg-white">
         <div class="table-container">
           <div class="table-row">
             <div class="table-cell col-3 pe-4 align-middle">
               <small class="text-black-50">2次評価者コメント</small>
             </div>
             <div class="table-cell col-7 ev-three-lines-text">
-              <%= simple_format(report.evaluation_comment) %>
+              <%= simple_format(report.second_evaluator_comment) %>
             </div>
             <div class="table-cell col-1 align-middle">
               <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">

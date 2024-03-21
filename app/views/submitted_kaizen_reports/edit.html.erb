@@ -385,17 +385,27 @@
             <small class="text-black-50">1次評価者コメント</small>
           </div>
           <div class="col p-0 d-flex align-items-center">
-            <%= form.text_area :evaluation_comment, class: "form-control limited-three-lines", rows: 3 %>
+            <%= form.text_area :first_evaluator_comment, class: "form-control limited-three-lines", rows: 3 %>
           </div>
         </div>
       </div>
-      <div class="card-footer bg-white">
+      <div class="card-header bg-white">
         <div class="row m-2">
           <div class="col-3 p-0 d-flex align-items-center">
             <small class="text-black-50">2次評価者コメント</small>
           </div>
           <div class="col p-0 d-flex align-items-center">
-            <%= form.text_area :evaluation_comment, class: "form-control limited-three-lines", rows: 3 %>
+            <%= form.text_area :second_evaluator_comment, class: "form-control limited-three-lines", rows: 3 %>
+          </div>
+        </div>
+      </div>
+      <div class="card-header bg-white">
+        <div class="row m-2">
+          <div class="col-3 p-0 d-flex align-items-center">
+            <small class="text-black-50">最終評価者コメント</small>
+          </div>
+          <div class="col p-0 d-flex align-items-center">
+            <%= form.text_area :final_evaluator_comment, class: "form-control limited-three-lines", rows: 3 %>
           </div>
         </div>
       </div>

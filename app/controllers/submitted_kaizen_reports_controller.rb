@@ -61,6 +61,8 @@ class SubmittedKaizenReportsController < ApplicationController
       params.require(:kaizen_report).permit(
         :evaluator_progress_id,
         :award_id, 
-        :evaluation_comment)
+        :first_evaluator_comment,
+        :second_evaluator_comment,
+        :final_evaluator_comment)
     end
 end

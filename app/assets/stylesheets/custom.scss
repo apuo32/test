@@ -58,7 +58,7 @@
   overflow: hidden; /* 超えたテキストは非表示 */
   text-overflow: ellipsis; /* テキストがオーバーフローした際の処理 */
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* 表示する行数 */
+  -webkit-line-clamp: 2; /* 表示する行数 */
   -webkit-box-orient: vertical;
 }
 

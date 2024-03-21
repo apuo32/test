@@ -51,12 +51,12 @@
               <select name="user[first_evaluator_id]" id="select-first-evaluator" placeholder="1次評価者を選択してください" autocomplete="off">
                 <optgroup label="1次評価者">
                   <% @first_evaluators.each do |evaluator| %>
-                    <option value="<%= evaluator.id %>"><%= evaluator.username %></option>
+                    <option value="<%= evaluator.id %>" <%= 'selected' if evaluator.id == @user.first_evaluator_id %>><%= evaluator.username %></option>
                   <% end %>
                 </optgroup>
                 <optgroup label="2次評価者">
                   <% @second_evaluators.each do |evaluator| %>
-                    <option value="<%= evaluator.id %>"><%= evaluator.username %></option>
+                    <option value="<%= evaluator.id %>" <%= 'selected' if evaluator.id == @user.first_evaluator_id %>><%= evaluator.username %></option>
                   <% end %>
                 </optgroup>
               </select>
@@ -65,7 +65,7 @@
               <select name="user[second_evaluator_id]" id="select-second-evaluator" placeholder="2次評価者を選択してください" autocomplete="off">
                 <optgroup label="2次評価者">
                   <% @second_evaluators.each do |evaluator| %>
-                    <option value="<%= evaluator.id %>"><%= evaluator.username %></option>
+                    <option value="<%= evaluator.id %>" <%= 'selected' if evaluator.id == @user.second_evaluator_id %>><%= evaluator.username %></option>
                   <% end %>
                 </optgroup>
               </select>
