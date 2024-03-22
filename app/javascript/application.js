@@ -33,8 +33,6 @@ document.addEventListener("turbo:load", function() {
   });
 });
 
-
-
 document.addEventListener("turbo:load", function() {
   const beforeInput = document.getElementById('before-images-upload');
   const beforeCarouselInner = document.querySelector('#kaizenBeforeImagesCarousel .carousel-inner');
@@ -52,7 +50,7 @@ document.addEventListener("turbo:load", function() {
 });
 
 function updateCarousel(event, carouselInner) {
-  carouselInner.innerHTML = ''; // 既存のコンテンツをクリア
+  // carouselInner.innerHTML = ''; // 既存のコンテンツをクリア
   const files = event.target.files;
   Array.from(files).forEach((file, index) => {
     const reader = new FileReader();
@@ -70,6 +68,36 @@ function updateCarousel(event, carouselInner) {
     reader.readAsDataURL(file);
   });
 };
+
+document.getElementById("before-images-clear").addEventListener("click", function(){
+
+  const obj = document.getElementById('before-images-upload');
+
+  if(obj !== null){
+    obj.value = '';
+  }
+
+  const carouselInner = document.querySelectorAll('#kaizenBeforeImagesCarousel .carousel-inner');
+  carouselInner.forEach(function(item) {
+    item.innerHTML = '';
+  });
+
+});
+
+document.getElementById("after-images-clear").addEventListener("click", function(){
+
+  const obj = document.getElementById('after-images-upload');
+
+  if(obj !== null){
+    obj.value = '';
+  }
+
+  const carouselInner = document.querySelectorAll('#kaizenAfterImagesCarousel .carousel-inner');
+  carouselInner.forEach(function(item) {
+    item.innerHTML = '';
+  });
+
+});
 
 document.addEventListener("turbo:load", function() {
   new TomSelect("#select-kaizen-member", {
@@ -211,35 +239,7 @@ document.addEventListener("turbo:load", function() {
   });
 });
 
-document.getElementById("before-images-clear").addEventListener("click", function(){
 
-  const obj = document.getElementById('before-images-upload');
-
-  if(obj !== null){
-    obj.value = '';
-  }
-
-  const carouselItems = document.querySelectorAll('#kaizenBeforeImagesCarousel .carousel-item');
-  carouselItems.forEach(function(item) {
-    item.innerHTML = '';
-  });
-
-})
-
-document.getElementById("after-images-clear").addEventListener("click", function(){
-
-  const obj = document.getElementById('after-images-upload');
-
-  if(obj !== null){
-    obj.value = '';
-  }
-
-  const carouselItems = document.querySelectorAll('#kaizenAfterImagesCarousel .carousel-item');
-  carouselItems.forEach(function(item) {
-    item.innerHTML = '';
-  });
-
-})
 
 // document.querySelector('.submit-form').addEventListener('click', function(e) {
 //   e.preventDefault(); // フォームのデフォルト送信を防止

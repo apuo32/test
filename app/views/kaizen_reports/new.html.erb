@@ -220,9 +220,7 @@
           </div>
             <div id="kaizenBeforeImagesCarousel" class="carousel slide carousel-dark">
               <div class="carousel-inner">
-                <div class="carousel-item">
-                  
-                </div>
+                
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#kaizenBeforeImagesCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -237,10 +235,8 @@
               <div class="col-7 m-4">
                 <%= form.file_field :before_images, multiple: true, accept: "image/*", id: "before-images-upload", class: 'form-control' %>
               </div>
-              <div class="col-3 my-4">
-                <button type="button" class="btn btn-secondary" id="before-images-clear">
-                画像を削除
-                </button>
+              <div class="col-3 my-4 ps-2">
+                <%= link_to "削除", "#", class: "btn btn-secondary", id: "before-images-clear", remote: true %>
               </div>
             </div>
           <div class="card-footer bg-white">
@@ -260,9 +256,7 @@
           </div>
             <div id="kaizenAfterImagesCarousel" class="carousel slide carousel-dark">
               <div class="carousel-inner">
-                <div class="carousel-item">
-                  
-                </div>
+
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#kaizenAfterImagesCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -277,10 +271,8 @@
               <div class="col-7 m-4">
                 <%= form.file_field :after_images, multiple: true, accept: "image/*", id: "after-images-upload", class: 'form-control' %>
               </div>
-              <div class="col-3 my-4">
-                <button type="button" class="btn btn-secondary" id="after-images-clear">
-                画像を削除
-                </button>
+              <div class="col-3 my-4 ps-2">
+                <%= link_to "削除", "#", class: "btn btn-secondary", id: "after-images-clear", remote: true %>
               </div>
             </div>
           <div class="card-footer bg-white">
@@ -417,7 +409,7 @@
       <div class="card-body">
         <div class="row m-2 m-lg-0">
           <div class="col-3 p-0 d-flex align-items-center">
-            <small class="text-black-50">タグ</small>
+            <small class="text-black-50">TSKバリュー</small>
           </div>
           <div class="col-auto d-flex justify-content-center align-items-center py-1 px-2 m-1">
             <small>

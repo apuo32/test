@@ -47,15 +47,43 @@ class KaizenReportsController < ApplicationController
       kaizen_member_ids << current_user.id.to_s
     end
 
-    # フォームから送信された画像データを取得し、空の文字列を除外する
-    before_images_data = params[:kaizen_report][:before_images].reject(&:blank?)
-    after_images_data = params[:kaizen_report][:after_images].reject(&:blank?)
+    # フォームから送信された画像データを取得
+    before_images_data = params.dig(:kaizen_report, :before_images)&.reject(&:blank?)
+    after_images_data = params.dig(:kaizen_report, :after_images)&.reject(&:blank?)
 
-    # 画像パラメータを条件に応じて更新用パラメータに含めるか決定
-    update_params = kaizen_report_params.dup # ストロングパラメータのコピーを作成
-    update_params[:kaizen_member_id] = kaizen_member_ids # 更新されたKAIZENメンバーIDをセット
-    update_params = update_params.except(:before_images) if before_images_data.empty?
-    update_params = update_params.except(:after_images) if after_images_data.empty?
+    # 更新用パラメータの設定
+    update_params = kaizen_report_params.dup
+    update_params[:kaizen_member_id] = kaizen_member_ids
+
+    # carousel-itemタグの有無をチェック
+    before_images_exist = !@kaizen_report.before_images.empty?
+    after_images_exist = !@kaizen_report.after_images.empty?
+
+    # before_imagesの処理
+    if before_images_data.present?
+      # ファイルがアップロードされている場合は、そのまま保存
+      update_params[:before_images] = before_images_data
+    else
+      # ファイルがアップロードされていない場合、２つに分岐
+      if before_images_exist
+        @kaizen_report.before_images.purge_later
+      else
+        update_params = update_params.except(:before_images)
+      end
+    end
+
+    # before_imagesの処理
+    if after_images_data.present?
+      # ファイルがアップロードされている場合は、そのまま保存
+      update_params[:after_images] = after_images_data
+    else
+      # ファイルがアップロードされていない場合、２つに分岐
+      if after_images_exist
+        @kaizen_report.after_images.purge_later
+      else
+        update_params = update_params.except(:after_images)
+      end
+    end
   
     # 保存ボタン(name: "save")を押した場合
     if params[:save]
