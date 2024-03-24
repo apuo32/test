@@ -77,14 +77,10 @@
   font-weight: 100 900;
 }
 
-// IPAexGothicの定義
-@font-face {
-  font-family: 'IPAexGothic';
-  src: url('app/.fonts/ipaexg.ttf') format('truetype');
-}
+
 
 // ベースフォントの適用
 body {
-  font-family: 'NotoSansJP', 'IPAexGothic', sans-serif;
+  font-family: 'NotoSansJP', sans-serif;
 }
 
