@@ -43,8 +43,8 @@ class SubmittedKaizenReportsController < ApplicationController
            page_size: 'A4',
            zoom: 0.95,
            formats: [:html],
-           margin: { top: 0, bottom: 0, left: 0, right: 0 }
-          #  disposition: 'attachment'
+           margin: { top: 0, bottom: 0, left: 0, right: 0 },
+           disposition: 'attachment'
   end
 
   private

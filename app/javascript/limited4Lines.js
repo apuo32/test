@@ -15,8 +15,8 @@ export const limited4Lines = () => {
       });
 
       // 超えた行を削除し、最大行数に合わせる
-      if (adjustedLines.length > 4) {
-        adjustedLines = adjustedLines.slice(0, 4);
+      if (adjustedLines.length > 3) {
+        adjustedLines = adjustedLines.slice(0, 3);
       }
 
       textarea.value = adjustedLines.join("\n");

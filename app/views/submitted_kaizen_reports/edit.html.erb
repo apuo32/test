@@ -462,16 +462,13 @@
     </div>
   </div>
 
-  <p>
-    <%= form.label :evaluator_progress_id, "評価進捗:" %>
-    <% if current_user.evaluator_id == 1 %>
-      <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: [2, 3]), :id, :status, include_blank: false %>
-    <% elsif current_user.evaluator_id == 2 %>
-      <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: [2, 3]).order(id: :desc), :id, :status, include_blank: false, selected: 3 %>
-    <% else %>
-      <%= form.collection_select :evaluator_progress_id, @evaluator_progresses.where(id: 4), :id, :status, include_blank: false %>
-    <% end %>
-  </p>
+  <% if current_user.id == @kaizen_report.user.second_evaluator_id %>
+    <%= form.hidden_field :evaluator_progress_id, value: 3 %>
+  <% elsif current_user.id == @kaizen_report.user.first_evaluator_id %>
+    <%= form.hidden_field :evaluator_progress_id, value: 2 %>
+  <% elsif current_user.evaluator_id == 3 %>
+    <%= form.hidden_field :evaluator_progress_id, value: 4 %>
+  <% end %>
 
   <div class="d-grid col-6 mx-auto custom-shadow my-4">
     <%= form.submit "提出", class: "btn btn-primary text-light", data: { turbo: false } %>

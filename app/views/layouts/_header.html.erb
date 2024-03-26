@@ -18,7 +18,7 @@
           <% unless current_user.evaluator_id == 4 %>
             <%= link_to "評価画面", evaluator_path(current_user), class: 'nav-link', data: { turbo: false } %>
           <% end %>
-          <%= link_to "ログアウト", "/users/sign_out", method: :delete, class: 'nav-link', data: { turbo: false } %>
+          <%= link_to "ログアウト", "/users/sign_out", data: { turbo_method: :delete }, class: 'nav-link' %>
         <% end %>
       </div>
     </div>

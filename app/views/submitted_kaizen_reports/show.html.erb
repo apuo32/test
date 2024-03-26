@@ -387,7 +387,7 @@
           <%= simple_format(@kaizen_report.first_evaluator_comment) %>
         </div>
         <div class="col-auto rounded-pill bg-off-white d-flex justify-content-center align-items-center py-1 px-2 m-1">
-          <small>中村拓海</small>
+          <div><%= @kaizen_report.user.first_evaluator.username %></div>
         </div>
       </div>
     </div>
@@ -400,7 +400,7 @@
           <%= simple_format(@kaizen_report.second_evaluator_comment) %>
         </div>
         <div class="col-auto rounded-pill bg-off-white d-flex justify-content-center align-items-center py-1 px-2 m-1">
-          <small>中村拓海</small>
+          <div><%= @kaizen_report.user.second_evaluator.username %></div>
         </div>
       </div>
     </div>
@@ -413,7 +413,7 @@
           <%= simple_format(@kaizen_report.final_evaluator_comment) %>
         </div>
         <div class="col-auto rounded-pill bg-off-white d-flex justify-content-center align-items-center py-1 px-2 m-1">
-          <small>中村拓海</small>
+          <div>設定無し</div>
         </div>
       </div>
     </div>
