@@ -9,16 +9,16 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if user_signed_in? %>
-          <%= link_to "改善報告一覧", list_kaizen_reports_path, class: 'nav-link' %>
-          <%= link_to "新規作成", "/kaizen_reports/new", class: 'nav-link' %>
-          <%= link_to "マイページ", user_path(current_user), class: 'nav-link' %>
+          <%= link_to "改善報告一覧", list_kaizen_reports_path, class: 'nav-link', data: { turbo: false } %>
+          <%= link_to "新規作成", "/kaizen_reports/new", class: 'nav-link', data: { turbo: false } %>
+          <%= link_to "マイページ", user_path(current_user), class: 'nav-link', data: { turbo: false } %>
           <% if current_user.admin_flag %>
-            <%= link_to "管理画面", "/admin/users", class: 'nav-link' %>
+            <%= link_to "管理画面", "/admin/users", class: 'nav-link', data: { turbo: false } %>
           <% end %>
           <% unless current_user.evaluator_id == 4 %>
-            <%= link_to "評価画面", evaluator_path(current_user), class: 'nav-link' %>
+            <%= link_to "評価画面", evaluator_path(current_user), class: 'nav-link', data: { turbo: false } %>
           <% end %>
-          <%= link_to "ログアウト", "/users/sign_out", data: { turbo_method: :delete }, class: 'nav-link' %>
+          <%= link_to "ログアウト", "/users/sign_out", method: :delete, class: 'nav-link', data: { turbo: false } %>
         <% end %>
       </div>
     </div>

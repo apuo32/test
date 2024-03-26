@@ -385,7 +385,7 @@
             <small class="text-black-50">1次評価者コメント</small>
           </div>
           <div class="col p-0 d-flex align-items-center">
-            <%= form.text_area :first_evaluator_comment, class: "form-control limited-three-lines", rows: 3 %>
+            <%= form.text_area :first_evaluator_comment, class: "form-control limited-one-line", rows: 1 %>
           </div>
         </div>
       </div>
@@ -395,7 +395,7 @@
             <small class="text-black-50">2次評価者コメント</small>
           </div>
           <div class="col p-0 d-flex align-items-center">
-            <%= form.text_area :second_evaluator_comment, class: "form-control limited-three-lines", rows: 3 %>
+            <%= form.text_area :second_evaluator_comment, class: "form-control limited-one-line", rows: 1 %>
           </div>
         </div>
       </div>
@@ -405,7 +405,7 @@
             <small class="text-black-50">最終評価者コメント</small>
           </div>
           <div class="col p-0 d-flex align-items-center">
-            <%= form.text_area :final_evaluator_comment, class: "form-control limited-three-lines", rows: 3 %>
+            <%= form.text_area :final_evaluator_comment, class: "form-control limited-one-line", rows: 1 %>
           </div>
         </div>
       </div>
@@ -474,10 +474,21 @@
   </p>
 
   <div class="d-grid col-6 mx-auto custom-shadow my-4">
-    <%= form.submit "提出", class: "btn btn-primary text-light" %>
+    <%= form.submit "提出", class: "btn btn-primary text-light", data: { turbo: false } %>
   </div>
 <% end %>
 
 <div class="d-grid gap-2 col-6 mx-auto custom-shadow">
-  <%= link_to '戻る',  evaluator_path(current_user.id), class: 'btn btn-danger text-light' %>
+  <%= link_to '戻る',  evaluator_path(current_user.id), class: 'btn btn-danger text-light', data: { turbo: false } %>
 </div>
+
+<script type="module">
+  document.addEventListener("turbo:load", async () => {
+    const { limited1Line } = await import("limited1Line");
+    limited1Line();
+  });
+  document.addEventListener("turbo:render", async () => {
+    const { limited1Line } = await import("limited1Line");
+    limited1Line();
+  });
+</script>

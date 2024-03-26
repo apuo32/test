@@ -201,8 +201,8 @@
               </tbody>
             </table>
             <div class="mb-3">
-              <button id="select-all" class="btn btn-secondary btn-sm">全て選択</button>
-              <button id="deselect-all" class="btn btn-secondary btn-sm">選択解除</button>
+              <button type="button" id="select-all" class="btn btn-secondary btn-sm">全て選択</button>
+              <button type="button" id="deselect-all" class="btn btn-secondary btn-sm">選択解除</button>
               <%= hidden_field_tag "selected_kaizen_reports[]", nil %>
               <%= submit_tag "印刷", class: "btn btn-danger btn-sm" %>
             </div>
@@ -235,3 +235,10 @@
     <% end %>
   </div>
 <% end %>
+
+<script type="module">
+  document.addEventListener("turbo:load", async () => {
+    const { selectCheckbox } = await import("selectCheckbox");
+    selectCheckbox();
+  });
+</script>

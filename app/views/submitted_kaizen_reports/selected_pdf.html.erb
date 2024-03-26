@@ -16,9 +16,9 @@
                 <div class="card-header bg-white">
                   <div class="table-container">
                     <div class="table-row">
-                      <div class="table-cell"><small class="text-black-50">提出回</small></div>
+                      <div class="table-cell"><div class="text-black-50">提出回</div></div>
                       <div class="table-cell">提出回</div>
-                      <div class="table-cell"><small class="text-black-50">提出日</small></div>
+                      <div class="table-cell"><div class="text-black-50">提出日</div></div>
                       <div class="table-cell"><%= report.submission_date.strftime('%Y/%-m/%-d') %></div>
                     </div>
                   </div>   
@@ -26,9 +26,9 @@
                 <div class="card-footer bg-white">
                   <div class="table-container">
                     <div class="table-row">
-                      <div class="table-cell"><small class="text-black-50">部署</small></div>
+                      <div class="table-cell"><div class="text-black-50">部署</div></div>
                       <div class="table-cell"><%= report.department.department_name %></div>
-                      <div class="table-cell"><small class="text-black-50">氏名</small></div>
+                      <div class="table-cell"><div class="text-black-50">氏名</div></div>
                       <div class="table-cell"><%= report.user.username %></div>
                     </div>
                   </div>
@@ -41,7 +41,7 @@
           <div class="card-body">
             <div class="table-container">
               <div class="table-row">
-                <div class="table-cell"><small class="text-black-50">タイトル</small></div>
+                <div class="table-cell"><div class="text-black-50">タイトル</div></div>
                 <div class="table-cell"> <%= report.subject %></div>
               </div>
             </div>
@@ -52,15 +52,15 @@
         <div class="table-container">
           <div class="table-row">
             <div class="table-cell3 rounded-3 bg-light-grey text-light text-center align-middle">
-              <small>優良賞</small>
+              <div>優良賞</div>
             </div>
             <div></div>
             <div class="table-cell3 rounded-3 bg-light-grey text-light text-center align-middle">
-              <small>社長賞</small>
+              <div>社長賞</div>
             </div>
             <div></div>
             <div class="table-cell3 rounded-3 bg-light-grey text-light text-center align-middle">
-              <small>No.1</small>
+              <div>No.1</div>
             </div>
           </div>
         </div>
@@ -72,98 +72,116 @@
     <!-- 2 -->
 
     <div class="container-fluid">
-    <table style="width: 100%; border-collapse: collapse;">
-      <tr>
-        <td style="width: 50%; padding: 0;">
-          <div class="card border-info border-5 custom-shadow">
-            <div class="card-header bg-white">
-              <div class="col-3 rounded-pill bg-primary text-light p-1 text-center">
-                <small>KAIZEN前</small>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="width: 50%; padding: 0;">
+            <div class="card border-info border-5 custom-shadow">
+              <div class="card-header bg-white">
+                <div class="col-3 rounded-pill bg-primary text-light p-1 text-center">
+                  <div>KAIZEN前</div>
+                </div>
               </div>
-            </div>
-            <div class="images-container">
-              <% if report.before_images.attached? %>
-                <% report.before_images.each do |image| %>
-                  <%= image_tag image, class: "img" %>
+              <div class="images-container">
+                <% if report.before_images.attached? %>
+                  <% report.before_images.each do |image| %>
+                    <%= image_tag image, class: "img" %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
-            <div class="card-footer bg-white">
-              <div class="col m-2 three-lines-text">
-                <%= simple_format(report.before_text) %>
+              </div>
+              <div class="card-footer bg-white">
+                <div class="col m-2 eight-lines-text">
+                  <%= simple_format(report.before_text) %>
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-        <td style="width: 50%; padding: 0;">
-          <div class="card border-warning border-5 custom-shadow">
-            <div class="card-header bg-white">
-              <div class="col-3 rounded-pill bg-danger text-light p-1 text-center">
-                <small>KAIZEN後</small>
+          </td>
+          <td style="width: 50%; padding: 0;">
+            <div class="card border-warning border-5 custom-shadow">
+              <div class="card-header bg-white">
+                <div class="col-3 rounded-pill bg-danger text-light p-1 text-center">
+                  <div>KAIZEN後</div>
+                </div>
               </div>
-            </div>
-            <div class="images-container">
-              <% if report.after_images.attached? %>
-                <% report.after_images.each do |image| %>
-                  <%= image_tag image, class: "img" %>
+              <div class="images-container">
+                <% if report.after_images.attached? %>
+                  <% report.after_images.each do |image| %>
+                    <%= image_tag image, class: "img" %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
-            <div class="card-footer bg-white">
-              <div class="col m-2 three-lines-text">
-                <%= simple_format(report.after_text) %>
+              </div>
+              <div class="card-footer bg-white">
+                <div class="col m-2 eight-lines-text">
+                  <%= simple_format(report.after_text) %>
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    </table>
+          </td>
+        </tr>
+      </table>
     </div>
 
     <!-- 3 -->
 
     <div class="table-container">
-    <div class="table-row">
-      <!-- 効果カード -->
-      <div class="table-cell pe-1">
-        <div class="card custom-shadow">
-          <div class="card-body">
-            <div class="table-row m-0">
-              <div class="table-cell col-3 text-light pe-5 align-middle">
-                <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
-              </div>
-              <div class="table-cell col three-lines-text">
-                <%= simple_format(report.effect_comment) %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 費用カード -->
-      <div class="table-cell col-4 align-top">
-        <div class="table-container">
+      <div class="table-row">
+        <!-- 効果カード -->
+        <div class="table-cell align-top">
           <div class="card custom-shadow">
             <div class="card-body">
-              <div class="table-row three-lines">
-                <div class="table-cell pe-2 align-middle">
-                  <small class="text-black-50">費用</small>
+              <div class="table-row">
+                <div class="table-cell col-3 text-light pe-5 align-middle">
+                  <div class="text-light rounded-pill bg-light-green px-2 py-1">効果</div>
                 </div>
-                <div class="table-cell pe-4 align-middle">
-                  <%= report.cost %>円
+                <div class="table-cell col three-lines-text">
+                  <%= simple_format(report.effect_comment) %>
                 </div>
-                <div class="table-cell pe-2 align-middle">
-                  <small class="text-black-50">効果金額</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 費用カード -->
+        <div class="table-cell col-2 align-top">
+          <div class="table-container">
+            <div class="card custom-shadow">
+              <div class="card-header bg-white">
+                <div class="table-row card-height">
+                  <div class="table-cell pe-2 align-middle">
+                    <div class="text-black-50">かかった費用</div>
+                  </div>
                 </div>
-                <div class="table-cell p-0 align-middle">
-                  <%= report.effect_amount %>円
+              </div>
+              <div class="card-header bg-white">
+                <div class="table-row card-height">
+                  <div class="table-cell pe-4 align-middle">
+                    <%= report.cost %> 円
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-cell col-2 align-top">
+          <div class="table-container">
+            <div class="card custom-shadow">
+              <div class="card-header bg-white">
+                <div class="table-row card-height">
+                  <div class="table-cell pe-2 align-middle">
+                    <div class="text-black-50">年間効果金額</div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-white">
+                <div class="table-row card-height">
+                  <div class="table-cell p-0 align-middle">
+                    <%= report.effect_amount %> 円
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
 
 
@@ -171,133 +189,142 @@
     <!-- 4 -->
 
     <div class="table-container">
-    <div class="card custom-shadow">
-      <div class="card-body">
-        <div class="table-row">
-          <div class="table-cell col-3 align-middle">
-            <small class="text-black-50">メンバー</small>
-          </div>
-          <div class="table-cell col">
-            <div class="table-row">
-              <% member_ids = JSON.parse(report.kaizen_member_id).map(&:to_i) %>
-              <% member_usernames = User.where(id: member_ids).pluck(:username) %>
-              <% member_usernames.each do |username| %>
-                <div class="table-cell col-auto rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
-                  <small><%= username %></small>
-                </div>
-              <% end %>
+      <div class="card custom-shadow">
+        <div class="card-body py-2">
+          <div class="table-row">
+            <div class="table-cell col-3 align-middle">
+              <div class="text-black-50">メンバー</div>
+            </div>
+            <div class="table-cell col">
+              <div class="table-row">
+                <% member_ids = JSON.parse(report.kaizen_member_id).map(&:to_i) %>
+                <% member_usernames = User.where(id: member_ids).pluck(:username) %>
+                <% member_usernames.each do |username| %>
+                  <div class="table-cell col-auto rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
+                    <div><%= username %></div>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
-
-    <!-- 5 -->
-
-    <div class="container-fluid">
-    <div class="card custom-shadow">
-      <div class="card-body">
-        <div class="table-row">
-          <div class="table-cell col-3 pe-5 align-middle">
-            <small class="text-black-50">TSKバリュー</small>
-          </div>
-          <div class="table-cell text-center align-middle">
-            <div class="table-cell rounded-pill bg-off-white py-1 px-2 m-1 text-center align-middle">
-              <small><%= report.tsk_value.value_name %></small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     </div>
 
     <!-- 評価者コメント -->
 
     <div class="table-container">
-    <div class="card custom-shadow">
-      <div class="card-header bg-white">
-        <div class="table-container">
-          <div class="table-row">
-            <div class="table-cell col-3 pe-4 align-middle">
-              <small class="text-black-50">1次評価者コメント</small>
-            </div>
-            <div class="table-cell col-7 ev-three-lines-text">
-              <%= simple_format(report.first_evaluator_comment) %>
-            </div>
-            <div class="table-cell col-1 align-middle">
-              <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
-                <small><%= current_user.username %></small>
+      <div class="card custom-shadow">
+        <div class="card-header bg-white">
+          <div class="table-container">
+            <div class="table-row">
+              <div class="table-cell col-3 pe-4 align-middle">
+                <div class="text-black-50">1次評価者コメント</div>
+              </div>
+              <div class="table-cell col-7 ev-text">
+                <%= report.first_evaluator_comment %>
+              </div>
+              <div class="table-cell col-1 align-middle">
+                <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
+                  <div><%= report.user.first_evaluator.username %></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card-header bg-white">
-        <div class="table-container">
-          <div class="table-row">
-            <div class="table-cell col-3 pe-4 align-middle">
-              <small class="text-black-50">2次評価者コメント</small>
-            </div>
-            <div class="table-cell col-7 ev-three-lines-text">
-              <%= simple_format(report.second_evaluator_comment) %>
-            </div>
-            <div class="table-cell col-1 align-middle">
-              <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
-                <small><%= current_user.username %></small>
+        <div class="card-header bg-white">
+          <div class="table-container">
+            <div class="table-row">
+              <div class="table-cell col-3 pe-4 align-middle">
+                <div class="text-black-50">2次評価者コメント</div>
+              </div>
+              <div class="table-cell col-7 ev-text">
+                <%= report.second_evaluator_comment %>
+              </div>
+              <div class="table-cell col-1 align-middle">
+                <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
+                  <div><%= report.user.second_evaluator.username %></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="table-container">
-    <div class="table-row">
-
-      <!-- 最終評価 -->
-      <div class="table-cell pe-1 align-top">
-        <div class="card custom-shadow">
-          <div class="card-body">
-            <div class="table-row m-2">
-              <div class="table-cell col-auto p-0 pe-4">
-                <small class="text-light rounded-pill bg-light-green px-2 py-1">最終評価</small>
+        <div class="card-header bg-white">
+          <div class="table-container">
+            <div class="table-row">
+              <div class="table-cell col-3 pe-4 align-middle">
+                <div class="text-black-50">最終評価者コメント</div>
               </div>
-              <div class="table-cell col-auto rounded-pill bg-off-white py-1 px-2 m-1 text-center align-middle">
-                <small><%= report.award.award_name %></small>
+              <div class="table-cell col-7 ev-text">
+                <%= report.final_evaluator_comment %>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 最終評価者氏名 -->
-      <div class="table-cell">
-        <div class="card custom-shadow">
-          <div class="card-body">
-            <div class="table-row m-2">
-              <div class="table-cell col-3 p-0">
-                <small class="text-black-50">最終評価者氏名</small>
-              </div>
-              <div class="table-cell">
-                <div class="table-row">
-                  <% member_ids = JSON.parse(report.kaizen_member_id).map(&:to_i) %>
-                  <% member_usernames = User.where(id: member_ids).pluck(:username) %>
-                  <% member_usernames.each do |username| %>
-                    <div class="table-cell col-auto rounded-pill bg-off-white py-1 px-2 m-1">
-                      <small><%= username %></small>
-                    </div>
-                  <% end %>
+              <div class="table-cell col-1 align-middle">
+                <div class="table-cell rounded-pill bg-off-white text-center align-middle py-1 px-2 m-1">
+                  <div>設定無し</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
+
+    <div class="table-container mb-3">
+      <div class="table-row">
+
+        <!-- 最終評価 -->
+        <div class="table-cell align-top">
+          <div class="card custom-shadow">
+            <div class="card-body py-2">
+              <div class="table-row m-2">
+                <div class="table-cell col-auto pe-4">
+                  <div class="text-light rounded-pill bg-light-green px-2 py-1">最終評価</div>
+                </div>
+                <div class="table-cell col-auto rounded-pill bg-off-white py-1 px-2 m-1 text-center align-middle">
+                  <div><%= report.award.award_name %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-cell align-top">
+          <div class="card custom-shadow">
+            <div class="card-body py-2">
+              <div class="table-row">
+                <div class="table-cell col-3 pe-5 align-middle">
+                  <div class="text-black-50">TSKバリュー</div>
+                </div>
+                <div class="table-cell text-center align-middle">
+                  <div class="table-cell rounded-pill bg-off-white py-1 px-2 m-1 text-center align-middle">
+                    <div><%= report.tsk_value.value_name %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 最終評価者氏名 -->
+        <div class="table-cell">
+          <div class="card custom-shadow">
+            <div class="card-body py-2  my-1">
+              <div class="table-row">
+                <div class="table-cell col-3">
+                  <div class="text-black-50">最終評価者氏名</div>
+                </div>
+                <div class="table-cell">
+                  <div class="table-row">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   <% if index < @kaizen_reports.length - 1 %>
     <div class="page-break"></div>
   <% end %>

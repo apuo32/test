@@ -31,39 +31,52 @@
 }
 
 .img {
-  max-height: 220px; /* 画像の最大高さを220pxに設定 */
-  max-width: 50%;
+  max-height: 280px; /* 画像の最大高さを220pxに設定 */
+  max-width: 33%;
   width: auto; /* 幅は高さに基づいて自動調整 */
   object-fit: contain; /* 画像の縦横比を保ちながらコンテナに収める */
 }
 
 
-.three-lines {
-  height: 5.5em; /* line-height x 3 */
+.card-height {
+  height: 2.75em;
 }
 
-.three-lines-text {
+.eight-lines-text {
+  font-size: 12px;
   line-height: 1.6em; /* 1行の高さ */
-  height: 5.5em; /* line-height x 3 */
+  height: 16.0em;
   overflow: hidden; /* 超えたテキストは非表示 */
   text-overflow: ellipsis; /* テキストがオーバーフローした際の処理 */
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* 表示する行数 */
+  -webkit-line-clamp: 10; /* 表示する行数 */
   -webkit-box-orient: vertical;
 }
 
-.ev-three-lines-text {
+.three-lines-text {
+  font-size: 12px;
   line-height: 1.6em; /* 1行の高さ */
-  height: 4.0em; /* line-height x 3 */
+  height: 6.4em; /* line-height x 3 */
   overflow: hidden; /* 超えたテキストは非表示 */
   text-overflow: ellipsis; /* テキストがオーバーフローした際の処理 */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* 表示する行数 */
+  -webkit-line-clamp: 5; /* 表示する行数 */
+  -webkit-box-orient: vertical;
+}
+
+.ev-text {
+  font-size: 12px;
+  line-height: 1.6em; /* 1行の高さ */
+  height: 1.6em; /* line-height x 3 */
+  overflow: hidden; /* 超えたテキストは非表示 */
+  text-overflow: ellipsis; /* テキストがオーバーフローした際の処理 */
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 表示する行数 */
   -webkit-box-orient: vertical;
 }
 
 .images-container {
-  height: 220px; /* divの高さを220pxに固定 */
+  height: 280px; /* divの高さを220pxに固定 */
 }
 
 .page-break {

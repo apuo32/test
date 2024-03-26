@@ -241,7 +241,7 @@
             </div>
           <div class="card-footer bg-white">
             <div class="col m-2">
-              <%= form.text_area :before_text, class: "form-control limited-three-lines", rows: 3 %>
+              <%= form.text_area :before_text, class: "form-control limited-ten-lines", rows: 5 %>
             </div>
           </div>
         </div>
@@ -277,7 +277,7 @@
             </div>
           <div class="card-footer bg-white">
             <div class="col m-2">
-              <%= form.text_area :after_text, class: "form-control limited-three-lines", rows: 3 %>
+              <%= form.text_area :after_text, class: "form-control limited-ten-lines", rows: 5 %>
             </div>
           </div>
         </div>
@@ -299,7 +299,7 @@
                 <small class="text-light rounded-pill bg-light-green px-2 py-1">効果</small>
               </div>
               <div class="col d-flex justify-content-center align-items-center">
-                <%= form.text_area :effect_comment, class: "form-control limited-three-lines", rows: 3 %>
+                <%= form.text_area :effect_comment, class: "form-control limited-four-lines", rows: 4 %>
               </div>
             </div>
           </div>
@@ -438,3 +438,44 @@
     <%= link_to '戻る', user_path(current_user), class: 'btn btn-danger text-light', data: { turbo_method: :get, turbo_confirm: '保存されていませんがよろしいですか？' } %>
   </div>
 <% end %>
+
+<script type="module">
+  document.addEventListener("turbo:load", async () => {
+    const { coppyValue } = await import("coppyValue");
+    coppyValue();
+
+    const { imagesClear } = await import("imagesClear");
+    imagesClear();
+
+    const { imagesUpload } = await import("imagesUpload");
+    imagesUpload();
+
+    const { selectMember } = await import("selectMember");
+    selectMember();
+
+    const { limited10Lines } = await import("limited10Lines");
+    limited10Lines();
+
+    const { limited4Lines } = await import("limited4Lines");
+    limited4Lines();
+  });
+  document.addEventListener("turbo:render", async () => {
+    const { coppyValue } = await import("coppyValue");
+    coppyValue();
+
+    const { imagesClear } = await import("imagesClear");
+    imagesClear();
+
+    const { imagesUpload } = await import("imagesUpload");
+    imagesUpload();
+
+    const { selectMember } = await import("selectMember");
+    selectMember();
+
+    const { limited10Lines } = await import("limited10Lines");
+    limited10Lines();
+
+    const { limited4Lines } = await import("limited4Lines");
+    limited4Lines();
+  });
+</script>
