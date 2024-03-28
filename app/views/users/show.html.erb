@@ -72,23 +72,3 @@
     </div>
   </div>
 <% end %>
-
-<!-- KAIZENカレンダー:パーシャルに変更予定 -->
-
-<%= month_calendar do |date| %>
-  <div class="<%= 'today' if date == Date.today %>">
-    <%= date.day %>
-    <% @calendars.each do |calendar| %>
-      <% if date == calendar.first_evaluation_submission_date %>
-        <p>1次評価者提出日</p>
-      <% end %>
-      <% if date == calendar.second_evaluation_submission_date %>
-        <p>2次評価者提出日</p>
-      <% end %>
-      <% if date == calendar.award_date %>
-        <p>表彰日</p>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
-
