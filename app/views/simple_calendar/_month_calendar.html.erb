@@ -1,0 +1,37 @@
+<div class="simple-calendar mx-4 mb-4">
+  <div class="calendar-heading text-center mb-3">
+    <nav class="d-flex justify-content-between">
+      <%= link_to "",calendar.url_for_previous_view, class: 'bi-chevron-left ms-5 fs-3 text-dark', remote: true %>
+      <div class="d-flex align-items-center justify-content-center fs-5">
+        <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= start_date.strftime('%Y年%-m月') %></time>
+      </div>
+      <%= link_to "",calendar.url_for_next_view, class: 'bi-chevron-right me-5 fs-3 text-dark', remote: true %>
+    </nav>
+  </div>
+
+  <table class="table table-bordered border-dark">
+    <thead class="text-center">
+      <tr>
+        <th class="text-danger">日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th class="text-primary">土</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-light table-bordered border-dark custom-table-aligntop">
+      <% date_range.each_slice(7) do |week| %>
+        <tr class="border-dark">
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

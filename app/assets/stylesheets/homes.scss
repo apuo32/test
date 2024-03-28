@@ -1,0 +1,145 @@
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.circle:hover {
+  transform: translateY(3px);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.bi {
+  font-size: 32px;
+}
+
+.red-squere {
+  width: 130px;
+  height: 130px;
+  border-radius: 5%;
+  background-color: #F8BDB0;
+}
+
+.font-42 {
+  font-size: 42px;
+}
+
+svg {
+  position: relative;
+  width: 450px;
+  height: 450px;
+}
+
+svg circle {
+  position: relative;
+  fill: none;
+  stroke-width: 20;
+  stroke: #f3f3f3;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+}
+
+.fix-btn-calendar {
+  position:fixed;
+  z-index:1;
+  background:#004A98;
+  width:100px;
+  border-radius:15px 0px 0px 15px;
+  text-decoration:none;
+  font-size:14px;
+  text-align:center;
+  color:#ffffff;
+  padding:5px 0;
+  right:0;
+  bottom:300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fix-btn-kaizen {
+  position:fixed;
+  z-index:1;
+  background:#EA5B3C;
+  width:100px;
+  border-radius:15px 0px 0px 15px;
+  text-decoration:none;
+  font-size:14px;
+  text-align:center;
+  color:#ffffff;
+  padding:5px 0;
+  right:0;
+  bottom:210px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fix-btn-calendar:hover {
+  color:#ffffff;
+  transform: translateY(2px);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.fix-btn-kaizen:hover {
+  color:#ffffff;
+  transform: translateY(2px);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.icon {
+  width: 34px;
+  height: 44px;
+}
+
+.modal-content {
+  background-color: #f2f1ef;
+}
+
+.wday-0 {
+  color: #EA5B3C;
+}
+.wday-6 {
+   color: #004A98;
+}
+
+.prev-month {
+  color: #D6D1CA;
+}
+.next-month {
+  color: #D6D1CA;
+}
+
+.today + .future {
+   color: #ffffff;
+   background-color: #D6D1CA;
+ + .future a {
+     color: #ffffff;
+     background-color: orange;
+ }
+}
+
+.table-light td {
+  width: 14.28%; /* 7カラムあるため、100% / 7 = 約14.28% */
+  text-align: center; /* セルのテキストを中央揃えにします */
+  vertical-align: middle; /* セルのコンテンツを垂直方向の中央に配置します */
+}
+
+.text-small {
+  font-size: 8px;
+}
+
+.custom-table-aligntop td {
+  vertical-align: top;
+}
+
+.btn-close-custom {
+  position: relative;
+  top: 0;
+  left: 90%;
+  margin-top: -25px; /* ボタンの大きさに応じて調整 */
+  opacity: 1; /* ボタンを不透明にする */
+  background-color: #f8f9fa; /* 背景色を設定 */
+  border: none; /* ボーダーを削除する場合 */
+}
+
+

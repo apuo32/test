@@ -9,6 +9,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if user_signed_in? %>
+          <%= link_to "ホーム", homes_path, class: 'nav-link', data: { turbo: false } %>
           <%= link_to "改善報告一覧", list_kaizen_reports_path, class: 'nav-link', data: { turbo: false } %>
           <%= link_to "新規作成", "/kaizen_reports/new", class: 'nav-link', data: { turbo: false } %>
           <%= link_to "マイページ", user_path(current_user), class: 'nav-link', data: { turbo: false } %>

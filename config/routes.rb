@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users
   resources :evaluators
   resources :kaizen_reports
+  resources :homes
   
   resources :list_kaizen_reports do
     collection do

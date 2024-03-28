@@ -1,0 +1,237 @@
+<div class="container-fluid mb-5">
+  <div class="row justify-content-center">
+    <%= link_to new_kaizen_report_path, class: "circle d-flex flex-column justify-content-center align-items-center me-4 bg-danger text-decoration-none text-white", data: { turbo: false } do %>
+      <div class="bi bi-pencil-fill"></div>
+      <div class="text-center">
+        報告書を<br>新規作成
+      </div>
+    <% end %>
+    <%= link_to "#", class: "circle d-flex flex-column justify-content-center align-items-center me-4 bg-danger text-decoration-none text-white", data: { turbo: false } do %>
+      <div class="bi bi-images"></div>
+      <div class="text-center">
+        挿入画像<br>を作成
+      </div>
+    <% end %>
+    <%= link_to "#", class: "circle d-flex flex-column justify-content-center align-items-center me-4 bg-danger text-decoration-none text-white", data: { turbo: false } do %>
+      <div class="bi bi-search"></div>
+      <div class="text-center">
+        KAIZEN<br>検索
+      </div>
+    <% end %>
+    <%= link_to evaluator_path(current_user), class: "circle d-flex flex-column justify-content-center align-items-center me-4 bg-light-green text-decoration-none text-white", data: { turbo: false } do %>
+      <div class="bi bi-chat-left-dots-fill"></div>
+      <div class="text-center">
+        評価する
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container-fluid mb-4">
+  <div class="card mx-5">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-auto">
+          <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+        </div>
+        <div class="col">
+          <strong>2024年3月のさんのマイデータ</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 text-center">
+          <div class="row">
+            <svg>
+              <circle cx="200" cy="200" r="100"></circle>
+            <svg>
+          </div>
+        </div>
+        <div class="col-7">
+          <div class="row mx-4 mb-3">
+            <div class="col red-squere me-3 d-flex flex-column justify-content-center align-items-center">
+              <div class="row text-center">
+                <strong>すべての<br>未提出KAIZEN</strong>
+              </div>
+              <div class="row text-center font-42 text-danger">
+                <strong>3</strong>
+              </div>
+            </div>
+            <div class="col red-squere me-3 d-flex flex-column justify-content-center align-items-center">
+              <div class="row text-center">
+                <strong>当月自分で<br>提出済のKAIZEN</strong>
+              </div>
+              <div class="row text-center font-42 text-danger">
+                <strong>1</strong>
+              </div>
+            </div>
+            <div class="col red-squere d-flex flex-column justify-content-center align-items-center">
+              <div class="row text-center">
+                <strong>当月メンバーが<br>提出済のKAIZEN</strong>
+              </div>
+              <div class="row text-center font-42 text-danger">
+                <strong>1</strong>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="card border-white">
+              <div class="row card-header bg-transparent">
+                <strong>未提出のKAIZEN</strong>
+              </div>
+              <% @my_kaizen_reports.each do |i| %>
+                <div class="row card-header bg-transparent">
+                  <div class="row text-black-50">
+                    <%= i.submission_date.strftime('%Y/%-m/%-d') %>
+                    <%= i.submission_flag ? '提出済み' : '未提出' %>
+                    <%= i.evaluator_progress.status %>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <%= i.subject %>
+                    </div>
+                    <div class="col-auto">
+                      <%= link_to '編集', edit_kaizen_report_path(i), class: 'btn btn-sm btn-primary bi-pencil-fill text-white', data: { turbo: false } %>
+                    </div>
+                    <div class="col-auto">
+                      <%= link_to 'プレビュー', kaizen_report_path(i), class: 'btn btn-sm btn-success bi-file-earmark text-white', data: { turbo: false } %>
+                    </div>
+                    <div class="col-auto">
+                      <%= link_to '削除', kaizen_report_path(i), data: {turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: 'btn btn-sm btn-secondary bi-trash-fill' %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row d-grid col-6 mx-auto custom-shadow">
+            <%= link_to 'マイデータへ', user_path(current_user), class: 'btn btn-danger text-light', data: { turbo: false } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="card mx-5">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-auto">
+          <%= image_tag 'cmn_ico_circle01.svg', class: "img-fluid" %>
+        </div>
+        <div class="col">
+          <strong>新着KAIZEN</strong>
+          3/4更新
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <% @kaizen_reports.each_with_index do |i, index| %>
+            <% if index < 4 %> 
+              <div class="row card-header bg-transparent">
+                <div class="row text-black-50">
+                  <%= i.submission_date.strftime('%Y/%-m/%-d') %>
+                  <%= i.submission_flag ? '提出済み' : '未提出' %>
+                  <%= i.evaluator_progress.status %>
+                </div>
+                <div class="row">
+                  <div class="col-auto">
+                    <%= i.award.award_name %>
+                  </div>
+                  <div class="col">
+                    <%= i.subject %>
+                  </div>
+                  <div class="col-auto">
+                    <%= link_to 'プレビュー', kaizen_report_path(i), class: 'btn btn-sm btn-success bi-file-earmark text-white', data: { turbo: false } %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col">
+          <% @kaizen_reports.each_with_index do |i, index| %>
+            <% if index >= 4 %>
+              <div class="row card-header bg-transparent">
+                <div class="row text-black-50">
+                  <%= i.submission_date.strftime('%Y/%-m/%-d') %>
+                  <%= i.submission_flag ? '提出済み' : '未提出' %>
+                  <%= i.evaluator_progress.status %>
+                </div>
+                <div class="row">
+                  <div class="col-auto">
+                    <%= i.award.award_name %>
+                  </div>
+                  <div class="col">
+                    <%= i.subject %>
+                  </div>
+                  <div class="col-auto">
+                    <%= link_to 'プレビュー', kaizen_report_path(i), class: 'btn btn-sm btn-success bi-file-earmark text-white', data: { turbo: false } %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row d-grid col-6 mx-auto custom-shadow">
+        <%= link_to 'KAIZEN検索へ', user_path(current_user), class: 'btn btn-danger text-light', data: { turbo: false } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <%= link_to '#', class: 'fix-btn-calendar', 'data-bs-toggle': "modal", 'data-bs-target': "#exampleModal" do %>
+    <i class="bi bi-calendar2-week-fill"></i>
+    <br>
+    カレンダー
+  <% end %>
+</div>
+
+<div class="wrapper">
+  <%= link_to '#', class: 'fix-btn-kaizen' do %>
+    <%= image_tag('bg02.svg', alt: '新着KAIZEN', class: 'icon') %>
+    <br>
+    新着KAIZEN
+  <% end %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <button type="button" class="btn-close rounded-circle bg-light custom-shadow btn-lg p-3 btn-close-custom" id="circle" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+        <%= month_calendar do |date| %>
+          <div>
+            <%= date.day %>
+            <% @calendars.each do |calendar| %>
+              <% if date == calendar.first_evaluation_submission_date %>
+                <div class="text-small text-danger rounded-pill bg-warning">KAIZEN提出日</div>
+              <% end %>
+              <% if date == calendar.second_evaluation_submission_date %>
+                <div class="text-small text-primary rounded-pill bg-info">2次評価者提出日</div>
+              <% end %>
+              <% if date == calendar.award_date %>
+                <div class="text-small text-success rounded-pill bg-green">表彰日</div>
+              <% end %>
+            <% end %>
+            <div class="text-small"><br></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener("turbo:load", async () => {
+    const { calendarButton } = await import("calendarButton");
+    calendarButton();
+  });
+  document.addEventListener("turbo:render", async () => {
+    const { calendarButton } = await import("calendarButton");
+    calendarButton();
+  });
+</script>

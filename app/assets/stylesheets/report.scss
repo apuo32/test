@@ -3,6 +3,7 @@ $primary: #004A98;
 $info: #A3C4ED;
 $danger: #EA5B3C;
 $warning: #F8BDB0;
+$success: #74BC1E;
 
 @import "bootstrap";
 
@@ -20,6 +21,10 @@ $warning: #F8BDB0;
 
 .bg-light-green {
   background: #74BC1E;
+}
+
+.bg-green {
+  background: #d4f0af;
 }
 
 .bg-off-white {
